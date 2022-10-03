@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       title: 'Prepared Academy',
       theme: ThemeData(primaryColor: kPrimaryColor),
       routes: AppRoutes.getAppRoutes(),
