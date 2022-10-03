@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
 
-class Splash extends StatelessWidget {
+import '../../utils/app_constants.dart';
+
+class Splash extends StatefulWidget {
   const Splash({super.key});
 
   @override
+  State<Splash> createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Stack(
+        children: [
+          Center(
+            child: Image.asset(
+              AppConstants.LOGO_ONLY,
+              height: 120,
+            ),
+          ),
+          Positioned(
+              bottom: 10,
+              left: 0,
+              right: 0,
+              child: Image.asset(
+                AppConstants.LOGO_IMAGE,
+                height: 25,
+              ))
+        ],
+      ),
+    );
   }
 }

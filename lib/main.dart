@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Prepared Academy',
       theme: ThemeData(primaryColor: kPrimaryColor),
       routes: AppRoutes.getAppRoutes(),
-      initialRoute: AppRoutes.SPLASHSCREEN,
+      initialRoute: AppRoutes.LOGIN,
     );
   }
 }
