@@ -85,7 +85,7 @@ class AppConstants {
   // Images
   static const String LOGO_IMAGE = "assets/images/preparedlogotxt.png";
   static const String LOGO_ONLY = "assets/images/preparedlogoonly.png";
-  static const String LOGIN_STUD = "assets/images/student1.jpg";
+  static const String LOGIN_STUD = "assets/images/edu1.png";
   static const String SERVICE = "images/service.png";
   static const String CLIENTS_IMAGE = "images/clients.png";
   static const String APPOINTMENT_IMAGE = "images/appointment.png";

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
+import 'package:one_context/one_context.dart';
+import 'package:pin_input_text_field/pin_input_text_field.dart';
+import 'package:prepared_academy/utils/navigates.dart';
+import 'package:prepared_academy/views/auth/register.dart';
+import 'package:sms_autofill/sms_autofill.dart';
+import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/style.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,6 +19,7 @@ class Login extends StatefulWidget {
 
 class _MyWidgetState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool isChecked = false;
 
   // Logi BAckground Image
   Widget BgLogin() {
@@ -32,9 +41,19 @@ class _MyWidgetState extends State<Login> {
         padding: const EdgeInsets.all(8.0),
         child: Image.asset(
           AppConstants.LOGO_IMAGE,
-          height: 150,
-          width: 180,
+          height: 120,
+          width: 170,
         ),
+      ),
+    );
+  }
+
+  // Login illustration Image
+  Widget illustrationLogin() {
+    return Center(
+      child: Image.asset(
+        AppConstants.LOGIN_STUD,
+        height: 230,
       ),
     );
   }
@@ -65,11 +84,11 @@ class _MyWidgetState extends State<Login> {
 
   Widget LoginText() {
     return const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(4.0),
       child: Text(
         'Login',
         style: TextStyle(
-          fontSize: 27,
+          fontSize: 20,
           fontWeight: FontWeight.w700,
           color: kBlack,
         ),
@@ -79,7 +98,7 @@ class _MyWidgetState extends State<Login> {
 
   Widget EmailForm() {
     return Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
         child: TextFormField(
           // autofocus: widget.isFocus,
           keyboardType: TextInputType.phone,
@@ -92,10 +111,19 @@ class _MyWidgetState extends State<Login> {
           decoration: const InputDecoration(
             filled: true,
             fillColor: Colors.white,
+            prefixIcon: Icon(
+              Icons.email_outlined,
+              size: 20,
+            ),
             contentPadding: EdgeInsets.all(10),
             focusColor: Colors.greenAccent,
             // labelStyle: ktext14,
-            labelText: "Mobile Number",
+            labelText: "Email",
+            labelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: Color.fromARGB(255, 233, 155, 149),
+              fontSize: 14,
+            ),
             prefixText: "+971 |  ",
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -116,7 +144,7 @@ class _MyWidgetState extends State<Login> {
 
   Widget PasswordForm() {
     return Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: TextFormField(
           obscureText: true,
           // autofocus: widget.isFocus,
@@ -128,21 +156,24 @@ class _MyWidgetState extends State<Login> {
             // mobileNumber = value;
           },
           decoration: const InputDecoration(
+            prefixIcon: Icon(
+              Icons.password_outlined,
+              size: 20,
+            ),
             filled: true,
             fillColor: Colors.white,
             contentPadding: EdgeInsets.all(10),
             focusColor: Colors.greenAccent,
             labelStyle: TextStyle(
               fontWeight: FontWeight.w500,
-              color: Color(0xFFDBDBDB),
+              color: Color.fromARGB(255, 233, 155, 149),
               fontSize: 14,
             ),
             labelText: "Enter Password",
-            // prefixText: "+91 |  ",
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 borderSide: BorderSide(
-                  color: Color(0xFFDBDBDB),
+                  color: kPrimaryColor,
                 )),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -154,6 +185,24 @@ class _MyWidgetState extends State<Login> {
             ),
           ),
         ));
+  }
+
+  Widget RememberMe() {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Checkbox(
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = value!;
+                });
+              }),
+          const Text('Remember Me')
+        ],
+      ),
+    );
   }
 
   Widget LoginButton() {
@@ -218,7 +267,7 @@ class _MyWidgetState extends State<Login> {
           // primary: kSecondayColor,
           backgroundColor: kPrimaryColor,
         ),
-        onPressed: () {},
+        onPressed: () => customPush(AppRoutes.REGISTER),
         // onPressed: validateAndSave,
         child: const Center(
           child: Text(
@@ -246,7 +295,7 @@ class _MyWidgetState extends State<Login> {
               fontSize: 14,
             ),
           ),
-          onPressed: () {},
+          onPressed: () => _showForgotSheet(),
         ),
       ),
     );
@@ -279,9 +328,12 @@ class _MyWidgetState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    LoginText(),
+                    illustrationLogin(),
+                    // LoginText(),
                     EmailForm(),
                     PasswordForm(),
+                    RememberMe(),
+
                     LoginButton(),
                     OrDivider(),
                     RegisterButton(),
@@ -295,4 +347,149 @@ class _MyWidgetState extends State<Login> {
       ),
     );
   }
+}
+
+_showForgotSheet() {
+  // example modalBottomSheet
+  OneContext().showModalBottomSheet<String>(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      builder: (context) => Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Forgot?',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      )),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text('No worries, Reset your password!',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      )),
+                ),
+                Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 15.0),
+                    child: TextFormField(
+                      // autofocus: widget.isFocus,
+                      keyboardType: TextInputType.phone,
+                      cursorColor: Colors.green,
+                      // controller: _usernameController,
+                      // validator: phoneValidator,
+                      onChanged: (text) {
+                        // mobileNumber = value;
+                      },
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        prefixIcon: Icon(Icons.email_outlined),
+                        contentPadding: EdgeInsets.all(10),
+                        focusColor: Colors.greenAccent,
+                        // labelStyle: ktext14,
+                        labelText: "Email",
+                        prefixText: "+971 |  ",
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            borderSide: BorderSide(
+                              color: kPrimaryColor,
+                            )),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            borderSide: BorderSide(
+                              color: kPrimaryColor,
+                            )),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                      ),
+                    )),
+                Center(
+                    child: ElevatedButton(
+                  onPressed: () => _verificationBottom(),
+                  child: const Text('Submit'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kPrimaryColor,
+                  ),
+                ))
+              ],
+            ),
+          ));
+}
+
+_verificationBottom() {
+  String? code;
+  // example modalBottomSheet
+  OneContext().showModalBottomSheet<String>(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      builder: (context) => Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('Verify',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      )),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child:
+                      Text('Verification OTP has been sent to registered mail',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          )),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    Expanded(
+                      child: OTPTextField(
+                        length: 5,
+                        fieldWidth: 60,
+                        outlineBorderRadius: 15,
+                        style: TextStyle(fontSize: 17),
+                        textFieldAlignment: MainAxisAlignment.spaceAround,
+                        fieldStyle: FieldStyle.box,
+                      ),
+                    ),
+                    Icon(Icons.refresh_outlined),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Center(
+                    child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Submit'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kPrimaryColor,
+                  ),
+                ))
+              ],
+            ),
+          ));
 }

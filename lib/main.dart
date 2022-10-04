@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
+import 'package:one_context/one_context.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,11 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      builder: OneContext().builder,
+      navigatorKey: OneContext().key,
+      debugShowCheckedModeBanner: false,
       title: 'Prepared Academy',
       theme: ThemeData(primaryColor: kPrimaryColor),
       routes: AppRoutes.getAppRoutes(),
-      initialRoute: AppRoutes.LOGIN,
+      initialRoute: AppRoutes.PROFILE,
     );
   }
 }
