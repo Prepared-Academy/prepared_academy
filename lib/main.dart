@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/routes/router.dart';
-import 'package:prepared_academy/themes/color_theme.dart';
+import 'package:prepared_academy/themes/app_theme.dart';
+import 'package:prepared_academy/widgets.dart/remove_scroll_glow.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +16,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      scrollBehavior: MyCustomScrollBehavior(),
+      builder: OneContext().builder,
+      navigatorKey: OneContext().key,
       title: 'Prepared Academy',
-      theme: ThemeData(primaryColor: kPrimaryColor),
+      theme: appTheme,
       routes: AppRoutes.getAppRoutes(),
-      initialRoute: AppRoutes.SPLASHSCREEN,
+      initialRoute: AppRoutes.NAVIG,
     );
   }
 }
