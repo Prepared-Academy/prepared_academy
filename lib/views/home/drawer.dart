@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
-import '../../widgets.dart/icon_button.dart';
+import '../../widgets/icon_button.dart';
 
 class DrawerBody extends StatelessWidget {
   DrawerBody({super.key});
@@ -59,10 +59,10 @@ class DrawerBody extends StatelessWidget {
         minLeadingWidth: 25,
         onTap: onTap,
         dense: true,
-        leading: Image.asset(imageIcon, height: 20),
+        leading: Image.asset(imageIcon, height: 24),
         title: Text(
           text,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
         ),
         trailing: const Icon(
           Icons.arrow_forward_ios_rounded,
@@ -108,7 +108,7 @@ class DrawerBody extends StatelessWidget {
                       menuList[index]["name"], () {});
                 },
                 separatorBuilder: (context, index) {
-                  return const Divider(indent: 50, height: 0, thickness: 0.5);
+                  return const Divider(indent: 50, height: 4, thickness: 0.5);
                 },
               ),
             ),

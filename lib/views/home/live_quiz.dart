@@ -3,7 +3,7 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
-import 'package:prepared_academy/widgets.dart/buttons.dart';
+import 'package:prepared_academy/widgets/buttons.dart';
 
 class LiveQuiz extends StatelessWidget {
   LiveQuiz({super.key});
@@ -13,7 +13,7 @@ class LiveQuiz extends StatelessWidget {
       "subject": "Programming",
       "teacher": "Moin khan",
       "title": "All about Node JS",
-      "type": false,
+      "type": true,
       "done": false
     },
     {
@@ -34,7 +34,7 @@ class LiveQuiz extends StatelessWidget {
       "subject": "Biology",
       "teacher": "Erick Bert",
       "title": "Symptoms preficiency in the verins",
-      "type": false,
+      "type": true,
       "done": false
     },
   ];
@@ -97,48 +97,57 @@ class LiveQuiz extends StatelessWidget {
                                         Icon(
                                           Icons.timer_outlined,
                                           color: kPrimaryColor,
-                                          size: 17,
                                         ),
                                         SizedBox(width: 5),
                                         Text(
                                           "30 Sec",
                                           style: TextStyle(
-                                              color: kPrimaryColor,
-                                              fontSize: 10),
+                                            color: kPrimaryColor,
+                                          ),
                                         ),
                                       ],
                                     ),
                                   ),
-                            const Spacer(),
-                            Text(
-                              coursesList[index]["subject"].toUpperCase(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: coursesList[index]["done"] == true
-                                      ? Colors.black
-                                      : Colors.white,
-                                  fontSize: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    coursesList[index]["subject"].toUpperCase(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            coursesList[index]["done"] == true
+                                                ? Colors.black
+                                                : Colors.white,
+                                        fontSize: 12),
+                                  ),
+                                  Text(
+                                    coursesList[index]["teacher"],
+                                    style: TextStyle(
+                                        color:
+                                            coursesList[index]["done"] == true
+                                                ? Colors.black
+                                                : Colors.white,
+                                        fontSize: 12),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    coursesList[index]["title"],
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        overflow: TextOverflow.ellipsis,
+                                        color:
+                                            coursesList[index]["done"] == true
+                                                ? Colors.black
+                                                : Colors.white,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text(
-                              coursesList[index]["teacher"],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: coursesList[index]["done"] == true
-                                      ? Colors.black
-                                      : Colors.white,
-                                  fontSize: 10),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              coursesList[index]["title"],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: coursesList[index]["done"] == true
-                                      ? Colors.black
-                                      : Colors.white,
-                                  fontSize: 10),
-                            ),
-                            const Spacer(),
                             MiniElevatedButton(
                               backgroundColor:
                                   coursesList[index]["done"] == true

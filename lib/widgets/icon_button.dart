@@ -22,8 +22,8 @@ class CustomIconButton extends StatelessWidget {
         child: iconData == null
             ? Image.asset(
                 iconImage!,
-                height: 20,
-                width: 20,
+                height: 22,
+                width: 22,
               )
             : Icon(
                 iconData,

@@ -13,15 +13,15 @@ class Navig extends StatefulWidget {
 }
 
 class _NavigState extends State<Navig> {
-  int selectedIndex = 3;
+  int selectedIndex = 1;
   // double iconSize = 25;
 
   List<Widget> widgetOptions = [
-    const Home(),
+    Home(),
     MySubjects(),
     InClassActivities(),
     LiveQuiz(),
-    const Home(),
+    Home(),
   ];
 
   void onItemTap(int index) {

@@ -14,7 +14,7 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
       SPLASHSCREEN: (context) => const Splash(),
-      HOMESCREEN: (context) => const Home(),
+      HOMESCREEN: (context) => Home(),
       NAVIG: (context) => const Navig(),
     };
     return appRoutes;

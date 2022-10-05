@@ -58,11 +58,12 @@ class MySubjects extends StatelessWidget {
     },
   ];
   final scrollController = ScrollController();
-  final listShowItemDuration = const Duration(milliseconds: 0);
+  // final listShowItemDuration = const Duration(milliseconds: 0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text("All subjects"),
@@ -70,7 +71,7 @@ class MySubjects extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            toolbarHeight: 30,
+            toolbarHeight: 40,
             floating: true,
             centerTitle: false,
             automaticallyImplyLeading: false,
@@ -83,97 +84,107 @@ class MySubjects extends StatelessWidget {
               ),
             ),
           ),
-          LiveSliverList(
-            delay: const Duration(milliseconds: 100) * 5,
-            itemCount: coursesList.length,
-            controller: scrollController,
-            itemBuilder: ((context, index, animation) => FadeTransition(
-                  opacity: Tween<double>(
-                    begin: 0,
-                    end: 1,
-                  ).animate(animation),
-                  child: SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(0, -0.1),
-                      end: Offset.zero,
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: LiveSliverList(
+              delay: const Duration(milliseconds: 50) * 5,
+              itemCount: coursesList.length,
+              controller: scrollController,
+              itemBuilder: ((context, index, animation) => FadeTransition(
+                    opacity: Tween<double>(
+                      begin: 0,
+                      end: 1,
                     ).animate(animation),
-                    child: InkWell(
-                      onTap: () {},
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0, -0.1),
+                        end: Offset.zero,
+                      ).animate(animation),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 5, color: kShadow, spreadRadius: 1)
-                          ],
+                          // color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: kBorder),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //       blurRadius: 5, color: kShadow, spreadRadius: 1)
+                          // ],
                         ),
-                        margin: EdgeInsets.only(top: index == 0 ? 0 : 5),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(3),
-                                child: Image.asset(
-                                  AppConstants.DEMOPOST_IMAGE,
-                                  height: 43,
-                                  width: 43,
-                                ),
+                        margin: const EdgeInsets.only(bottom: 5),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(15),
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 16),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(3),
+                                    child: Image.asset(
+                                      AppConstants.DEMOPOST_IMAGE,
+                                      height: 50,
+                                      width: 50,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        coursesList[index]["name"]
+                                            .toUpperCase(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        coursesList[index]["desc"],
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey.shade800),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      LinearPercentIndicator(
+                                        barRadius: const Radius.circular(100),
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.65,
+                                        animation: true,
+                                        lineHeight: 3.0,
+                                        percent: ((coursesList[index]
+                                                        ["progress"] /
+                                                    100) *
+                                                100) /
+                                            100,
+                                        padding: EdgeInsets.zero,
+                                        backgroundColor:
+                                            kPrimaryColor.withOpacity(0.1),
+                                        progressColor: kPrimaryColor,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        "${((coursesList[index]["progress"] / 100) * 100).round()}% complete",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey.shade600),
+                                      )
+                                    ],
+                                  )
+                                ],
                               ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      coursesList[index]["name"].toUpperCase(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 10),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      coursesList[index]["desc"],
-                                      style: TextStyle(
-                                          fontSize: 9,
-                                          color: Colors.grey.shade800),
-                                    ),
-                                    const SizedBox(height: 2),
-                                    LinearPercentIndicator(
-                                      barRadius: const Radius.circular(100),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.75,
-                                      animation: true,
-                                      lineHeight: 3.0,
-                                      percent: ((coursesList[index]
-                                                      ["progress"] /
-                                                  100) *
-                                              100) /
-                                          100,
-                                      padding: EdgeInsets.zero,
-                                      backgroundColor:
-                                          kPrimaryColor.withOpacity(0.1),
-                                      progressColor: kPrimaryColor,
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      "${((coursesList[index]["progress"] / 100) * 100).round()}% complete",
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.grey.shade600),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                )),
+                  )),
+            ),
           ),
         ],
       ),

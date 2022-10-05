@@ -46,7 +46,7 @@ class InClassActivities extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("All subjects"),
+        title: const Text("In class activities"),
       ),
       body: LiveGrid(
         padding: const EdgeInsets.all(16),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prepared_academy/widgets.dart/buttons.dart';
+import 'package:prepared_academy/widgets/buttons.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class ProgressCircle extends StatelessWidget {

@@ -18,7 +18,7 @@ class MiniElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 25,
+      height: 27,
       width: fullWidth == null ? null : MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -27,7 +27,7 @@ class MiniElevatedButton extends StatelessWidget {
           foregroundColor: foregroundColor,
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(5.0),
           ),
         ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
         child: Text(

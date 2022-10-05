@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/app_theme.dart';
-import 'package:prepared_academy/widgets.dart/remove_scroll_glow.dart';
+import 'package:prepared_academy/widgets/remove_scroll_glow.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
