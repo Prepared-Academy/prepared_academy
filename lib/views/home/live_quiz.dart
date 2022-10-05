@@ -1,0 +1,164 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:auto_animated/auto_animated.dart';
+import 'package:flutter/material.dart';
+import 'package:prepared_academy/themes/color_theme.dart';
+import 'package:prepared_academy/widgets.dart/buttons.dart';
+
+class LiveQuiz extends StatelessWidget {
+  LiveQuiz({super.key});
+
+  List<Map<String, dynamic>> coursesList = [
+    {
+      "subject": "Programming",
+      "teacher": "Moin khan",
+      "title": "All about Node JS",
+      "type": false,
+      "done": false
+    },
+    {
+      "subject": "Mathematics",
+      "teacher": "Hamdan",
+      "title": "Algorithms Engineering",
+      "type": true,
+      "done": true
+    },
+    {
+      "subject": "English",
+      "teacher": "Jhone Doe",
+      "title": "Regulate your tenses",
+      "type": true,
+      "done": true
+    },
+    {
+      "subject": "Biology",
+      "teacher": "Erick Bert",
+      "title": "Symptoms preficiency in the verins",
+      "type": false,
+      "done": false
+    },
+  ];
+  final scrollController = ScrollController();
+  final listShowItemDuration = const Duration(milliseconds: 0);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text("Live Quizes"),
+      ),
+      body: LiveGrid(
+        padding: const EdgeInsets.all(16),
+        itemCount: coursesList.length,
+        controller: scrollController,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+        ),
+        itemBuilder: ((context, index, animation) => ScaleTransition(
+              scale: Tween<double>(
+                begin: 0,
+                end: 1,
+              ).animate(animation),
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0, -0.1),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: coursesList[index]["done"] == true
+                        ? Colors.white
+                        : Colors.black.withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(blurRadius: 5, color: kShadow, spreadRadius: 1)
+                    ],
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(20),
+                      onTap: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            coursesList[index]["type"] == false
+                                ? const SizedBox()
+                                : Align(
+                                    alignment: Alignment.topRight,
+                                    child: Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.timer_outlined,
+                                          color: kPrimaryColor,
+                                          size: 17,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          "30 Sec",
+                                          style: TextStyle(
+                                              color: kPrimaryColor,
+                                              fontSize: 10),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                            const Spacer(),
+                            Text(
+                              coursesList[index]["subject"].toUpperCase(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: coursesList[index]["done"] == true
+                                      ? Colors.black
+                                      : Colors.white,
+                                  fontSize: 10),
+                            ),
+                            Text(
+                              coursesList[index]["teacher"],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: coursesList[index]["done"] == true
+                                      ? Colors.black
+                                      : Colors.white,
+                                  fontSize: 10),
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              coursesList[index]["title"],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: coursesList[index]["done"] == true
+                                      ? Colors.black
+                                      : Colors.white,
+                                  fontSize: 10),
+                            ),
+                            const Spacer(),
+                            MiniElevatedButton(
+                              backgroundColor:
+                                  coursesList[index]["done"] == true
+                                      ? Colors.green.shade700
+                                      : kPrimaryColor,
+                              fullWidth: true,
+                              onPressed: () {},
+                              text: coursesList[index]["done"] == true
+                                  ? "View Score"
+                                  : "Launch Quiz",
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )),
+      ),
+    );
+  }
+}

@@ -6,17 +6,20 @@ class MiniElevatedButton extends StatelessWidget {
   final String text;
   final Color foregroundColor;
   final Color backgroundColor;
+  final bool? fullWidth;
   const MiniElevatedButton(
       {super.key,
       required this.onPressed,
       required this.text,
       this.foregroundColor = kWhite,
-      this.backgroundColor = kPrimaryColor});
+      this.backgroundColor = kPrimaryColor,
+      this.fullWidth});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 25,
+      width: fullWidth == null ? null : MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(

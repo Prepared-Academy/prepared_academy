@@ -41,6 +41,21 @@ class MySubjects extends StatelessWidget {
       "desc": "Academind by Maximilian Schwarzmuller",
       "progress": 0,
     },
+    {
+      "name": "Chemistry",
+      "desc": "Academind by Maximilian Schwarzmuller",
+      "progress": 0,
+    },
+    {
+      "name": "Chemistry",
+      "desc": "Academind by Maximilian Schwarzmuller",
+      "progress": 0,
+    },
+    {
+      "name": "Chemistry",
+      "desc": "Academind by Maximilian Schwarzmuller",
+      "progress": 0,
+    },
   ];
   final scrollController = ScrollController();
   final listShowItemDuration = const Duration(milliseconds: 0);
@@ -85,61 +100,75 @@ class MySubjects extends StatelessWidget {
                     child: InkWell(
                       onTap: () {},
                       child: Container(
-                        margin: const EdgeInsets.only(
-                            bottom: 5, top: 16, right: 16, left: 16),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(3),
-                              child: Image.asset(
-                                AppConstants.DEMOPOST_IMAGE,
-                                height: 43,
-                                width: 43,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    coursesList[index]["name"],
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    coursesList[index]["desc"],
-                                    style: TextStyle(
-                                        fontSize: 9,
-                                        color: Colors.grey.shade800),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  LinearPercentIndicator(
-                                    barRadius: const Radius.circular(100),
-                                    width: MediaQuery.of(context).size.width *
-                                        0.75,
-                                    animation: true,
-                                    lineHeight: 3.0,
-                                    percent: 0.5,
-                                    padding: EdgeInsets.zero,
-                                    backgroundColor:
-                                        kPrimaryColor.withOpacity(0.1),
-                                    progressColor: kPrimaryColor,
-                                  ),
-                                  const SizedBox(height: 15),
-                                  Text(
-                                    "99% complete",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey.shade600),
-                                  )
-                                ],
-                              ),
-                            )
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5, color: kShadow, spreadRadius: 1)
                           ],
+                        ),
+                        margin: EdgeInsets.only(top: index == 0 ? 0 : 5),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(3),
+                                child: Image.asset(
+                                  AppConstants.DEMOPOST_IMAGE,
+                                  height: 43,
+                                  width: 43,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      coursesList[index]["name"].toUpperCase(),
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      coursesList[index]["desc"],
+                                      style: TextStyle(
+                                          fontSize: 9,
+                                          color: Colors.grey.shade800),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    LinearPercentIndicator(
+                                      barRadius: const Radius.circular(100),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.75,
+                                      animation: true,
+                                      lineHeight: 3.0,
+                                      percent: ((coursesList[index]
+                                                      ["progress"] /
+                                                  100) *
+                                              100) /
+                                          100,
+                                      padding: EdgeInsets.zero,
+                                      backgroundColor:
+                                          kPrimaryColor.withOpacity(0.1),
+                                      progressColor: kPrimaryColor,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      "${((coursesList[index]["progress"] / 100) * 100).round()}% complete",
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey.shade600),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

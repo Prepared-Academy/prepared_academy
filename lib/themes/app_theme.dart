@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData appTheme = ThemeData(
+  splashFactory: InkRipple.splashFactory,
   appBarTheme: AppBarTheme(
     elevation: 0,
     backgroundColor: Colors.grey.shade50,

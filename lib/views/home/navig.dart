@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/views/home/home.dart';
+import 'package:prepared_academy/views/home/in_class_activities.dart';
+import 'package:prepared_academy/views/home/live_quiz.dart';
 import 'package:prepared_academy/views/home/my_subjects.dart';
 
 class Navig extends StatefulWidget {
@@ -11,14 +13,14 @@ class Navig extends StatefulWidget {
 }
 
 class _NavigState extends State<Navig> {
-  int selectedIndex = 1;
+  int selectedIndex = 3;
   // double iconSize = 25;
 
   List<Widget> widgetOptions = [
     const Home(),
     MySubjects(),
-    const Home(),
-    const Home(),
+    InClassActivities(),
+    LiveQuiz(),
     const Home(),
   ];
 

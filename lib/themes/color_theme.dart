@@ -5,3 +5,4 @@ const kWhite = Color.fromARGB(255, 245, 244, 244);
 const kBlack = Colors.black;
 
 const kBorder = Color(0xffdadce0);
+Color kShadow = Colors.grey.shade300;
