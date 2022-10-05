@@ -86,9 +86,11 @@ class AppConstants {
   static const String LOGO_IMAGE = "assets/images/preparedlogotxt.png";
   static const String LOGO_ONLY = "assets/images/preparedlogoonly.png";
   static const String LOGIN_STUD = "assets/images/edu1.png";
-  static const String SERVICE = "images/service.png";
-  static const String CLIENTS_IMAGE = "images/clients.png";
-  static const String APPOINTMENT_IMAGE = "images/appointment.png";
-  static const String ADDIMAGE_PLACEHOLDER = "images/addlogo.png";
-  static const String NOIMAGE_PLACEHOLDER = "images/noimage.png";
+  static const String MYREWARDS = "assets/images/medal.png";
+  static const String MYREPORTS = "assets/images/clipboard.png";
+  static const String ABOUTUS = "assets/images/conversation.png";
+  static const String TERMS = "assets/images/terms-and-conditions.png";
+  static const String PASS_RESET = "assets/images/reset-password.png";
+  static const String LOG_OUT = "assets/images/turn-off.png";
+  static const String RESET_PAGE = "assets/images/secure.png";
 }
