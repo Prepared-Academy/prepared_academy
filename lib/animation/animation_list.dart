@@ -5,6 +5,6 @@ class AnimationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView();
+    return Container();
   }
 }
