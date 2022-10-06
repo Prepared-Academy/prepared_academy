@@ -38,3 +38,44 @@ class MiniElevatedButton extends StatelessWidget {
     );
   }
 }
+
+class Buttonicon extends StatelessWidget {
+  final void Function()? onPressed;
+  final String text;
+  final Color foregroundColor;
+  final Color backgroundColor;
+  final bool? fullWidth;
+  const Buttonicon(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.foregroundColor = kWhite,
+      this.backgroundColor = kPrimaryColor,
+      this.fullWidth});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 27,
+      width: fullWidth == null ? null : MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.zero,
+            foregroundColor: foregroundColor,
+            backgroundColor: backgroundColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+          ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(text),
+              const SizedBox(width: 5),
+              const Icon(Icons.double_arrow, size: 15.0),
+            ],
+          )),
+    );
+  }
+}

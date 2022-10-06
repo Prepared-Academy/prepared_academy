@@ -2,6 +2,7 @@ import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/views/home/drawer.dart';
@@ -11,7 +12,6 @@ class Home extends StatelessWidget {
   Home({super.key});
 
   final scrollController = ScrollController();
-  final listShowItemDuration = const Duration(milliseconds: 0);
 
   Widget _logoWithText() => Padding(
         padding: const EdgeInsets.only(left: 10),
@@ -165,102 +165,94 @@ class Home extends StatelessWidget {
           children: [
             FadeAnimation(child: const Text("Newsfeed")),
             LiveList(
-                delay: const Duration(milliseconds: 50) * 5,
-                shrinkWrap: true,
-                itemCount: 3,
-                controller: scrollController,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: ((context, index, animation) {
-                  return FadeTransition(
-                    opacity: Tween<double>(
-                      begin: 0,
-                      end: 1,
-                    ).animate(animation),
-                    child: SlideTransition(
-                      position: Tween<Offset>(
-                        begin: const Offset(0, -0.1),
-                        end: Offset.zero,
-                      ).animate(animation),
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 10, bottom: 20),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: kBorder),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15),
-                              ),
-                              child: SizedBox(
-                                height: 200,
-                                width: double.maxFinite,
-                                child: Image.asset(
-                                  AppConstants.DEMOPOST_IMAGE,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+              delay: animationDurationList,
+              shrinkWrap: true,
+              itemCount: 3,
+              controller: scrollController,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: ((context, index, animation) {
+                return AnimationFadeList(
+                  animation: animation,
+                  widget: Container(
+                    margin: const EdgeInsets.only(top: 10, bottom: 20),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: kBorder),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            topRight: Radius.circular(15),
+                          ),
+                          child: SizedBox(
+                            height: 200,
+                            width: double.maxFinite,
+                            child: Image.asset(
+                              AppConstants.DEMOPOST_IMAGE,
+                              fit: BoxFit.cover,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Colors.grey.shade200,
-                                        radius: 15,
-                                      ),
-                                      const SizedBox(width: 10),
-                                      const Text(
-                                        "PreparEd",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      const LikeButton(
-                                        likeCount: 45,
-                                        size: 20,
-                                      ),
-                                    ],
+                                  CircleAvatar(
+                                    backgroundColor: Colors.grey.shade200,
+                                    radius: 15,
                                   ),
-                                  const SizedBox(height: 10),
+                                  const SizedBox(width: 10),
                                   const Text(
-                                    "Top 7 Best Automatic Subtitle Generators",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  const Text(
-                                    "Learn how to rank your e-commence website on Google",
+                                    "PreparEd",
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const SizedBox(height: 10),
-                                  const Text(
-                                    "Since we started using Semrush, our keywords are much more targeted and we are seeing much more traffic and activity.",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  )
+                                  const Spacer(),
+                                  const LikeButton(
+                                    likeCount: 45,
+                                    size: 20,
+                                  ),
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                      ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                "Top 7 Best Automatic Subtitle Generators",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              const Text(
+                                "Learn how to rank your e-commence website on Google",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                "Since we started using Semrush, our keywords are much more targeted and we are seeing much more traffic and activity.",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  );
-                })),
+                  ),
+                );
+              }),
+            ),
           ],
         ),
       );

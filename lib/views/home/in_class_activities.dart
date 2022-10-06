@@ -2,6 +2,7 @@
 
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/animation/animation_list.dart';
 
 class InClassActivities extends StatelessWidget {
   InClassActivities({super.key});
@@ -57,43 +58,34 @@ class InClassActivities extends StatelessWidget {
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
         ),
-        itemBuilder: ((context, index, animation) => FadeTransition(
-              opacity: Tween<double>(
-                begin: 0,
-                end: 1,
-              ).animate(animation),
-              child: SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0, -0.1),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
+        itemBuilder: ((context, index, animation) => AnimationFadeList(
+              animation: animation,
+              widget: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 5,
+                        color: Colors.grey.shade200,
+                        spreadRadius: 1)
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
                     borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 5,
-                          color: Colors.grey.shade200,
-                          spreadRadius: 1)
-                    ],
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      onTap: () {},
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            coursesList[index]["name"].toUpperCase(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
-                      ),
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          coursesList[index]["name"].toUpperCase(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),

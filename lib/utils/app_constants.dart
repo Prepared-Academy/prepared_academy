@@ -89,7 +89,7 @@ class AppConstants {
   static const String CLIENTS_IMAGE = "images/clients.png";
   static const String APPOINTMENT_IMAGE = "images/appointment.png";
   static const String ADDIMAGE_PLACEHOLDER = "images/addlogo.png";
-  static const String NOIMAGE_PLACEHOLDER = "images/noimage.png";
+  static const String CHAPTERSBACK1_IMAGE = "assets/images/chapters.jpg";
 
   // Icons
   static const String NOTIFICATION_ICON = "assets/icons/bell.png";
@@ -110,4 +110,9 @@ class AppConstants {
   static const String FEEDBACK_ICON = "assets/icons/feedback.png";
   static const String SETTING_ICON = "assets/icons/setting.png";
   static const String EYE_ICON = "assets/icons/eye.png";
+  static const String TOPICON1_ICON = "assets/icons/topicon.png";
+
+  static const String INFO_ICON = "assets/icons/info.png";
+
+  static const String REWARDS_ICON = "assets/icons/rewards.png";
 }
