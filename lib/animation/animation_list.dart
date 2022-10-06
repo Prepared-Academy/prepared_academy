@@ -7,7 +7,7 @@ class AnimationList extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SizedBox(
       height: 200,
-      width: 200,
+      width: 300,
     );
   }
 }
