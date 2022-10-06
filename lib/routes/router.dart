@@ -1,6 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/views/app/bookmark.dart';
+import 'package:prepared_academy/views/app/contact.dart';
+import 'package:prepared_academy/views/app/feedback.dart';
 import 'package:prepared_academy/views/app/notifications.dart';
 import 'package:prepared_academy/views/app/profile.dart';
 import 'package:prepared_academy/views/app/profile/pass_reset.dart';
@@ -16,6 +19,9 @@ class AppRoutes {
   static const PROFILE = "/profile";
   static const PASSRESET = "/passreset";
   static const NOTIFICATIONS = "/notifications";
+  static const BOOKMARK = "/bookmark";
+  static const FEEDBACK = "/feedback";
+  static const CONTACTUS = "/contactus";
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -25,6 +31,9 @@ class AppRoutes {
       PROFILE: (context) => const Profile(),
       PASSRESET: (context) => const PasswordReset(),
       NOTIFICATIONS: (context) => const Notifications(),
+      BOOKMARK: (context) => const Bookmark(),
+      FEEDBACK: (context) => const FeedBack(),
+      CONTACTUS: (context) => const ContactUs()
     };
     return appRoutes;
   }

@@ -93,4 +93,6 @@ class AppConstants {
   static const String PASS_RESET = "assets/images/reset-password.png";
   static const String LOG_OUT = "assets/images/turn-off.png";
   static const String RESET_PAGE = "assets/images/secure.png";
+  static const String STUD1 = "assets/images/student1.jpg";
+  static const String FEED1 = "assets/images/feed1.png";
 }

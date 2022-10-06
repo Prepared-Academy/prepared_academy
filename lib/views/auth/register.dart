@@ -1,11 +1,7 @@
 import 'package:dropdown_textfield/dropdown_textfield.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
-import 'package:dropdown_textfield/dropdown_textfield.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -17,14 +13,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   FocusNode searchFocusNode = FocusNode();
   FocusNode textFieldFocusNode = FocusNode();
-  late SingleValueDropDownController _cnt;
-  late MultiValueDropDownController _cntMulti;
-  late String _myActivity;
-  late String _myActivityResult;
-  @override
-
   // Application Logo
-  Widget AppLogo() {
+  Widget appLogo() {
     return Center(
       child: Image.asset(
         AppConstants.LOGO_IMAGE,
@@ -36,7 +26,7 @@ class _RegisterState extends State<Register> {
 
   //Create your Account text
 
-  Widget CreateText() {
+  Widget createText() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: RichText(
@@ -55,7 +45,7 @@ class _RegisterState extends State<Register> {
         ));
   }
 
-  Widget FullNameReg() {
+  Widget fullNameReg() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
         child: Column(
@@ -114,7 +104,7 @@ class _RegisterState extends State<Register> {
         ));
   }
 
-  Widget NumberReg() {
+  Widget numberReg() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
@@ -172,7 +162,7 @@ class _RegisterState extends State<Register> {
         ));
   }
 
-  Widget SchoolDropdwnReg() {
+  Widget schoolDropdwnReg() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Column(
@@ -248,7 +238,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Widget GradeDropdwnReg() {
+  Widget gradeDropdwnReg() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Column(
@@ -323,7 +313,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Widget EmailFormReg() {
+  Widget emailFormReg() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
         child: Column(
@@ -382,7 +372,7 @@ class _RegisterState extends State<Register> {
         ));
   }
 
-  Widget PasswordFormReg() {
+  Widget passwordFormReg() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
@@ -440,7 +430,7 @@ class _RegisterState extends State<Register> {
         ));
   }
 
-  Widget ConfPassReg() {
+  Widget confPassReg() {
     return Column(
       children: [
         Padding(
@@ -504,7 +494,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Widget LoginButton() {
+  Widget loginButton() {
     return Container(
       height: 55,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -529,6 +519,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -539,26 +530,26 @@ class _RegisterState extends State<Register> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: AppLogo(),
+              child: appLogo(),
             ),
-            CreateText(),
-            FullNameReg(),
-            SchoolDropdwnReg(),
-            SizedBox(
-              height: 10,
-            ),
-            GradeDropdwnReg(),
-            SizedBox(
-              height: 10,
-            ),
-            NumberReg(),
-            EmailFormReg(),
-            PasswordFormReg(),
-            ConfPassReg(),
+            createText(),
+            fullNameReg(),
+            schoolDropdwnReg(),
             const SizedBox(
               height: 10,
             ),
-            LoginButton(),
+            gradeDropdwnReg(),
+            const SizedBox(
+              height: 10,
+            ),
+            numberReg(),
+            emailFormReg(),
+            passwordFormReg(),
+            confPassReg(),
+            const SizedBox(
+              height: 10,
+            ),
+            loginButton(),
           ],
         ),
       ),

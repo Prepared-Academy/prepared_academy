@@ -3,10 +3,7 @@ import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:one_context/one_context.dart';
-import 'package:pin_input_text_field/pin_input_text_field.dart';
 import 'package:prepared_academy/utils/navigates.dart';
-import 'package:prepared_academy/views/auth/register.dart';
-import 'package:sms_autofill/sms_autofill.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -18,7 +15,6 @@ class Login extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<Login> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isChecked = false;
 
   // Logi BAckground Image
@@ -189,7 +185,7 @@ class _MyWidgetState extends State<Login> {
 
   Widget RememberMe() {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
           Checkbox(
@@ -301,6 +297,7 @@ class _MyWidgetState extends State<Login> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -362,7 +359,7 @@ _showForgotSheet() {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 const Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Text('Forgot?',
                       style: TextStyle(
                         fontSize: 18,
@@ -418,10 +415,10 @@ _showForgotSheet() {
                 Center(
                     child: ElevatedButton(
                   onPressed: () => _verificationBottom(),
-                  child: const Text('Submit'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kPrimaryColor,
                   ),
+                  child: const Text('Submit'),
                 ))
               ],
             ),
@@ -429,7 +426,6 @@ _showForgotSheet() {
 }
 
 _verificationBottom() {
-  String? code;
   // example modalBottomSheet
   OneContext().showModalBottomSheet<String>(
       shape: RoundedRectangleBorder(
@@ -484,10 +480,10 @@ _verificationBottom() {
                 Center(
                     child: ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Submit'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kPrimaryColor,
                   ),
+                  child: const Text('Submit'),
                 ))
               ],
             ),

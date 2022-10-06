@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../themes/color_theme.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({super.key});
 
-  Widget ListtileNotifications() {
-    return Container(
+  Widget listtileNotifications() {
+    return SizedBox(
       height: 80,
       child: Card(
         color: Colors.white.withOpacity(0.85),
@@ -29,11 +27,11 @@ class Notifications extends StatelessWidget {
               ),
             ),
           ),
-          title: Text(
+          title: const Text(
             'New Quiz Swssion started',
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
+          subtitle: const Text(
             'new quiz session has started, join now!!!!!!',
             textAlign: TextAlign.start,
           ),
@@ -60,13 +58,13 @@ class Notifications extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          ListtileNotifications(),
-          ListtileNotifications(),
-          ListtileNotifications(),
-          ListtileNotifications(),
-          ListtileNotifications(),
-          ListtileNotifications(),
-          ListtileNotifications(),
+          listtileNotifications(),
+          listtileNotifications(),
+          listtileNotifications(),
+          listtileNotifications(),
+          listtileNotifications(),
+          listtileNotifications(),
+          listtileNotifications(),
         ],
       )),
     );

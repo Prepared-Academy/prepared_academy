@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 
 import '../../../themes/color_theme.dart';
@@ -12,7 +10,7 @@ class PasswordReset extends StatefulWidget {
   State<PasswordReset> createState() => _PasswordResetState();
 }
 
-Widget ResetPassImag() {
+Widget resetPassImag() {
   return Center(
     child: Image.asset(
       AppConstants.PASS_RESET,
@@ -21,9 +19,9 @@ Widget ResetPassImag() {
   );
 }
 
-Widget ResetPasswordTitle() {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+Widget resetPasswordTitle() {
+  return const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 15.0),
     child: Text(
       'Reset Your Password',
       style: TextStyle(
@@ -36,8 +34,8 @@ Widget ResetPasswordTitle() {
 }
 
 Widget ResetPasswordDesc() {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+  return const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 15.0),
     child: Text(
       'Set the new password for better security of your account',
       style: TextStyle(
@@ -189,7 +187,7 @@ Widget ConfirmButton() {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: Colors.red)))),
+                  side: const BorderSide(color: Colors.red)))),
 
       onPressed: () {},
       // onPressed: validateAndSave,
@@ -229,11 +227,11 @@ class _PasswordResetState extends State<PasswordReset> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ResetPassImag(),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             ResetPasswordTitle(),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             ResetPasswordDesc(),

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 
@@ -21,7 +18,7 @@ class Profile extends StatelessWidget {
     );
   }
 
-  Widget UserProfImage() {
+  Widget userProfImage() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2.0),
       child: ClipRRect(
@@ -35,7 +32,7 @@ class Profile extends StatelessWidget {
     );
   }
 
-  Widget UserProfDetails() {
+  Widget userProfDetails() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
       child: Column(
@@ -70,13 +67,13 @@ class Profile extends StatelessWidget {
     );
   }
 
-  Widget ProfileListings() {
+  Widget profileListings() {
     return Expanded(
       child: Container(
         child: Column(
           children: [
             Card(
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
@@ -105,7 +102,7 @@ class Profile extends StatelessWidget {
               color: Colors.black,
             ),
             Card(
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
@@ -134,7 +131,7 @@ class Profile extends StatelessWidget {
               color: Colors.black,
             ),
             Card(
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
@@ -163,7 +160,7 @@ class Profile extends StatelessWidget {
               color: Colors.black,
             ),
             Card(
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
@@ -192,7 +189,7 @@ class Profile extends StatelessWidget {
               color: Colors.black,
             ),
             Card(
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
@@ -221,7 +218,7 @@ class Profile extends StatelessWidget {
               color: Colors.black,
             ),
             Card(
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
@@ -248,7 +245,7 @@ class Profile extends StatelessWidget {
     );
   }
 
-  Widget ProfileLogo() {
+  Widget profileLogo() {
     return Align(
       alignment: Alignment.center,
       child: Center(
@@ -261,7 +258,7 @@ class Profile extends StatelessWidget {
               width: 140,
             ),
             const Padding(
-              padding: const EdgeInsets.only(left: 11.0, bottom: 10),
+              padding: EdgeInsets.only(left: 11.0, bottom: 10),
               child: Text(
                 "PreparEd App Version 1.1.0",
                 style: TextStyle(fontSize: 10),
@@ -296,23 +293,21 @@ class Profile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    child: Card(
-                      elevation: 0,
-                      color: kPrimaryColor,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          UserProfImage(),
-                          UserProfDetails(),
-                        ],
-                      ),
+                  Card(
+                    elevation: 0,
+                    color: kPrimaryColor,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        userProfImage(),
+                        userProfDetails(),
+                      ],
                     ),
                   ),
-                  ProfileListings(),
+                  profileListings(),
                   // Spacer(),
-                  ProfileLogo(),
+                  profileLogo(),
                 ],
               ),
             )
