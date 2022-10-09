@@ -95,4 +95,13 @@ class AppConstants {
   static const String RESET_PAGE = "assets/images/secure.png";
   static const String STUD1 = "assets/images/student1.jpg";
   static const String FEED1 = "assets/images/feed1.png";
+  static const String QUIZICON = "assets/images/answer.png";
+  static const String TESTICON = "assets/images/test.png";
+  static const String ATTENDANCEICON = "assets/images/calendar.png";
+  static const String REPORTICON = "assets/images/mortarboard.png";
+  static const String ASSIGNMENTICON = "assets/images/assignment.png";
+  static const String REWARDSTAR = "assets/images/starrating.png";
+  static const String DATASCIENCE = "assets/images/datascience.png";
+  static const String PROGRAMMER = "assets/images/programmer.png";
+  static const String ROBOTICS = "assets/images/robotics.png";
 }

@@ -5,7 +5,7 @@ import 'package:prepared_academy/utils/app_constants.dart';
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
-  Widget ProfileAppBar() {
+  Widget profileAppBar() {
     return AppBar(
       foregroundColor: kWhite,
       automaticallyImplyLeading: false,
@@ -69,178 +69,176 @@ class Profile extends StatelessWidget {
 
   Widget profileListings() {
     return Expanded(
-      child: Container(
-        child: Column(
-          children: [
-            Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.MYREWARDS,
-                  width: 25,
-                ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'My Rewards',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
+      child: Column(
+        children: [
+          Card(
+            margin: const EdgeInsets.all(2),
+            elevation: 0,
+            child: ListTile(
+              leading: Image.asset(
+                AppConstants.MYREWARDS,
+                width: 25,
               ),
+              title: RichText(
+                  text: const TextSpan(
+                      text: 'My Rewards',
+                      style:
+                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
+                      children: <TextSpan>[
+                    TextSpan(
+                      text: '\nView rewards and points',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                    )
+                  ])),
             ),
-            const Divider(
-              height: 5,
-              thickness: 0.08,
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-            ),
-            Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.MYREPORTS,
-                  width: 25,
-                ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'My Reports',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
+          ),
+          const Divider(
+            height: 5,
+            thickness: 0.08,
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black,
+          ),
+          Card(
+            margin: const EdgeInsets.all(2),
+            elevation: 0,
+            child: ListTile(
+              leading: Image.asset(
+                AppConstants.MYREPORTS,
+                width: 25,
               ),
+              title: RichText(
+                  text: const TextSpan(
+                      text: 'My Reports',
+                      style:
+                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
+                      children: <TextSpan>[
+                    TextSpan(
+                      text: '\nView rewards and points',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                    )
+                  ])),
             ),
-            const Divider(
-              height: 5,
-              thickness: 0.08,
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-            ),
-            Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.ABOUTUS,
-                  width: 25,
-                ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'About Us',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
+          ),
+          const Divider(
+            height: 5,
+            thickness: 0.08,
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black,
+          ),
+          Card(
+            margin: const EdgeInsets.all(2),
+            elevation: 0,
+            child: ListTile(
+              leading: Image.asset(
+                AppConstants.ABOUTUS,
+                width: 25,
               ),
+              title: RichText(
+                  text: const TextSpan(
+                      text: 'About Us',
+                      style:
+                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
+                      children: <TextSpan>[
+                    TextSpan(
+                      text: '\nView rewards and points',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                    )
+                  ])),
             ),
-            const Divider(
-              height: 5,
-              thickness: 0.08,
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-            ),
-            Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.TERMS,
-                  width: 25,
-                ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'Terms & Conditions',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
+          ),
+          const Divider(
+            height: 5,
+            thickness: 0.08,
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black,
+          ),
+          Card(
+            margin: const EdgeInsets.all(2),
+            elevation: 0,
+            child: ListTile(
+              leading: Image.asset(
+                AppConstants.TERMS,
+                width: 25,
               ),
+              title: RichText(
+                  text: const TextSpan(
+                      text: 'Terms & Conditions',
+                      style:
+                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
+                      children: <TextSpan>[
+                    TextSpan(
+                      text: '\nView rewards and points',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                    )
+                  ])),
             ),
-            const Divider(
-              height: 3,
-              thickness: 0.08,
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-            ),
-            Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.PASS_RESET,
-                  width: 25,
-                ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'Password Reset',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
+          ),
+          const Divider(
+            height: 3,
+            thickness: 0.08,
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black,
+          ),
+          Card(
+            margin: const EdgeInsets.all(2),
+            elevation: 0,
+            child: ListTile(
+              leading: Image.asset(
+                AppConstants.PASS_RESET,
+                width: 25,
               ),
+              title: RichText(
+                  text: const TextSpan(
+                      text: 'Password Reset',
+                      style:
+                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
+                      children: <TextSpan>[
+                    TextSpan(
+                      text: '\nView rewards and points',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                    )
+                  ])),
             ),
-            const Divider(
-              height: 3,
-              thickness: 0.08,
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-            ),
-            Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.LOG_OUT,
-                  width: 25,
-                ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'Log Out',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
+          ),
+          const Divider(
+            height: 3,
+            thickness: 0.08,
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black,
+          ),
+          Card(
+            margin: const EdgeInsets.all(2),
+            elevation: 0,
+            child: ListTile(
+              leading: Image.asset(
+                AppConstants.LOG_OUT,
+                width: 25,
               ),
+              title: RichText(
+                  text: const TextSpan(
+                      text: 'Log Out',
+                      style:
+                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
+                      children: <TextSpan>[
+                    TextSpan(
+                      text: '\nView rewards and points',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                    )
+                  ])),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

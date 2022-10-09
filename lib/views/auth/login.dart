@@ -18,7 +18,7 @@ class _MyWidgetState extends State<Login> {
   bool isChecked = false;
 
   // Logi BAckground Image
-  Widget BgLogin() {
+  Widget bgLogin() {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -31,7 +31,7 @@ class _MyWidgetState extends State<Login> {
   }
 
   // Application Logo
-  Widget AppLogo() {
+  Widget appLogo() {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -56,7 +56,7 @@ class _MyWidgetState extends State<Login> {
 
   // Guest User Widget
 
-  Widget GuestUser() {
+  Widget guestUser() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Directionality(
@@ -78,7 +78,7 @@ class _MyWidgetState extends State<Login> {
     );
   }
 
-  Widget LoginText() {
+  Widget loginText() {
     return const Padding(
       padding: EdgeInsets.all(4.0),
       child: Text(
@@ -92,7 +92,7 @@ class _MyWidgetState extends State<Login> {
     );
   }
 
-  Widget EmailForm() {
+  Widget emailForm() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
         child: TextFormField(
@@ -138,7 +138,7 @@ class _MyWidgetState extends State<Login> {
         ));
   }
 
-  Widget PasswordForm() {
+  Widget passwordForm() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: TextFormField(
@@ -183,7 +183,7 @@ class _MyWidgetState extends State<Login> {
         ));
   }
 
-  Widget RememberMe() {
+  Widget rememberMe() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -201,7 +201,7 @@ class _MyWidgetState extends State<Login> {
     );
   }
 
-  Widget LoginButton() {
+  Widget loginButton() {
     return Container(
       height: 55,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -226,7 +226,7 @@ class _MyWidgetState extends State<Login> {
     );
   }
 
-  Widget OrDivider() {
+  Widget orDivider() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
       child: Row(
@@ -254,7 +254,7 @@ class _MyWidgetState extends State<Login> {
     );
   }
 
-  Widget RegisterButton() {
+  Widget registerButton() {
     return Container(
       height: 55,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -279,20 +279,18 @@ class _MyWidgetState extends State<Login> {
     );
   }
 
-  Widget ForgotPasstxt() {
+  Widget forgotPasstxt() {
     return Center(
-      child: Container(
-        child: TextButton(
-          child: const Text(
-            "Forgot password?",
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: kBlack,
-              fontSize: 14,
-            ),
+      child: TextButton(
+        child: const Text(
+          "Forgot password?",
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            color: kBlack,
+            fontSize: 14,
           ),
-          onPressed: () => _showForgotSheet(),
         ),
+        onPressed: () => _showForgotSheet(),
       ),
     );
   }
@@ -317,7 +315,7 @@ class _MyWidgetState extends State<Login> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    AppLogo(),
+                    appLogo(),
                     // GuestUser(),
                   ],
                 ),
@@ -327,14 +325,14 @@ class _MyWidgetState extends State<Login> {
                   children: [
                     illustrationLogin(),
                     // LoginText(),
-                    EmailForm(),
-                    PasswordForm(),
-                    RememberMe(),
+                    emailForm(),
+                    passwordForm(),
+                    rememberMe(),
 
-                    LoginButton(),
-                    OrDivider(),
-                    RegisterButton(),
-                    ForgotPasstxt(),
+                    loginButton(),
+                    orDivider(),
+                    registerButton(),
+                    forgotPasstxt(),
                   ],
                 )
               ],
@@ -352,76 +350,72 @@ _showForgotSheet() {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      builder: (context) => Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Forgot?',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      )),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('No worries, Reset your password!',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                      )),
-                ),
-                Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 15.0),
-                    child: TextFormField(
-                      // autofocus: widget.isFocus,
-                      keyboardType: TextInputType.phone,
-                      cursorColor: Colors.green,
-                      // controller: _usernameController,
-                      // validator: phoneValidator,
-                      onChanged: (text) {
-                        // mobileNumber = value;
-                      },
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Icons.email_outlined),
-                        contentPadding: EdgeInsets.all(10),
-                        focusColor: Colors.greenAccent,
-                        // labelStyle: ktext14,
-                        labelText: "Email",
-                        prefixText: "+971 |  ",
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
-                            )),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
-                            )),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                        ),
-                      ),
+      builder: (context) => Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Forgot?',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
                     )),
-                Center(
-                    child: ElevatedButton(
-                  onPressed: () => _verificationBottom(),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor,
-                  ),
-                  child: const Text('Submit'),
-                ))
-              ],
-            ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text('No worries, Reset your password!',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    )),
+              ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 15.0),
+                  child: TextFormField(
+                    // autofocus: widget.isFocus,
+                    keyboardType: TextInputType.phone,
+                    cursorColor: Colors.green,
+                    // controller: _usernameController,
+                    // validator: phoneValidator,
+                    onChanged: (text) {
+                      // mobileNumber = value;
+                    },
+                    decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(Icons.email_outlined),
+                      contentPadding: EdgeInsets.all(10),
+                      focusColor: Colors.greenAccent,
+                      // labelStyle: ktext14,
+                      labelText: "Email",
+                      prefixText: "+971 |  ",
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                          borderSide: BorderSide(
+                            color: kPrimaryColor,
+                          )),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                          borderSide: BorderSide(
+                            color: kPrimaryColor,
+                          )),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      ),
+                    ),
+                  )),
+              Center(
+                  child: ElevatedButton(
+                onPressed: () => _verificationBottom(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kPrimaryColor,
+                ),
+                child: const Text('Submit'),
+              ))
+            ],
           ));
 }
 
@@ -431,61 +425,58 @@ _verificationBottom() {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      builder: (context) => Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Verify',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      )),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child:
-                      Text('Verification OTP has been sent to registered mail',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          )),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Expanded(
-                      child: OTPTextField(
-                        length: 5,
-                        fieldWidth: 60,
-                        outlineBorderRadius: 15,
-                        style: TextStyle(fontSize: 17),
-                        textFieldAlignment: MainAxisAlignment.spaceAround,
-                        fieldStyle: FieldStyle.box,
-                      ),
+      builder: (context) => Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Verify',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    )),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text('Verification OTP has been sent to registered mail',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    )),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Expanded(
+                    child: OTPTextField(
+                      length: 5,
+                      fieldWidth: 60,
+                      outlineBorderRadius: 15,
+                      style: TextStyle(fontSize: 17),
+                      textFieldAlignment: MainAxisAlignment.spaceAround,
+                      fieldStyle: FieldStyle.box,
                     ),
-                    Icon(Icons.refresh_outlined),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Center(
-                    child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor,
                   ),
-                  child: const Text('Submit'),
-                ))
-              ],
-            ),
+                  Icon(Icons.refresh_outlined),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                  child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kPrimaryColor,
+                ),
+                child: const Text('Submit'),
+              ))
+            ],
           ));
 }

@@ -33,7 +33,7 @@ Widget resetPasswordTitle() {
   );
 }
 
-Widget ResetPasswordDesc() {
+Widget resetPasswordDesc() {
   return const Padding(
     padding: EdgeInsets.symmetric(horizontal: 15.0),
     child: Text(
@@ -47,7 +47,7 @@ Widget ResetPasswordDesc() {
   );
 }
 
-Widget OldPassword() {
+Widget oldPassword() {
   return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       child: TextFormField(
@@ -94,7 +94,7 @@ Widget OldPassword() {
       ));
 }
 
-Widget NewPasswordForm() {
+Widget newPasswordForm() {
   return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       child: TextFormField(
@@ -136,7 +136,7 @@ Widget NewPasswordForm() {
       ));
 }
 
-Widget ConfirmPasswordForm() {
+Widget confirmPasswordForm() {
   return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       child: TextFormField(
@@ -177,7 +177,7 @@ Widget ConfirmPasswordForm() {
       ));
 }
 
-Widget ConfirmButton() {
+Widget confirmButton() {
   return Container(
     height: 55,
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -226,19 +226,19 @@ class _PasswordResetState extends State<PasswordReset> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ResetPassImag(),
+            resetPassImag(),
             const SizedBox(
               height: 5,
             ),
-            ResetPasswordTitle(),
+            resetPasswordTitle(),
             const SizedBox(
               height: 5,
             ),
-            ResetPasswordDesc(),
-            OldPassword(),
-            NewPasswordForm(),
-            ConfirmPasswordForm(),
-            ConfirmButton(),
+            resetPasswordDesc(),
+            oldPassword(),
+            newPasswordForm(),
+            confirmPasswordForm(),
+            confirmButton(),
           ],
         ),
       ),

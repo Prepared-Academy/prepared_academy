@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/routes/router.dart';
-import 'package:prepared_academy/themes/color_theme.dart';
+import 'package:prepared_academy/themes/app_theme.dart';
 import 'package:one_context/one_context.dart';
 
 void main() {
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
       navigatorKey: OneContext().key,
       debugShowCheckedModeBanner: false,
       title: 'Prepared Academy',
-      theme: ThemeData(primaryColor: kPrimaryColor),
+      theme: appTheme,
       routes: AppRoutes.getAppRoutes(),
-      initialRoute: AppRoutes.CONTACTUS,
+      initialRoute: AppRoutes.MYCOURSES,
     );
   }
 }
