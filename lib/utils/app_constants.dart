@@ -115,4 +115,11 @@ class AppConstants {
   static const String INFO_ICON = "assets/icons/info.png";
 
   static const String REWARDS_ICON = "assets/icons/rewards.png";
+
+  static const String TEST_ICON = "assets/icons/test.png";
+
+  static const String LIVECLASS_ICON = "assets/icons/liveclass.png";
+  static const String CHECK_ICON = "assets/icons/check.png";
+  static const String LOCK_ICON = "assets/icons/lock.png";
+  static const String SLIDES_ICON = "assets/icons/slides.png";
 }

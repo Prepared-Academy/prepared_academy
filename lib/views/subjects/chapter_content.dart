@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 import '../../themes/color_theme.dart';
 
@@ -15,17 +17,17 @@ class _ChapterContentState extends State<ChapterContent> {
     {
       "colorcode1": const Color(0xff4285F4),
       "colorcode2": const Color(0xff4285F4).withOpacity(0.4),
-      "icon": AppConstants.INFO_ICON,
+      "icon": AppConstants.TEST_ICON,
     },
     {
       "colorcode1": const Color(0xffDB4437),
       "colorcode2": const Color(0xffDB4437).withOpacity(0.4),
-      "icon": AppConstants.INFO_ICON,
+      "icon": AppConstants.LIVECLASS_ICON,
     },
     {
       "colorcode1": const Color(0xff0F9D58),
       "colorcode2": const Color(0xff0F9D58).withOpacity(0.4),
-      "icon": AppConstants.INFO_ICON,
+      "icon": AppConstants.SLIDES_ICON,
     },
     {
       "colorcode1": const Color(0xffF4B400),
@@ -88,29 +90,36 @@ class _ChapterContentState extends State<ChapterContent> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(
             courseContentTypes.length,
-            (index) => Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: const [
-                      0.4,
-                      0.9,
-                    ],
-                    colors: [
-                      courseContentTypes[index]["colorcode1"],
-                      courseContentTypes[index]["colorcode2"],
-                    ],
-                  )),
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 65,
-              width: 65,
-              child: Center(
-                child: Image.asset(
-                  courseContentTypes[index]["icon"],
-                  height: 40,
-                  width: 40,
+            (index) => GestureDetector(
+              onTap: () {
+                if (index == 4) {
+                  lectureDesc();
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: const [
+                        0.4,
+                        0.9,
+                      ],
+                      colors: [
+                        courseContentTypes[index]["colorcode1"],
+                        courseContentTypes[index]["colorcode2"],
+                      ],
+                    )),
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                height: 65,
+                width: 65,
+                child: Center(
+                  child: Image.asset(
+                    courseContentTypes[index]["icon"],
+                    height: 40,
+                    width: 40,
+                  ),
                 ),
               ),
             ),
@@ -223,23 +232,24 @@ class _ChapterContentState extends State<ChapterContent> {
                 )),
       );
 
+  void lectureDesc() {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.info,
+      text: 'Buy two, get one free',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _customAppBar(),
-            _contentTypes(),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                color: kBlack,
-                height: 1000,
-              ),
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          _customAppBar(),
+          _contentTypes(),
+          _divider(),
+          _lecturesVideos(),
+        ],
       ),
     );
   }

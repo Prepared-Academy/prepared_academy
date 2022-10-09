@@ -2,11 +2,14 @@ import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/animation/animation_list.dart';
+import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/views/home/drawer.dart';
 import 'package:prepared_academy/widgets/icon_button.dart';
+import 'package:prepared_academy/widgets/photo_view.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -53,7 +56,9 @@ class Home extends StatelessWidget {
                 3,
                 (index) => ScaleAnimation(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      OneContext().pushNamed(AppRoutes.STORYVIEW);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(6.0),
                       child: Container(
@@ -117,35 +122,42 @@ class Home extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           side: const BorderSide(color: kBorder)),
-                      child: Center(
-                        child: ListTile(
-                          leading: Container(
-                            height: 60,
-                            width: 60,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          title: Text(
-                            "Mathematics".toUpperCase(),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(10),
+                          onTap: () {},
+                          child: Center(
+                            child: ListTile(
+                              leading: Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(10)),
+                              ),
+                              title: Text(
+                                "Mathematics".toUpperCase(),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: const Text(
+                                "Understanding elementary shapes",
+                                maxLines: 2,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  overflow: TextOverflow.ellipsis,
+                                  color: kPrimaryColor,
+                                ),
+                              ),
+                              trailing: const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: kPrimaryColor,
+                                size: 15,
+                              ),
                             ),
-                          ),
-                          subtitle: const Text(
-                            "Understanding elementary shapes",
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 14,
-                              overflow: TextOverflow.ellipsis,
-                              color: kPrimaryColor,
-                            ),
-                          ),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: kPrimaryColor,
-                            size: 15,
                           ),
                         ),
                       ),
@@ -181,17 +193,32 @@ class Home extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15),
-                          ),
-                          child: SizedBox(
-                            height: 200,
-                            width: double.maxFinite,
-                            child: Image.asset(
-                              AppConstants.DEMOPOST_IMAGE,
-                              fit: BoxFit.cover,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ViewPhoto(
+                                  imageProvider: AssetImage(
+                                    AppConstants.DEMOPOST_IMAGE,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                            ),
+                            child: Container(
+                              color: Colors.white,
+                              height: 400,
+                              width: double.maxFinite,
+                              child: Image.asset(
+                                AppConstants.DEMOPOST_IMAGE,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -204,24 +231,24 @@ class Home extends StatelessWidget {
                                 children: [
                                   CircleAvatar(
                                     backgroundColor: Colors.grey.shade200,
-                                    radius: 15,
+                                    radius: 20,
                                   ),
                                   const SizedBox(width: 10),
                                   const Text(
                                     "PreparEd",
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   const Spacer(),
                                   const LikeButton(
                                     likeCount: 45,
-                                    size: 20,
+                                    size: 24,
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 15),
                               const Text(
                                 "Top 7 Best Automatic Subtitle Generators",
                                 style: TextStyle(

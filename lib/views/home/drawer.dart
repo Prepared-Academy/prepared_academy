@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:one_context/one_context.dart';
+import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import '../../widgets/icon_button.dart';
 
@@ -104,8 +106,13 @@ class DrawerBody extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: menuList.length,
                 itemBuilder: (context, index) {
-                  return _listTile(menuList[index]["imageicon"],
-                      menuList[index]["name"], () {});
+                  return _listTile(
+                      menuList[index]["imageicon"], menuList[index]["name"],
+                      () {
+                    if (index == 1) {
+                      OneContext().pushNamed(AppRoutes.EXAMSASSIGNMENTS);
+                    }
+                  });
                 },
                 separatorBuilder: (context, index) {
                   return const Divider(indent: 50, height: 4, thickness: 0.5);
