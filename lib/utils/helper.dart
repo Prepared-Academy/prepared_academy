@@ -1,34 +1,112 @@
-import 'package:flutter/material.dart';
+// List<Map<String, dynamic>> ratings = [
+//   {"rating": 5, "message": " good doctor"},
+//   {"rating": 5, "message": " good doctor"},
+//   {"rating": 5, "message": " good doctor"},
+//   {"rating": 5, "message": " good doctor"},
+//   {"rating": 3, "message": " good doctor"},
+//   {"rating": 4, "message": " good doctor"},
+//   {"rating": 3, "message": " good doctor"},
+//   {"rating": 2, "message": " good doctor"},
+//   {"rating": 2, "message": " good doctor"},
+//   {"rating": 1, "message": " good doctor"},
+// ];
 
-funtion() {
-  final subs = DateTime.now().add(const Duration(days: 60));
-  final now = DateTime.now();
+// funtion() {
+//   // double total = 0.0;
+//   // double count = 0.0;
+//   // double average = 0.0;
 
-  if (now.isBefore(subs)) {
-    debugPrint("True");
-    Duration diff = now.difference(subs);
-    debugPrint("Total Days Left: ${diff.inDays}");
+// // reviews -> userid-doctorid ->
+// // {rating: 4, message: good doctor}
+// // {rating: 3, message: good doctor}
+// // {rating: 4, message: good doctor}
+// // {rating: 2, message: good doctor}
+// // {rating: 1, message: good doctor}
+// // {rating: 3, message: good doctor}
+// // {rating: 5, message: good doctor}
 
-    // put diff.inDays in some built in counter package to show total time left
-    // also listen countdown values in background (If countdown is Zero  or Days | Hours | Seconds == 0)
+// // double rating = Double.parseDouble(ds.child("rating").getValue().toString());
+// //                     total = total + rating;
+// //                     count = count + 1;
+// //                     average = total / count;
 
-  } else {
-    // Unsubscribe user because current time is not before subscription time
-  }
-}
+//   // for (var i = 0; i < ratings.length; i++) {
+//   //   double rating = ratings[i]["rating"].toDouble();
+//   //   total = total + rating;
+//   //   count = count + 1;
+//   //   average = total / count;
+//   // }
 
+//   // debugPrint("Your Average Rating:-------> $average");
 
-// Also use this package
-// to show countdown for how many days left
-// for subscription ending.
+//   int star5 = 0;
+//   int star4 = 0;
+//   int star3 = 0;
+//   int star2 = 0;
+//   int star1 = 0;
 
-// slide_countdown: ^0.3.4
-// 
-// final streamDuration = StreamDuration(const Duration(hours: 2));
+//   int totalstars = 0;
 
-// SlideCountdown(
-//   // This duration no effect if you customize stream duration
-//   duration: const Duration(seconds: 10),
-//   streamDuration: streamDuration,
-// ),
+//   List<Map<String, dynamic>> stars = [
+//     {"1": 1},
+//     {"2": 5},
+//     {"3": 7},
+//     {"4": 10},
+//     {"5": 8},
+//   ];
 
+//   // for (var i = 0; i < ratings.length; i++) {
+//   //   if (ratings[i]["rating"] == 5) {
+//   //     int index = stars.indexWhere((element) => element.containsKey("5"));
+//   //     stars[index]["5"]++;
+//   //   } else if (ratings[i]["rating"] == 4) {
+//   //     int index = stars.indexWhere((element) => element.containsKey("4"));
+//   //     stars[index]["4"]++;
+//   //   } else if (ratings[i]["rating"] == 3) {
+//   //     int index = stars.indexWhere((element) => element.containsKey("3"));
+//   //     stars[index]["3"]++;
+//   //   } else if (ratings[i]["rating"] == 2) {
+//   //     int index = stars.indexWhere((element) => element.containsKey("2"));
+//   //     stars[index]["2"]++;
+//   //   } else if (ratings[i]["rating"] == 1) {
+//   //     int index = stars.indexWhere((element) => element.containsKey("1"));
+//   //     stars[index]["1"]++;
+//   //   } else {
+//   //     debugPrint("not found");
+//   //   }
+//   // }
+
+//   for (var i = 0; i < stars.length; i++) {
+//     int data = stars[i]["${i + 1}"];
+//     totalstars = totalstars + data;
+//   }
+
+//   print(totalstars);
+
+//   int overAllRating = 0;
+//   for (var i = 0; i < stars.length; i++) {
+//     int data = stars[i]["${i + 1}"];
+//     overAllRating = overAllRating + i + 1 * data;
+//   }
+
+//   print(overAllRating);
+
+//   double aver = overAllRating / totalstars;
+
+//   print(aver);
+
+//   double per5 = (5 / overAllRating) * 100;
+
+//   print(per5);
+
+//   // for (var i = 0; i < stars.length; i++) {
+//   //   int count = stars[i]["${i + 1}"];
+//   //   double percentage = 100 * count / totalstars;
+
+//   //   double p = percentage / 100;
+
+//   //   print(p);
+
+//   //   // debugPrint("$count $percentage");
+//   // }
+// }

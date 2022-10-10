@@ -23,7 +23,42 @@ class MiniElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.zero,
+          foregroundColor: foregroundColor,
+          backgroundColor: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+        ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 12),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final void Function()? onPressed;
+  final String text;
+  final Color foregroundColor;
+  final Color backgroundColor;
+  final bool? fullWidth;
+  const CustomButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.foregroundColor = kWhite,
+      this.backgroundColor = kPrimaryColor,
+      this.fullWidth});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: fullWidth == null ? null : MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
           foregroundColor: foregroundColor,
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
@@ -61,7 +96,6 @@ class Buttonicon extends StatelessWidget {
       child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.zero,
             foregroundColor: foregroundColor,
             backgroundColor: backgroundColor,
             shape: RoundedRectangleBorder(

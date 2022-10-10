@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
+import 'package:prepared_academy/widgets/bullet_list.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
@@ -94,6 +95,9 @@ class _ChapterContentState extends State<ChapterContent> {
               onTap: () {
                 if (index == 4) {
                   lectureDesc();
+                }
+                if (index == 0) {
+                  launchTest();
                 }
               },
               child: Container(
@@ -238,6 +242,69 @@ class _ChapterContentState extends State<ChapterContent> {
       type: QuickAlertType.info,
       text: 'Buy two, get one free',
     );
+  }
+
+  void launchTest() {
+    QuickAlert.show(
+        context: context,
+        type: QuickAlertType.custom,
+        confirmBtnText: "Launch Test",
+        widget: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "General",
+              style: TextStyle(color: kPrimaryColor),
+            ),
+            const Text(
+              "Understanding Elementary Shapes",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Text("Total Questions", style: TextStyle(fontSize: 13)),
+                      Text("14", style: TextStyle(fontSize: 13)),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Text("Total Marks", style: TextStyle(fontSize: 13)),
+                      Text("25", style: TextStyle(fontSize: 13)),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Text("Test Duration", style: TextStyle(fontSize: 13)),
+                      Text("90 Min", style: TextStyle(fontSize: 13)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text("Instructions",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            const UnorderedList([
+              "All question have to be attended compulsory.",
+              "Question papers can be of 20 marks, 25 marks or 30 marks.",
+              "To answer multiple choice questions, users should select the option from the drop-down box that can be found below the question.",
+              "If the questions demand answers that need to be written and drawn users can upload images of answers attempted by them."
+            ])
+          ],
+        ));
   }
 
   @override

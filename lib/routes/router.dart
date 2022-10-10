@@ -6,7 +6,10 @@ import 'package:prepared_academy/views/home/home.dart';
 import 'package:prepared_academy/views/home/navig.dart';
 import 'package:prepared_academy/views/home/story_view.dart';
 import 'package:prepared_academy/views/subjects/chapter_content.dart';
+import 'package:prepared_academy/views/subjects/chapter_test.dart';
 import 'package:prepared_academy/views/subjects/chapters.dart';
+import 'package:prepared_academy/views/subjects/pdf_viewer.dart';
+import 'package:prepared_academy/views/subjects/slides.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
 
 import '../views/auth/splash.dart';
@@ -18,6 +21,9 @@ class AppRoutes {
   static const CHAPTERS = '/chapters';
   static const CHAPTERCONTENT = '/chaptercontent';
   static const EXAMSASSIGNMENTS = '/examsassignments';
+  static const SLIDES = '/slides';
+  static const PDFVIEW = '/pdfview';
+  static const CHAPTERTEST = '/chaptertest';
 
   static const STORYVIEW = '/storyview';
 
@@ -33,6 +39,9 @@ class AppRoutes {
       STORYVIEW: (context) => const StoryPage(),
       PHOTOVIEW: (context) => const ViewPhoto(),
       EXAMSASSIGNMENTS: (context) => const ExamsAndAssignments(),
+      SLIDES: (context) => const Slides(),
+      PDFVIEW: (context) => const PdfViewer(),
+      CHAPTERTEST: (context) => const ChapterTest(),
     };
     return appRoutes;
   }
