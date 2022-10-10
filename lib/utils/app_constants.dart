@@ -104,4 +104,11 @@ class AppConstants {
   static const String DATASCIENCE = "assets/images/datascience.png";
   static const String PROGRAMMER = "assets/images/programmer.png";
   static const String ROBOTICS = "assets/images/robotics.png";
+  static const String DATADOTS = "assets/images/datadots1.png";
+  static const String LOGODS = "assets/images/datapreparedlogo.png";
+  static const String LOGOPROG = "assets/images/progpreparedlogo.png";
+  static const String LOGOROB = "assets/images/robpreparedlogo.png";
+  static const String DATABASE = "assets/images/database.png";
+  static const String PROGRAMMERIMG = "assets/images/programmer1.png";
+  static const String ROBOTICSIMG = "assets/images/roboticsimage.png";
 }

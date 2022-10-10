@@ -12,6 +12,9 @@ import 'package:prepared_academy/views/app/report_main.dart';
 import 'package:prepared_academy/views/app/rewards.dart';
 import 'package:prepared_academy/views/auth/login.dart';
 import 'package:prepared_academy/views/auth/register.dart';
+import 'package:prepared_academy/views/mycourses/datascience.dart';
+import 'package:prepared_academy/views/mycourses/programmer.dart';
+import 'package:prepared_academy/views/mycourses/robotics.dart';
 
 import '../views/auth/splash.dart';
 
@@ -28,6 +31,9 @@ class AppRoutes {
   static const REPORTMAIN = "/reportmain";
   static const REWARDS = "/rewards";
   static const MYCOURSES = "/mycourses";
+  static const DATASCIENCE = "/datascience";
+  static const PROGRAMMER = "/programmer";
+  static const ROBOTICS = "/robotics";
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -43,6 +49,9 @@ class AppRoutes {
       REPORTMAIN: (context) => const ReportMain(),
       REWARDS: (context) => const Rewards(),
       MYCOURSES: (context) => const MyCourses(),
+      DATASCIENCE: (context) => const DataScience(),
+      PROGRAMMER: (context) => const Programmer(),
+      ROBOTICS: (context) => const Robotics(),
     };
     return appRoutes;
   }

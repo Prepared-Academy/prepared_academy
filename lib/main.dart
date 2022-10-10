@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Prepared Academy',
       theme: appTheme,
       routes: AppRoutes.getAppRoutes(),
-      initialRoute: AppRoutes.MYCOURSES,
+      initialRoute: AppRoutes.PROGRAMMER,
     );
   }
 }
