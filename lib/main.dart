@@ -5,7 +5,9 @@ import 'package:one_context/one_context.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Prepared Academy',
       theme: appTheme,
       routes: AppRoutes.getAppRoutes(),
-      initialRoute: AppRoutes.PROGRAMMER,
+      initialRoute: AppRoutes.LOGIN,
     );
   }
 }

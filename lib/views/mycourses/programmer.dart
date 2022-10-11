@@ -119,7 +119,7 @@ class Programmer extends StatelessWidget {
         // onPressed: validateAndSave,
         child: const Center(
           child: Text(
-            'Register for D',
+            'Register for Demo',
             style: TextStyle(
               fontWeight: FontWeight.w600,
               color: kWhite,

@@ -1,4 +1,6 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/helpers/validators.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
@@ -15,9 +17,24 @@ class Login extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool isChecked = false;
+  bool isLoading = false;
 
-  // Logi BAckground Image
+  Future _loginUser() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        isLoading = true;
+      });
+      String email = _emailController.text.trim();
+      String password = _passwordController.text.trim();
+      Map<String, dynamic> body = {"username": email, "password": password};
+    }
+  }
+
+  // Login BAckground Image
   Widget bgLogin() {
     return Container(
       decoration: const BoxDecoration(
@@ -96,6 +113,11 @@ class _MyWidgetState extends State<Login> {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
         child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) => EmailValidator.validate(value!)
+              ? null
+              : "Please enter a valid email",
+          controller: _emailController,
           // autofocus: widget.isFocus,
           keyboardType: TextInputType.phone,
           cursorColor: Colors.green,
@@ -120,7 +142,7 @@ class _MyWidgetState extends State<Login> {
               color: Color.fromARGB(255, 233, 155, 149),
               fontSize: 14,
             ),
-            prefixText: "+971 |  ",
+            // prefixText: "+971 |  ",
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 borderSide: BorderSide(
@@ -142,6 +164,8 @@ class _MyWidgetState extends State<Login> {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: TextFormField(
+          controller: _passwordController,
+          validator: passwordValidator,
           obscureText: true,
           // autofocus: widget.isFocus,
           keyboardType: TextInputType.visiblePassword,
@@ -210,8 +234,9 @@ class _MyWidgetState extends State<Login> {
           // primary: kSecondayColor,
           backgroundColor: kPrimaryColor,
         ),
-        onPressed: () {},
-        // onPressed: validateAndSave,
+        onPressed: () {
+          _loginUser;
+        }, // onPressed: validateAndSave,
         child: const Center(
           child: Text(
             'Login',

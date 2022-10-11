@@ -3,11 +3,11 @@
 class AppConstants {
   static const String APP_NAME = 'WIKWIK CLINIC';
   // static const String BASE_URL = 'https://hrfhome.app'; // live
-  static const String BASE_URL = 'https://staging.wikwik.app'; // staging
+  static const String BASE_URL = 'https://thepreparedacademy.com'; // staging
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
   static const String REGISTRATION_URI = '/api/clinics/register';
-  static const String LOGIN_URI = '/api/auth/login';
+  static const String LOGIN_URI = '/api/muser/login/';
   static const String LOGOUT_URI = '/api/auth/logout';
   static const String BANNERS_URI = '/api/sites/1/banners';
   static const String STATS_URI = '/api/clinics/';
@@ -65,19 +65,6 @@ class AppConstants {
   static const String LANGUAGE_CODE = 'language_code';
   static const String THEME = 'theme';
   static const String TOPIC = 'WIKWIK CLINIC';
-
-  // static List<LanguageModel> languages = [
-  //   LanguageModel(
-  //       imageUrl: '',
-  //       languageName: 'English',
-  //       countryCode: 'US',
-  //       languageCode: 'en'),
-  //   LanguageModel(
-  //       imageUrl: '',
-  //       languageName: 'Arabic',
-  //       countryCode: 'AE',
-  //       languageCode: 'ar'),
-  // ];
 
   // Week days
   List<String> dayOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];

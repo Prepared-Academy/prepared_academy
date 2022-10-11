@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/repos/splash_repo.dart';
 
 import '../../utils/app_constants.dart';
 
@@ -10,6 +11,12 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    super.initState();
+    SplashRepo splashRepo = SplashRepo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
