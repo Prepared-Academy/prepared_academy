@@ -50,6 +50,16 @@ dependencies:
   toggle_switch: ^2.0.1
   syncfusion_flutter_pdfviewer: ^20.3.48
   slide_countdown: ^0.3.4
+  html_editor_enhanced: ^2.5.0
+  image_picker: ^0.8.6
+  path_provider: ^2.0.11
+  image_cropper: ^3.0.0
+  getwidget: ^3.0.1
+  dio: ^4.0.6
+  rx_shared_preferences: ^3.0.0
+  get_it: ^7.2.0
+  dropdown_textfield: ^1.0.5
+  dropdown_search: ^5.0.3
 
 dev_dependencies:
   flutter_test:

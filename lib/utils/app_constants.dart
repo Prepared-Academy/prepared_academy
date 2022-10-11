@@ -1,13 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 class AppConstants {
-  static const String APP_NAME = 'WIKWIK CLINIC';
+  static const String APP_NAME = 'Prepared Academy';
   // static const String BASE_URL = 'https://hrfhome.app'; // live
-  static const String BASE_URL = 'https://staging.wikwik.app'; // staging
-  static const String USER_ID = 'userId';
-  static const String NAME = 'name';
-  static const String REGISTRATION_URI = '/api/clinics/register';
-  static const String LOGIN_URI = '/api/auth/login';
+  static const String BASE_URL = 'https://thepreparedacademy.com'; // staging
+  static const String REGISTRATION_URI = '/api/muser/registration';
+  static const String LOGIN_URI = '/api/muser/login';
   static const String LOGOUT_URI = '/api/auth/logout';
   static const String BANNERS_URI = '/api/sites/1/banners';
   static const String STATS_URI = '/api/clinics/';
@@ -66,24 +64,10 @@ class AppConstants {
   static const String THEME = 'theme';
   static const String TOPIC = 'WIKWIK CLINIC';
 
-  // static List<LanguageModel> languages = [
-  //   LanguageModel(
-  //       imageUrl: '',
-  //       languageName: 'English',
-  //       countryCode: 'US',
-  //       languageCode: 'en'),
-  //   LanguageModel(
-  //       imageUrl: '',
-  //       languageName: 'Arabic',
-  //       countryCode: 'AE',
-  //       languageCode: 'ar'),
-  // ];
-
-  // Week days
-  List<String> dayOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
   // Images
-  static const String LOGOWITHTEXT_IMAGE = "assets/images/preparEdLogo.png";
+  static const String LOGOWITHTEXT_IMAGE = "assets/images/logowithtext.png";
+
+  static const String LOGO_IMAGE = "assets/images/logo.png";
   static const String DEMOPOST_IMAGE = "assets/images/demopost.jpg";
   static const String SERVICE = "images/service.png";
   static const String CLIENTS_IMAGE = "images/clients.png";
@@ -96,7 +80,6 @@ class AppConstants {
   static const String MENU_ICON = "assets/icons/menu.png";
   static const String BOOKMARK_ICON = "assets/icons/bookmark.png";
   static const String CLOSE_ICON = "assets/icons/cancel.png";
-
   static const String LIVE_ICON = "assets/icons/live.png";
   static const String LIVE2_ICON = "assets/icons/live2.png";
   static const String ACCOUNT_ICON = "assets/icons/user.png";
@@ -111,15 +94,27 @@ class AppConstants {
   static const String SETTING_ICON = "assets/icons/setting.png";
   static const String EYE_ICON = "assets/icons/eye.png";
   static const String TOPICON1_ICON = "assets/icons/topicon.png";
-
   static const String INFO_ICON = "assets/icons/info.png";
-
   static const String REWARDS_ICON = "assets/icons/rewards.png";
-
   static const String TEST_ICON = "assets/icons/test.png";
-
   static const String LIVECLASS_ICON = "assets/icons/liveclass.png";
   static const String CHECK_ICON = "assets/icons/check.png";
   static const String LOCK_ICON = "assets/icons/lock.png";
   static const String SLIDES_ICON = "assets/icons/slides.png";
+  static const String ADDIMAGE_ICON = "assets/icons/addimage.png";
+
+  static List<String> gradesList = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12'
+  ];
 }

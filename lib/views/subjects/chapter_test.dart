@@ -1,7 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
+import 'package:one_context/one_context.dart';
+import 'package:prepared_academy/providers/auth_provider.dart';
+import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
+import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:slide_countdown/slide_countdown.dart';
@@ -39,6 +43,7 @@ class _ChapterTestState extends State<ChapterTest>
 
   @override
   void initState() {
+    Future.microtask(() => context.read<AuthProvider>().login());
     _tabController = TabController(length: 4, vsync: this);
     super.initState();
   }
@@ -68,7 +73,7 @@ class _ChapterTestState extends State<ChapterTest>
   }
 
   Widget _timerWidget() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: SlideCountdown(
           duration: _streamDuration.duration,
           slideDirection: SlideDirection.down,
@@ -122,8 +127,8 @@ class _ChapterTestState extends State<ChapterTest>
                 children: const [
                   Questions(type: "Fill in the blanks"),
                   Questions(type: "Very short"),
-                  Questions(type: "Fill in the blanks"),
-                  Questions(type: "Fill in the blanks"),
+                  Questions(type: "Short"),
+                  Questions(type: "Long"),
                 ],
               ),
             )
@@ -201,6 +206,8 @@ class _QuestionsState extends State<Questions> {
                         // setState(() {
                         //   testQuestionList.indexWhere((element) => element[]);
                         // });
+
+                        OneContext().pushNamed(AppRoutes.WRITEANSWER);
                       },
                       text: "Write Answer",
                     )
