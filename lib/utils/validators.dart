@@ -12,6 +12,20 @@ final pinValidator = MultiValidator([
   MaxLengthValidator(6, errorText: 'Enter a valid pin number')
 ]);
 
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
+  }
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  }
+}
+
 final passwordValidator = MultiValidator([
   RequiredValidator(errorText: 'Password is required*'),
   MinLengthValidator(6, errorText: 'password must be at least 6 digits long'),

@@ -1,6 +1,6 @@
-import 'package:email_validator/email_validator.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:prepared_academy/helpers/validators.dart';
+import 'package:prepared_academy/utils/validators.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
@@ -23,15 +23,38 @@ class _MyWidgetState extends State<Login> {
   bool isChecked = false;
   bool isLoading = false;
 
+  late FocusNode myFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    myFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    myFocusNode.dispose();
+
+    super.dispose();
+  }
+
   Future _loginUser() async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        isLoading = true;
-      });
-      String email = _emailController.text.trim();
-      String password = _passwordController.text.trim();
-      Map<String, dynamic> body = {"username": email, "password": password};
-    }
+    var formData = FormData.fromMap({
+      'email': _emailController.text.trim(),
+      'password': _passwordController.text,
+    });
+
+    _emailController.text = "";
+    _passwordController.text = "";
+
+    Response response = await Dio().post(
+        'http://192.168.56.1/flutter_test/store_data_flutter.php',
+        data: formData);
+
+    print(response.data.toString());
+
+    myFocusNode.requestFocus();
   }
 
   // Login BAckground Image
@@ -114,15 +137,18 @@ class _MyWidgetState extends State<Login> {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator: (value) => EmailValidator.validate(value!)
-              ? null
-              : "Please enter a valid email",
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter email';
+            } else if (!value.isValidEmail()) {
+              return "Invalid email";
+            }
+            return null;
+          },
           controller: _emailController,
-          // autofocus: widget.isFocus,
-          keyboardType: TextInputType.phone,
+          focusNode: myFocusNode,
+          keyboardType: TextInputType.emailAddress,
           cursorColor: Colors.green,
-          // controller: _usernameController,
-          // validator: phoneValidator,
           onChanged: (text) {
             // mobileNumber = value;
           },
@@ -142,7 +168,6 @@ class _MyWidgetState extends State<Login> {
               color: Color.fromARGB(255, 233, 155, 149),
               fontSize: 14,
             ),
-            // prefixText: "+971 |  ",
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 borderSide: BorderSide(
