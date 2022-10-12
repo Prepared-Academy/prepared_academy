@@ -5,16 +5,24 @@ import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 final dialogContext = OneContext().dialog.context!;
 
-void loadingStop() {
+Future loadingStop() async {
   Navigator.pop(dialogContext);
 }
 
-void loadingShow() {
-  QuickAlert.show(
+Future loadingShow() async {
+  await QuickAlert.show(
     barrierDismissible: false,
     context: dialogContext,
     type: QuickAlertType.loading,
     title: 'Loading',
     text: 'Please wait',
+  );
+}
+
+Future successRegister() async {
+  await QuickAlert.show(
+    context: dialogContext,
+    type: QuickAlertType.success,
+    text: 'Verification link sent',
   );
 }

@@ -19,7 +19,7 @@ class AuthRepo {
       return response;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      NotificationsService.showSnackbar(e.response!.data["message"]);
+      NotificationsService.showSnackbar(errorMessage);
       throw Exception(errorMessage);
     }
   }
@@ -27,11 +27,12 @@ class AuthRepo {
   Future<Response> register(String dataJson) async {
     try {
       final Response response =
-          await client.post(AppConstants.LOGIN_URI, data: dataJson);
+          await client.post(AppConstants.REGISTRATION_URI, data: dataJson);
+
       return response;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      NotificationsService.showSnackbar(e.response!.data["message"]);
+      NotificationsService.showSnackbar(errorMessage);
       throw Exception(errorMessage);
     }
   }

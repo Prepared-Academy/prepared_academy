@@ -41,7 +41,10 @@ class DioExceptions implements Exception {
       case 400:
         return 'Bad request';
       case 401:
-        return 'Unauthorized';
+        // return 'Unauthorized';
+        return error['message'];
+      case 200:
+        return error['message'];
       case 403:
         return 'Forbidden';
       case 404:

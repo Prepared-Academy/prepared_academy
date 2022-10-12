@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/models/login_model.dart';
 import 'package:prepared_academy/repository/auth_repo.dart';
-import 'package:quickalert/quickalert.dart';
 
 import '../models/register_model.dart';
 import '../routes/router.dart';
 import '../utils/helper.dart';
+import '../utils/snackbar.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool isLoading = true;
@@ -24,13 +24,18 @@ class AuthProvider extends ChangeNotifier {
       String dataJson = loginModelToJson(loginModel);
       Response apiResponse = await authRepo.register(dataJson);
       if (apiResponse.statusCode == 200) {
-        OneContext().pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
-        successRegister();
+        if (apiResponse.data["message"] == "Resend verification link in 22s") {
+          loadingStop();
+          NotificationsService.showSnackbar(apiResponse.data["message"]);
+        } else if (apiResponse.data["message"] == "Login Successful") {
+          loadingStop();
+          OneContext()
+              .pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
+        }
       }
     } catch (e) {
-      rethrow;
-    } finally {
       loadingStop();
+      rethrow;
     }
   }
 
@@ -39,23 +44,21 @@ class AuthProvider extends ChangeNotifier {
       loadingShow();
       String dataJson = registerModelToJson(registerModel);
       Response apiResponse = await authRepo.register(dataJson);
+
       if (apiResponse.statusCode == 200) {
-        OneContext()
-            .pushNamedAndRemoveUntil(AppRoutes.REGISTER, (route) => false);
-        successRegister();
+        if (apiResponse.data["message"] == "Email already registered") {
+          loadingStop();
+          NotificationsService.showSnackbar(apiResponse.data["message"]);
+        } else if (apiResponse.data["message"] == "Verification link sent") {
+          loadingStop();
+          OneContext()
+              .pushNamedAndRemoveUntil(AppRoutes.REGISTER, (route) => false);
+          successRegister();
+        }
       }
     } catch (e) {
-      rethrow;
-    } finally {
       loadingStop();
+      rethrow;
     }
-  }
-
-  void successRegister() {
-    QuickAlert.show(
-      context: dialogContext,
-      type: QuickAlertType.success,
-      text: 'Your account is created successfully/',
-    );
   }
 }

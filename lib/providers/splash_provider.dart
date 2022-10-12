@@ -12,10 +12,13 @@ class SplashProvider extends ChangeNotifier {
 
   Future init() async {
     final userJson = await authRepo.getUser();
+
     userJson.listen((event) {
-      userModel = userModelFromJson(event!);
-      token = userModel.accessToken ?? "";
-      notifyListeners();
+      if (event != null) {
+        userModel = userModelFromJson(event);
+        token = userModel.accessToken ?? "";
+        notifyListeners();
+      }
     });
     await await Future.delayed(const Duration(seconds: 3));
     if (token != "") {

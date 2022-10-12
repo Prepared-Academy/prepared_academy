@@ -244,7 +244,13 @@ class _RegisterState extends State<Register> {
             //   );
             //   context.read<AuthProvider>().register(createAccountModel);
             // }
-            RegisterModel registerModel = RegisterModel();
+            RegisterModel registerModel = RegisterModel(
+                name: "Moin khan",
+                email: "moinkhan@preparedacademy.com",
+                password: "123456789",
+                contactNo: "0565642473",
+                schoolName: "Prepared",
+                grade: "6");
             context.read<AuthProvider>().register(registerModel);
           },
           text: "Register",

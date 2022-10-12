@@ -15,7 +15,7 @@ class RegisterModel {
     this.email,
     this.password,
     this.grade,
-    this.demoSchoolName,
+    this.schoolName,
     this.contactNo,
   });
 
@@ -23,7 +23,7 @@ class RegisterModel {
   final String? email;
   final String? password;
   final String? grade;
-  final String? demoSchoolName;
+  final String? schoolName;
   final String? contactNo;
 
   factory RegisterModel.fromJson(Map<String, dynamic> json) => RegisterModel(
@@ -31,7 +31,7 @@ class RegisterModel {
         email: json["email"],
         password: json["password"],
         grade: json["grade"],
-        demoSchoolName: json["demoSchoolName"],
+        schoolName: json["schoolName"],
         contactNo: json["contactNo"],
       );
 
@@ -40,7 +40,7 @@ class RegisterModel {
         "email": email,
         "password": password,
         "grade": grade,
-        "demoSchoolName": demoSchoolName,
+        "schoolName": schoolName,
         "contactNo": contactNo,
       };
 }
