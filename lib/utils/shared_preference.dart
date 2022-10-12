@@ -1,5 +1,7 @@
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
+final myPrefs = RxSharedPreferences.getInstance();
+
 void setBoolValue(String key, bool value) async {
   final myPrefs = RxSharedPreferences(await SharedPreferences.getInstance());
   myPrefs.setBool(key, value);

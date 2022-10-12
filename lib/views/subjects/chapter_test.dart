@@ -2,10 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
-import 'package:prepared_academy/providers/auth_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
-import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:slide_countdown/slide_countdown.dart';
@@ -43,7 +41,6 @@ class _ChapterTestState extends State<ChapterTest>
 
   @override
   void initState() {
-    Future.microtask(() => context.read<AuthProvider>().login());
     _tabController = TabController(length: 4, vsync: this);
     super.initState();
   }

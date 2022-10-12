@@ -22,23 +22,23 @@ ThemeData appTheme = ThemeData(
     isCollapsed: true,
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(color: Color(0xFF707070)),
+      borderSide: const BorderSide(color: kBorder),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(color: Color(0xFF707070)),
+      borderSide: const BorderSide(color: kBlue),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: BorderSide(color: Colors.red.shade600, width: 1),
+      borderSide: const BorderSide(color: kPrimaryColor, width: 1),
     ),
     disabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(color: Color(0xFF707070)),
+      borderSide: const BorderSide(color: kBorder),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: BorderSide(color: Colors.red.shade600, width: 2),
+      borderSide: const BorderSide(color: kPrimaryColor, width: 2),
     ),
     contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
     hintStyle: const TextStyle(

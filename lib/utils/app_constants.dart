@@ -7,37 +7,6 @@ class AppConstants {
   static const String REGISTRATION_URI = '/api/muser/registration';
   static const String LOGIN_URI = '/api/muser/login';
   static const String LOGOUT_URI = '/api/auth/logout';
-  static const String BANNERS_URI = '/api/sites/1/banners';
-  static const String STATS_URI = '/api/clinics/';
-  static const String CLINICSINFO_URI = '/api/clinics/';
-  static const String COUNTRY_URI = '/api/countries/';
-  static const String CITY_URI = '/api/cities/';
-  static const String ADDSERVICE_URI = '/api/services';
-  static const String UPLOAD_URI = '/api/files/upload';
-  static const String SERVICEFILECREATE_URI = '/api/services/';
-  static const String GETSERVICE_URI = '/api/services/';
-  static const String GETCATEGORY_URI = '/api/categories';
-  static const String UPDATESERVICE_URI = '/api/services/';
-  static const String DELETESERVICE_URI = '/api/services/';
-  static const String DELETESERVICEFILE_URI = '/api/services/';
-  static const String SERVICESSEARCH_URI =
-      '/api/services?offset=0&limit=10000&sort[column]=title&sort[order]=asc&fields[clinic_id][value]=';
-  static const String CATEGORY_URI =
-      '/api/categories?offset=0&limit=10000&sort[column]=title&sort[order]=asc';
-  static const String SUBCATEGORY_URI =
-      '/api/subcategories?offset=0&limit=10000&sort[column]=title&sort[order]=asc';
-
-  // Availability Apis
-
-  static const String ADDDAY_URI = '/api/clinics/';
-  static const String GETTIME_URI = "/api/clinics/";
-
-// Notification Apis
-
-  static const String NOTIFICATIONSEARCH_URI =
-      '/api/notifications/db?offset=0&limit=1000000&sort[column]=read_at&sort[order]=asc';
-  static const String MARKASREAD_URI = '/api/notifications/db/';
-  static const String MARKALLASREAD_URI = '/api/notifications/db/markAllAsRead';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';
@@ -49,24 +18,8 @@ class AppConstants {
   static const String SEARCH_ADDRESS = 'search_address';
   static const String GUEST_MODE = 'guest_mode';
 
-  // order status
-  static const String PENDING = 'pending';
-  static const String CONFIRMED = 'confirmed';
-  static const String PROCESSING = 'processing';
-  static const String PROCESSED = 'processed';
-  static const String DELIVERED = 'delivered';
-  static const String FAILED = 'failed';
-  static const String RETURNED = 'returned';
-  static const String CANCELLED = 'canceled';
-  static const String OUT_FOR_DELIVERY = 'out_for_delivery';
-  static const String COUNTRY_CODE = 'country_code';
-  static const String LANGUAGE_CODE = 'language_code';
-  static const String THEME = 'theme';
-  static const String TOPIC = 'WIKWIK CLINIC';
-
   // Images
   static const String LOGOWITHTEXT_IMAGE = "assets/images/logowithtext.png";
-
   static const String LOGO_IMAGE = "assets/images/logo.png";
   static const String DEMOPOST_IMAGE = "assets/images/demopost.jpg";
   static const String SERVICE = "images/service.png";

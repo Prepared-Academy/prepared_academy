@@ -39,7 +39,7 @@ InputDecoration inputDecoration(
             child: Image.asset(prefixImageIcon)),
     prefixIconConstraints: prefixImageIcon == null
         ? null
-        : const BoxConstraints(minWidth: 23, maxHeight: 23),
+        : const BoxConstraints(minWidth: 20, maxHeight: 20),
     counterText: "",
     suffixIcon: widget,
     hintText: hintText,
