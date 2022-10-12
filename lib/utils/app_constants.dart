@@ -102,6 +102,12 @@ class AppConstants {
   static const String LOCK_ICON = "assets/icons/lock.png";
   static const String SLIDES_ICON = "assets/icons/slides.png";
   static const String ADDIMAGE_ICON = "assets/icons/addimage.png";
+  static const String FULLNAME_ICON = "assets/icons/fullname.png";
+
+  static const String SCHOOL_ICON = "assets/icons/school.png";
+  static const String GRADES_ICON = "assets/icons/grades.png";
+  static const String EMAIL_ICON = "assets/icons/email.png";
+  static const String PASSWORD_ICON = "assets/icons/password.png";
 
   static List<String> gradesList = [
     '1',
@@ -116,5 +122,13 @@ class AppConstants {
     '10',
     '11',
     '12'
+  ];
+
+  static List<String> schoolList = [
+    'Delhi Private School',
+    'Gulf Asian English School',
+    'India international School',
+    'Pace International School',
+    'prepared',
   ];
 }

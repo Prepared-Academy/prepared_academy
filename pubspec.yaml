@@ -60,6 +60,7 @@ dependencies:
   get_it: ^7.2.0
   dropdown_textfield: ^1.0.5
   dropdown_search: ^5.0.3
+  intl_phone_field: ^3.1.0
 
 dev_dependencies:
   flutter_test:

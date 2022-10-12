@@ -55,6 +55,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: 45,
       width: fullWidth == null ? null : MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -67,7 +68,44 @@ class CustomButton extends StatelessWidget {
         ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 12),
+          style: const TextStyle(fontSize: 14),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomOutlinedButton extends StatelessWidget {
+  final void Function()? onPressed;
+  final String text;
+  final Color foregroundColor;
+  final Color backgroundColor;
+  final bool? fullWidth;
+  const CustomOutlinedButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.foregroundColor = kBlack,
+      this.backgroundColor = kPrimaryColor,
+      this.fullWidth});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 45,
+      width: fullWidth == null ? null : MediaQuery.of(context).size.width,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: foregroundColor,
+          // backgroundColor: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+        ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 14),
         ),
       ),
     );

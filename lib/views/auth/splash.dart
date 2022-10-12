@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> {
       body: Stack(
         children: [
           Center(
-            child: FadeAnimation(
+            child: ScaleAnimation(
               child: Image.asset(
                 AppConstants.LOGO_IMAGE,
                 height: 120,
