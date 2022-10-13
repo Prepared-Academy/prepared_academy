@@ -1,27 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/helpers/helper.dart';
 import 'package:prepared_academy/models/userModel.dart';
 import 'package:prepared_academy/repos/auth_repo.dart';
 import 'package:prepared_academy/routes/router.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:prepared_academy/utils/snackbar.dart';
+
+import '../data/dio/dio_client.dart';
 
 class AuthProvider with ChangeNotifier {
   final AuthRepo authRepo = AuthRepo();
-  final bool _isLoading = false;
 
-  bool showPassword = false;
-
-  bool get isLoading => _isLoading;
+  var client = GetIt.I<DioClient>();
 
   setState() {
-    notifyListeners();
-  }
-
-  void showHidePassword() {
-    showPassword = !showPassword;
     notifyListeners();
   }
 
@@ -29,23 +23,20 @@ class AuthProvider with ChangeNotifier {
     try {
       loadingShow();
       String dataJson = loginModelToJson(loginModel);
-      Response apiResponse = await authRepo.register(dataJson);
+      Response apiResponse = await authRepo.login(dataJson);
       if (apiResponse.statusCode == 200) {
-        OneContext().pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
-        successRegister();
+        if (apiResponse.data["message"] == "Resend verification link in 22s") {
+          loadingStop();
+          NotificationsService.showSnackbar(apiResponse.data["message"]);
+        } else if (apiResponse.data["message"] == "Login Successful") {
+          loadingStop();
+          OneContext()
+              .pushNamedAndRemoveUntil(AppRoutes.PROFILE, (route) => false);
+        }
       }
     } catch (e) {
-      rethrow;
-    } finally {
       loadingStop();
+      rethrow;
     }
-  }
-
-  void successRegister() {
-    QuickAlert.show(
-      context: dialogContext,
-      type: QuickAlertType.success,
-      text: 'Your account is created successfully/',
-    );
   }
 }

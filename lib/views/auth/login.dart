@@ -1,5 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/models/userModel.dart';
+import 'package:prepared_academy/providers/auth_provider.dart';
 import 'package:prepared_academy/utils/validators.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
@@ -8,6 +9,7 @@ import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/utils/navigates.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -37,24 +39,6 @@ class _MyWidgetState extends State<Login> {
     myFocusNode.dispose();
 
     super.dispose();
-  }
-
-  Future _loginUser() async {
-    var formData = FormData.fromMap({
-      'email': _emailController.text.trim(),
-      'password': _passwordController.text,
-    });
-
-    _emailController.text = "";
-    _passwordController.text = "";
-
-    Response response = await Dio().post(
-        'http://192.168.56.1/flutter_test/store_data_flutter.php',
-        data: formData);
-
-    print(response.data.toString());
-
-    myFocusNode.requestFocus();
   }
 
   // Login BAckground Image
@@ -260,7 +244,13 @@ class _MyWidgetState extends State<Login> {
           backgroundColor: kPrimaryColor,
         ),
         onPressed: () {
-          _loginUser;
+          if (_formKey.currentState!.validate()) {
+            LoginModel loginModel = LoginModel(
+              email: _emailController.text.trim(),
+              password: _passwordController.text,
+            );
+            context.read<AuthProvider>().login(loginModel);
+          }
         }, // onPressed: validateAndSave,
         child: const Center(
           child: Text(
@@ -377,7 +367,7 @@ class _MyWidgetState extends State<Login> {
                     // LoginText(),
                     emailForm(),
                     passwordForm(),
-                    rememberMe(),
+                    // rememberMe(),
 
                     loginButton(),
                     orDivider(),

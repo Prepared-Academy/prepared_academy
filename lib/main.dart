@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/providers/auth_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/app_theme.dart';
 import 'package:one_context/one_context.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    const MyApp(),
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => AuthProvider()),
+    ], child: const MyApp()),
   );
 }
 

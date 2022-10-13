@@ -1,21 +1,29 @@
-// import 'package:dio/dio.dart';
-// import 'package:prepared_academy/data/dio/api_response.dart';
-// import 'package:prepared_academy/data/dio/dio_client.dart';
-// import 'package:prepared_academy/models/userModel.dart';
-// import 'package:prepared_academy/utils/app_constants.dart';
-// import 'package:prepared_academy/utils/snackbar.dart';
+import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
+import 'package:prepared_academy/utils/app_constants.dart';
+import 'package:prepared_academy/utils/shared_preferences.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
-// class AuthRepo {
-//   Future<UserModel> login(String email, String password) async {
-//     const api = "https://www.thepreparedacademy.com/api/muser/login/";
-//     final data = {"email": email, "password": password};
-//     final dio = Dio();
-//     Response response;
-//     response = await dio.post(api, data: data);
+import '../data/dio/dio_client.dart';
+import '../data/dio/dio_exception.dart';
+import '../utils/snackbar.dart';
 
-//     if (response.statusCode == 200) {
-//       final body = response.data;
-//       return UserModel(user: UserModel.fromJson(data['user']));
-//     }
-//   }
-// }
+class AuthRepo {
+  var client = GetIt.I<DioClient>();
+
+  Future<Response> login(String dataJson) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.LOGIN_URI, data: dataJson);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(e.response!.data["message"]);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Stream<String?>> getUser() async {
+    return myPrefs.getStringStream(AppConstants.USER);
+  }
+}
