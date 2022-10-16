@@ -26,7 +26,7 @@ ThemeData appTheme = ThemeData(
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(color: kBlue),
+      borderSide: const BorderSide(color: kBlue, width: 2),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
@@ -41,10 +41,21 @@ ThemeData appTheme = ThemeData(
       borderSide: const BorderSide(color: kPrimaryColor, width: 2),
     ),
     contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
-    hintStyle: const TextStyle(
-      color: Colors.grey,
-      fontWeight: FontWeight.normal,
+    // hintStyle: const TextStyle(
+    //   color: kgrey,
+    //   fontWeight: FontWeight.w500,
+    //   fontSize: 13,
+    // ),
+    labelStyle: const TextStyle(
+      color: kgrey,
+      fontWeight: FontWeight.w600,
       fontSize: 14,
+    ),
+
+    floatingLabelStyle: const TextStyle(
+      color: kBlue,
+      fontWeight: FontWeight.normal,
+      fontSize: 13,
     ),
   ),
 

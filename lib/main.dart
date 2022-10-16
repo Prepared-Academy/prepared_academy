@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/providers/auth_provider.dart';
+import 'package:prepared_academy/providers/class_activity_provider.dart';
+import 'package:prepared_academy/providers/home_provider.dart';
 import 'package:prepared_academy/providers/splash_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/setup.dart';
 import 'package:prepared_academy/themes/app_theme.dart';
+import 'package:prepared_academy/utils/shared_preference.dart';
 import 'package:prepared_academy/widgets/remove_scroll_glow.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupInit();
+  await removeAll();
+  await setupInit();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -24,6 +28,8 @@ void main() async {
     providers: [
       ChangeNotifierProvider(create: (_) => SplashProvider()),
       ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ChangeNotifierProvider(create: (_) => HomeProvider()),
+      ChangeNotifierProvider(create: (_) => ClassActivityProvider()),
     ],
     child: const MyApp(),
   ));

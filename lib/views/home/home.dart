@@ -4,17 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/animation/animation_list.dart';
+import 'package:prepared_academy/providers/home_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/views/home/drawer.dart';
 import 'package:prepared_academy/widgets/icon_button.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
+import 'package:provider/provider.dart';
 
-class Home extends StatelessWidget {
-  Home({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() => context.read<HomeProvider>().getStory());
+  }
 
   Widget _logoWithText() => Padding(
         padding: const EdgeInsets.only(left: 10),

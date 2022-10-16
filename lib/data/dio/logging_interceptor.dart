@@ -1,12 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+
+import '../../utils/app_constants.dart';
 
 class LoggingInterceptor extends InterceptorsWrapper {
   int maxCharactersPerLine = 200;
-
+  final myPrefs = RxSharedPreferences.getInstance();
+  LoggingInterceptor();
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
+    String token = await myPrefs.getString(AppConstants.TOKEN) ?? "";
+    options.headers["Authorization"] = "Bearer $token";
     debugPrint("--> ${options.method} ${options.path}");
     debugPrint("Headers: ${options.headers.toString()}");
     debugPrint("<-- END HTTP");
@@ -48,3 +54,16 @@ class LoggingInterceptor extends InterceptorsWrapper {
     return super.onError(err, handler);
   }
 }
+
+// class TokenIntercepter extends Interceptor {
+//   @override
+//   Future onRequest(
+//       RequestOptions options, RequestInterceptorHandler handler) async {
+//     String token = await myPrefs.getString(AppConstants.TOKEN) ?? "";
+//     options.headers["Authorization"] = "Bearer $token";
+
+//     debugPrint("--> -------????????? ${options.headers}");
+
+//     return super.onRequest(options, handler);
+//   }
+// }

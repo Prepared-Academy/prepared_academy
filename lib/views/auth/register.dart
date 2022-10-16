@@ -1,14 +1,14 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:prepared_academy/models/register_model.dart';
-import 'package:prepared_academy/providers/auth_provider.dart';
+import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
 import 'package:prepared_academy/widgets/input_decoration.dart';
 import 'package:prepared_academy/widgets/textfield_column.dart';
-import 'package:provider/provider.dart';
+
+import '../../routes/router.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -28,50 +28,42 @@ class _RegisterState extends State<Register> {
   final _schoolController = TextEditingController();
 
   Widget _appLogo() {
-    return Center(
-      child: Image.asset(
-        AppConstants.LOGOWITHTEXT_IMAGE,
-        width: 150,
-        height: 50,
-      ),
+    return Image.asset(
+      AppConstants.LOGOWITHTEXT_IMAGE,
+      width: 110,
+      height: 50,
     );
   }
 
   Widget _createText() {
     return const Padding(
-        padding: EdgeInsets.only(top: 5.0),
+        padding: EdgeInsets.only(top: 10.0, bottom: 15),
         child: Text(
           'Create Your Account ',
           style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
+              fontWeight: FontWeight.w400, fontSize: 24, color: Colors.black),
         ));
   }
 
   Widget _fullNameField() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: TextFieldColumn(
-        text: "Full Name",
-        widget: TextFormField(
+        padding: const EdgeInsets.only(top: 15),
+        child: TextFormField(
           controller: _nameController,
           keyboardType: TextInputType.name,
-          decoration: inputDecoration(
-              prefixImageIcon: AppConstants.FULLNAME_ICON,
-              hintText: "Jhon Doe"),
+          decoration: inputDecoration(labelText: "Full name"),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "required";
             }
             return null;
           },
-        ),
-      ),
-    );
+        ));
   }
 
   Widget _phoneField() {
     return Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 15),
         child: TextFieldColumn(
           text: "Contact Number",
           widget: IntlPhoneField(
@@ -79,7 +71,7 @@ class _RegisterState extends State<Register> {
             dropdownIconPosition: IconPosition.trailing,
             flagsButtonPadding:
                 const EdgeInsets.only(left: 10, top: 5, right: 5, bottom: 5),
-            decoration: inputDecoration(hintText: "52 892 1379"),
+            decoration: inputDecoration(labelText: "Mobile number"),
             initialCountryCode: 'AE',
             validator: (value) {
               if (value!.completeNumber.isNotEmpty) {
@@ -93,69 +85,54 @@ class _RegisterState extends State<Register> {
 
   Widget _emailAddressField() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: TextFieldColumn(
-        text: "Email Address",
-        widget: TextFormField(
-          controller: _emailController,
-          keyboardType: TextInputType.emailAddress,
-          decoration: inputDecoration(
-              prefixImageIcon: AppConstants.EMAIL_ICON,
-              hintText: "jhondoe@mail.com"),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "required";
-            }
-            return null;
-          },
-        ),
+      padding: const EdgeInsets.only(top: 15),
+      child: TextFormField(
+        controller: _emailController,
+        keyboardType: TextInputType.emailAddress,
+        decoration: inputDecoration(labelText: "Your email address"),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "required";
+          }
+          return null;
+        },
       ),
     );
   }
 
   Widget _passwordField() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 20),
       child: Row(
         children: [
           Flexible(
-            child: TextFieldColumn(
-              text: "Password",
-              widget: TextFormField(
-                controller: _passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                decoration: inputDecoration(
-                    prefixImageIcon: AppConstants.PASSWORD_ICON,
-                    hintText: "********"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "required";
-                  }
-                  return null;
-                },
-              ),
+            child: TextFormField(
+              controller: _passwordController,
+              keyboardType: TextInputType.visiblePassword,
+              decoration: inputDecoration(labelText: "Password"),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "required";
+                }
+                return null;
+              },
             ),
           ),
           const SizedBox(width: 10),
           Flexible(
-            child: TextFieldColumn(
-              text: "Confirm Password",
-              widget: TextFormField(
-                controller: _confirmPasswordController,
-                keyboardType: TextInputType.visiblePassword,
-                decoration: inputDecoration(
-                    prefixImageIcon: AppConstants.PASSWORD_ICON,
-                    hintText: "********"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "required";
-                  } else if (_passwordController.text !=
-                      _confirmPasswordController.text) {
-                    return "Both password must be equal";
-                  }
-                  return null;
-                },
-              ),
+            child: TextFormField(
+              controller: _confirmPasswordController,
+              keyboardType: TextInputType.visiblePassword,
+              decoration: inputDecoration(labelText: "Confirm"),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "required";
+                } else if (_passwordController.text !=
+                    _confirmPasswordController.text) {
+                  return "Both password must be equal";
+                }
+                return null;
+              },
             ),
           )
         ],
@@ -164,67 +141,58 @@ class _RegisterState extends State<Register> {
   }
 
   Widget _schoolSelectionField() => Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: TextFieldColumn(
-          text: "School Name",
-          widget: DropdownSearch<String>(
-            dropdownButtonProps: const DropdownButtonProps(
-              padding: EdgeInsets.all(0),
-              icon: Icon(Icons.arrow_drop_down, color: kPrimaryColor),
-            ),
-            popupProps: const PopupProps.menu(
-              showSearchBox: true,
-              showSelectedItems: true,
-            ),
-            items: AppConstants.schoolList,
-            dropdownDecoratorProps: DropDownDecoratorProps(
-              dropdownSearchDecoration: inputDecoration(
-                  prefixImageIcon: AppConstants.SCHOOL_ICON,
-                  hintText: "Select School"),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "required";
-              }
-              return null;
-            },
-            onChanged: ((value) {
-              _schoolController.text = value ?? "";
-            }),
+        padding: const EdgeInsets.only(top: 15),
+        child: DropdownSearch<String>(
+          dropdownButtonProps: const DropdownButtonProps(
+            padding: EdgeInsets.all(0),
+            icon: Icon(Icons.arrow_drop_down, color: kPrimaryColor),
           ),
+          popupProps: const PopupProps.menu(
+            showSearchBox: true,
+            showSelectedItems: true,
+          ),
+          items: AppConstants.schoolList,
+          dropdownDecoratorProps: DropDownDecoratorProps(
+            dropdownSearchDecoration: inputDecoration(labelText: "School"),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "required";
+            }
+            return null;
+          },
+          onChanged: ((value) {
+            _schoolController.text = value ?? "";
+          }),
         ),
       );
 
   Widget _gradeSelectionField() => Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: TextFieldColumn(
-          text: "Grade",
-          widget: DropdownSearch<String>(
-            dropdownButtonProps: const DropdownButtonProps(
-              padding: EdgeInsets.all(0),
-              icon: Icon(Icons.arrow_drop_down, color: kPrimaryColor),
-            ),
-            popupProps: const PopupProps.menu(
-              showSearchBox: true,
-              showSelectedItems: true,
-            ),
-            items: AppConstants.gradesList,
-            dropdownDecoratorProps: DropDownDecoratorProps(
-              dropdownSearchDecoration: inputDecoration(
-                prefixImageIcon: AppConstants.GRADES_ICON,
-                hintText: "Select Grade",
-              ),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "required";
-              }
-              return null;
-            },
-            onChanged: ((value) {
-              _gradeController.text = value ?? "";
-            }),
+        padding: const EdgeInsets.only(top: 15),
+        child: DropdownSearch<String>(
+          dropdownButtonProps: const DropdownButtonProps(
+            padding: EdgeInsets.all(0),
+            icon: Icon(Icons.arrow_drop_down, color: kPrimaryColor),
           ),
+          popupProps: const PopupProps.menu(
+            showSearchBox: true,
+            showSelectedItems: true,
+          ),
+          items: AppConstants.gradesList,
+          dropdownDecoratorProps: DropDownDecoratorProps(
+            dropdownSearchDecoration: inputDecoration(
+              labelText: "Grade",
+            ),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "required";
+            }
+            return null;
+          },
+          onChanged: ((value) {
+            _gradeController.text = value ?? "";
+          }),
         ),
       );
 
@@ -244,21 +212,21 @@ class _RegisterState extends State<Register> {
             //   );
             //   context.read<AuthProvider>().register(createAccountModel);
             // }
-            RegisterModel registerModel = RegisterModel(
-                name: "Moin khan",
-                email: "moinkhan@preparedacademy.com",
-                password: "123456789",
-                contactNo: "0565642473",
-                schoolName: "Prepared",
-                grade: "6");
-            context.read<AuthProvider>().register(registerModel);
+            // RegisterModel registerModel = RegisterModel(
+            //     name: "Moin khan",
+            //     email: "moinkhan@preparedacademy.com",
+            //     password: "123456789",
+            //     contactNo: "0565642473",
+            //     schoolName: "Prepared",
+            //     grade: "6");
+            // context.read<AuthProvider>().register(registerModel);
           },
           text: "Register",
         ),
       );
 
   Widget _loginAccount() => Padding(
-        padding: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 30),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -269,7 +237,12 @@ class _RegisterState extends State<Register> {
             )),
             const SizedBox(width: 10),
             Expanded(
-                child: CustomOutlinedButton(text: "Login", onPressed: () {})),
+                child: CustomOutlinedButton(
+                    text: "Login",
+                    onPressed: () {
+                      OneContext().pushNamedAndRemoveUntil(
+                          AppRoutes.LOGIN, (route) => false);
+                    })),
           ],
         ),
       );

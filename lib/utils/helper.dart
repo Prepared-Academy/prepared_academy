@@ -26,3 +26,7 @@ Future successRegister() async {
     text: 'Verification link sent',
   );
 }
+
+class GetToken {
+  String token = "";
+}

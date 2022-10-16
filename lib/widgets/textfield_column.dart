@@ -10,11 +10,11 @@ class TextFieldColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          text,
-          style: const TextStyle(fontWeight: FontWeight.w500),
-        ),
-        const SizedBox(height: 3),
+        // Text(
+        //   text,
+        //   style: const TextStyle(fontWeight: FontWeight.w500),
+        // ),
+        // const SizedBox(height: 3),
         widget,
       ],
     );

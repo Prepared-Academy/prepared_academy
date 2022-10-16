@@ -5,4 +5,5 @@ const kWhite = Color.fromARGB(255, 245, 244, 244);
 const kBlack = Colors.black;
 const kBlue = Color(0xFF1a73e8);
 const kBorder = Color(0xFFdadcdf);
+const kgrey = Color(0xFF5f6367);
 Color kShadow = Colors.grey.shade300;

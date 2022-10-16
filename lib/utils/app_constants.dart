@@ -6,7 +6,14 @@ class AppConstants {
   static const String BASE_URL = 'https://thepreparedacademy.com'; // staging
   static const String REGISTRATION_URI = '/api/muser/registration';
   static const String LOGIN_URI = '/api/muser/login';
-  static const String LOGOUT_URI = '/api/auth/logout';
+  static const String LOGOUT_URI = '/api/muser/logout';
+  static const String VERIFY_OTP_URI = '/api/muser/verifyOTP';
+  static const String SEND_OTP_URI = '/api/muser/sendOTPMail';
+  static const String UPDATE_PASS_URI = '/api/muser/UpdatePassword';
+
+  static const String STORY_URI = '/api/muser/getDailyFacts';
+  // static const String VERIFY_OTP_URI = '/api/auth/verifyOTP';
+  // static const String SEND_OTP_URI = '/api/auth/sendOTPMail';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';

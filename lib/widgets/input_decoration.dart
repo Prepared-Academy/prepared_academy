@@ -44,5 +44,6 @@ InputDecoration inputDecoration(
     suffixIcon: widget,
     hintText: hintText,
     labelText: labelText,
+    alignLabelWithHint: true,
   );
 }

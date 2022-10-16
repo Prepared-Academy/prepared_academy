@@ -24,8 +24,7 @@ class SplashProvider extends ChangeNotifier {
     if (token != "") {
       OneContext().pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
     } else {
-      OneContext()
-          .pushNamedAndRemoveUntil(AppRoutes.REGISTER, (route) => false);
+      OneContext().pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
     }
   }
 }

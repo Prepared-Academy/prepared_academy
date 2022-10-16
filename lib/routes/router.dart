@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/views/auth/login.dart';
 import 'package:prepared_academy/views/auth/register.dart';
 import 'package:prepared_academy/views/exams_assignments/exam_assignments.dart';
 import 'package:prepared_academy/views/home/home.dart';
@@ -19,6 +20,7 @@ import '../views/auth/splash.dart';
 class AppRoutes {
   static const SPLASHSCREEN = '/';
   static const HOMESCREEN = '/home';
+  static const LOGIN = '/login';
 
   static const REGISTER = '/register';
   static const NAVIG = '/navig';
@@ -37,6 +39,7 @@ class AppRoutes {
     Map<String, Widget Function(BuildContext)> appRoutes = {
       SPLASHSCREEN: (context) => const Splash(),
       HOMESCREEN: (context) => Home(),
+      LOGIN: (context) => const Login(),
       REGISTER: (context) => const Register(),
       NAVIG: (context) => const Navig(),
       CHAPTERS: (context) => const Chapters(),

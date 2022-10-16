@@ -112,6 +112,39 @@ class CustomOutlinedButton extends StatelessWidget {
   }
 }
 
+class CustomTextButton extends StatelessWidget {
+  final void Function()? onPressed;
+  final String text;
+  final Color foregroundColor;
+  final Color backgroundColor;
+  final bool? fullWidth;
+  const CustomTextButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.foregroundColor = kBlack,
+      this.backgroundColor = kPrimaryColor,
+      this.fullWidth});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: foregroundColor,
+        // backgroundColor: backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+      ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 14),
+      ),
+    );
+  }
+}
+
 class Buttonicon extends StatelessWidget {
   final void Function()? onPressed;
   final String text;
