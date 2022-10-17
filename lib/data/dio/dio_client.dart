@@ -1,10 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:prepared_academy/data/dio/logging_interceptor.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
-import 'package:rx_shared_preferences/rx_shared_preferences.dart';
-
-import '../../utils/shared_preference.dart';
 
 class DioClient {
   // dio instance
@@ -13,7 +9,6 @@ class DioClient {
 
   // injecting dio instance
   DioClient(this._dio) {
-    getToken();
     _dio
       ..options.baseUrl = AppConstants.BASE_URL
       ..options.connectTimeout = 15000
@@ -118,14 +113,5 @@ class DioClient {
     } catch (e) {
       rethrow;
     }
-  }
-
-  Future getToken() async {
-    debugPrint("######## Calling Get Token From Dio ########");
-    final data = myPrefs.getStringStream(AppConstants.TOKEN);
-    data.listen((event) {
-      token = event;
-      debugPrint("######## Token Changed ########");
-    });
   }
 }

@@ -1,21 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/providers/home_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
-class UserModel2 {
-  UserModel2(this.stories, this.userName, this.imageUrl);
-
-  final List<StoryModel> stories;
-  final String userName;
-  final String imageUrl;
-}
-
-class StoryModel {
-  StoryModel(this.imageUrl);
-
-  final String imageUrl;
-}
+import '../../widgets/bookmark_button.dart';
 
 class StoryPage extends StatefulWidget {
   const StoryPage({Key? key}) : super(key: key);
@@ -26,33 +15,6 @@ class StoryPage extends StatefulWidget {
 
 class _StoryPageState extends State<StoryPage> {
   late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
-  final sampleUsers = [
-    UserModel2([
-      StoryModel(
-          "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-      StoryModel(
-          "https://images.unsplash.com/photo-1609418426663-8b5c127691f9?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-      StoryModel(
-          "https://images.unsplash.com/photo-1609444074870-2860a9a613e3?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Nnx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-      StoryModel(
-          "https://images.unsplash.com/photo-1609504373567-acda19c93dc4?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1MHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-    ], "User1",
-        "https://images.unsplash.com/photo-1609262772830-0decc49ec18c?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMDF8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-    UserModel2([
-      StoryModel(
-          "https://images.unsplash.com/photo-1609439547168-c973842210e1?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4Nnx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-    ], "User2",
-        "https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwzMjN8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-    UserModel2([
-      StoryModel(
-          "https://images.unsplash.com/photo-1609421139394-8def18a165df?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMDl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-      StoryModel(
-          "https://images.unsplash.com/photo-1609377375732-7abb74e435d9?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxODJ8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-      StoryModel(
-          "https://images.unsplash.com/photo-1560925978-3169a42619b2?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMjF8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-    ], "User3",
-        "https://images.unsplash.com/photo-1609127102567-8a9a21dc27d8?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOTh8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"),
-  ];
 
   @override
   void initState() {
@@ -72,8 +34,12 @@ class _StoryPageState extends State<StoryPage> {
     return Scaffold(
       body: StoryPageView(
         itemBuilder: (context, pageIndex, storyIndex) {
-          final user = sampleUsers[pageIndex];
-          final story = user.stories[storyIndex];
+          // print("pageIndex $pageIndex");
+          // print("StoryIndex $storyIndex");
+          context.read<HomeProvider>().storyUsers =
+              context.read<HomeProvider>().story[pageIndex];
+          context.read<HomeProvider>().fact =
+              context.read<HomeProvider>().storyUsers.stories[storyIndex];
           return Stack(
             children: [
               Positioned.fill(
@@ -81,20 +47,22 @@ class _StoryPageState extends State<StoryPage> {
               ),
               Positioned.fill(
                 child: Image.network(
-                  story.imageUrl,
+                  "https://images.unsplash.com/photo-1665875807836-f8978a048aa6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
                   fit: BoxFit.cover,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 44, left: 8),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       height: 32,
                       width: 32,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(user.imageUrl),
+                          image: AssetImage(
+                              context.read<HomeProvider>().storyUsers.imageUrl),
                           fit: BoxFit.cover,
                         ),
                         shape: BoxShape.circle,
@@ -103,13 +71,27 @@ class _StoryPageState extends State<StoryPage> {
                     const SizedBox(
                       width: 8,
                     ),
-                    Text(
-                      user.userName,
-                      style: const TextStyle(
-                        fontSize: 17,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.read<HomeProvider>().storyUsers.userName,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          context.read<HomeProvider>().fact.title!,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -123,13 +105,33 @@ class _StoryPageState extends State<StoryPage> {
               alignment: Alignment.topRight,
               child: Padding(
                 padding: const EdgeInsets.only(top: 32),
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  color: Colors.white,
-                  icon: const Icon(Icons.close),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    BookMarkButton(
+                        context.read<HomeProvider>().fact.bookmarkStatus == 0
+                            ? false
+                            : true, onPressed: () {
+                      if (context.read<HomeProvider>().fact.bookmarkStatus ==
+                          0) {
+                        context.read<HomeProvider>().addStoryBookMark(
+                            context.read<HomeProvider>().fact.id!,
+                            context.read<HomeProvider>().fact.typeId!);
+                      } else {
+                        context.read<HomeProvider>().removeBookmarkStory(
+                              context.read<HomeProvider>().fact.bookmarkId!,
+                            );
+                      }
+                    }),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      color: Colors.white,
+                      icon: const Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -137,14 +139,14 @@ class _StoryPageState extends State<StoryPage> {
         },
         indicatorAnimationController: indicatorAnimationController,
         initialStoryIndex: (pageIndex) {
-          if (pageIndex == 0) {
-            return 1;
-          }
+          // if (pageIndex == 0) {
+          //   return 1;
+          // }
           return 0;
         },
-        pageLength: sampleUsers.length,
+        pageLength: context.read<HomeProvider>().story.length,
         storyLength: (int pageIndex) {
-          return sampleUsers[pageIndex].stories.length;
+          return context.read<HomeProvider>().story[pageIndex].stories.length;
         },
         onPageLimitReached: () {
           Navigator.pop(context);

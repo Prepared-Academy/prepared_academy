@@ -38,7 +38,7 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
       SPLASHSCREEN: (context) => const Splash(),
-      HOMESCREEN: (context) => Home(),
+      HOMESCREEN: (context) => const Home(),
       LOGIN: (context) => const Login(),
       REGISTER: (context) => const Register(),
       NAVIG: (context) => const Navig(),

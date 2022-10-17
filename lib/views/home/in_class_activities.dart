@@ -3,10 +3,17 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/animation/animation_list.dart';
+import 'package:prepared_academy/providers/class_activity_provider.dart';
+import 'package:provider/provider.dart';
 
-class InClassActivities extends StatelessWidget {
-  InClassActivities({super.key});
+class InClassActivities extends StatefulWidget {
+  const InClassActivities({super.key});
 
+  @override
+  State<InClassActivities> createState() => _InClassActivitiesState();
+}
+
+class _InClassActivitiesState extends State<InClassActivities> {
   List<Map<String, dynamic>> coursesList = [
     {
       "name": "Mathematics",
@@ -39,8 +46,15 @@ class InClassActivities extends StatelessWidget {
       "progress": 0,
     },
   ];
+
   final scrollController = ScrollController();
-  final listShowItemDuration = const Duration(milliseconds: 0);
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+        () => context.read<ClassActivityProvider>().getMyInClassSubjects());
+  }
 
   @override
   Widget build(BuildContext context) {

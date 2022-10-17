@@ -67,10 +67,11 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: List.generate(
-                3,
+                AppConstants.storyList.length,
                 (index) => ScaleAnimation(
                   child: GestureDetector(
                     onTap: () {
+                      context.read<HomeProvider>().currentStoryIndex = index;
                       OneContext().pushNamed(AppRoutes.STORYVIEW);
                     },
                     child: Padding(
@@ -87,16 +88,10 @@ class _HomeState extends State<Home> {
                           ],
                         ),
                         child: CircleAvatar(
-                          backgroundColor: kPrimaryColor,
                           radius: 30,
-                          child: CircleAvatar(
-                            radius: 28,
-                            backgroundColor: Colors.grey.shade50,
-                            child: const CircleAvatar(
-                              radius: 25,
-                              backgroundColor: Colors.white,
-                            ),
-                          ),
+                          backgroundColor: Colors.white,
+                          backgroundImage: AssetImage(
+                              AppConstants.storyList[index]["image"]),
                         ),
                       ),
                     ),

@@ -17,11 +17,11 @@ class _NavigState extends State<Navig> {
   int selectedIndex = 0;
 
   List<Widget> widgetOptions = [
-    Home(),
+    const Home(),
     MySubjects(),
-    InClassActivities(),
+    const InClassActivities(),
     LiveQuiz(),
-    Home(),
+    const Home(),
   ];
 
   void onItemTap(int index) {

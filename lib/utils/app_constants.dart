@@ -12,8 +12,12 @@ class AppConstants {
   static const String UPDATE_PASS_URI = '/api/muser/UpdatePassword';
 
   static const String STORY_URI = '/api/muser/getDailyFacts';
-  // static const String VERIFY_OTP_URI = '/api/auth/verifyOTP';
-  // static const String SEND_OTP_URI = '/api/auth/sendOTPMail';
+  static const String BOOKMARKSTORY_URI = '/api/muser/addBookmark';
+  static const String REMOVEBOOKMARK_URI = '/api/muser/removeBookmark';
+  static const String UPDATELOGOUTTIME_URI = '/api/muser/updateLogoutTime';
+
+// In Class Acitivities
+  static const String INCLASS_SUBJECTS = '/api/muser/getmyinlinesubjects';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';
@@ -34,6 +38,11 @@ class AppConstants {
   static const String APPOINTMENT_IMAGE = "images/appointment.png";
   static const String ADDIMAGE_PLACEHOLDER = "images/addlogo.png";
   static const String CHAPTERSBACK1_IMAGE = "assets/images/chapters.jpg";
+
+// Story
+  static const String FACTS_IMAGE = "assets/images/facts.png";
+  static const String HISTORY_IMAGE = "assets/images/history.png";
+  static const String PROVERBS_IMAGE = "assets/images/proverbs.png";
 
   // Icons
   static const String NOTIFICATION_ICON = "assets/icons/bell.png";
@@ -90,5 +99,11 @@ class AppConstants {
     'India international School',
     'Pace International School',
     'prepared',
+  ];
+
+  static List<Map<String, dynamic>> storyList = [
+    {"name": "Facts", "image": AppConstants.FACTS_IMAGE},
+    {"name": "History", "image": AppConstants.HISTORY_IMAGE},
+    {"name": "Proverbs", "image": AppConstants.PROVERBS_IMAGE},
   ];
 }

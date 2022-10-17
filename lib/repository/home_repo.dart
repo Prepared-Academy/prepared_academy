@@ -11,15 +11,31 @@ class HomeRepo {
 
   Future<Response> stories() async {
     try {
-      final Response response = await client.get(
-        AppConstants.STORY_URI,
-        // options: Options(
-        //   headers: {
-        //     'Content-Type': 'application/json; charset=UTF-8',
-        //     'Authorization': 'Bearer ${client.token}',
-        //   },
-        // )
-      );
+      final Response response = await client.get(AppConstants.STORY_URI);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> addBookMarkStory(String data) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.BOOKMARKSTORY_URI, data: data);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> removeBookmarkStory(String data) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.REMOVEBOOKMARK_URI, data: data);
       return response;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
