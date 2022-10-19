@@ -17,7 +17,9 @@ class AppConstants {
   static const String UPDATELOGOUTTIME_URI = '/api/muser/updateLogoutTime';
 
 // In Class Acitivities
-  static const String INCLASS_SUBJECTS = '/api/muser/getmyinlinesubjects';
+  static const String INCLASS_SUBJECTS_URI = '/api/muser/getmyinlinesubjects';
+  static const String SUBJECT_ACTIVITY_URI = '/api/muser/getStudentActivities';
+  static const String ACITVITIES_URI = '/api/muser/getActivityDays';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';
@@ -38,6 +40,7 @@ class AppConstants {
   static const String APPOINTMENT_IMAGE = "images/appointment.png";
   static const String ADDIMAGE_PLACEHOLDER = "images/addlogo.png";
   static const String CHAPTERSBACK1_IMAGE = "assets/images/chapters.jpg";
+  static const String PLACEHOLDER_IMAGE = "assets/images/placeholder.png";
 
 // Story
   static const String FACTS_IMAGE = "assets/images/facts.png";

@@ -5,11 +5,11 @@ import 'package:prepared_academy/themes/color_theme.dart';
 ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   splashFactory: InkRipple.splashFactory,
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     elevation: 0,
-    backgroundColor: Colors.grey.shade50,
+    backgroundColor: Colors.white,
     foregroundColor: Colors.black,
-    titleTextStyle: const TextStyle(
+    titleTextStyle: TextStyle(
       color: Colors.black,
       fontSize: 20,
       fontWeight: FontWeight.bold,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:one_context/one_context.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 final dialogContext = OneContext().dialog.context!;
 
@@ -27,6 +29,14 @@ Future successRegister() async {
   );
 }
 
-class GetToken {
-  String token = "";
+String returnTimeAgo(DateTime dateTime) {
+  final fifteenAgo = dateTime;
+  String agoTime = timeago.format(fifteenAgo);
+
+  return agoTime;
+}
+
+String returnDateOnly(DateTime dateTime) {
+  String convertedDate = DateFormat("dd/MM/yyyy").format(dateTime);
+  return convertedDate;
 }

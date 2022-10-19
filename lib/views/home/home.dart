@@ -71,6 +71,7 @@ class _HomeState extends State<Home> {
                 (index) => ScaleAnimation(
                   child: GestureDetector(
                     onTap: () {
+                      context.read<HomeProvider>().storyView(index: index);
                       context.read<HomeProvider>().currentStoryIndex = index;
                       OneContext().pushNamed(AppRoutes.STORYVIEW);
                     },

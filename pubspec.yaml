@@ -63,6 +63,10 @@ dependencies:
   intl_phone_field: ^3.1.0
   animated_snack_bar: ^0.3.0
   stories_for_flutter: ^1.2.0
+  cached_network_image: ^3.2.2
+  flutter_svg: ^1.1.5
+  timeago: ^3.3.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

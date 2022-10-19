@@ -2,8 +2,12 @@
 
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
+import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/providers/class_activity_provider.dart';
+import 'package:prepared_academy/routes/router.dart';
+import 'package:prepared_academy/utils/app_constants.dart';
+import 'package:prepared_academy/widgets/cached_image.dart';
 import 'package:provider/provider.dart';
 
 class InClassActivities extends StatefulWidget {
@@ -14,39 +18,6 @@ class InClassActivities extends StatefulWidget {
 }
 
 class _InClassActivitiesState extends State<InClassActivities> {
-  List<Map<String, dynamic>> coursesList = [
-    {
-      "name": "Mathematics",
-      "desc": "Academind by Maximilian Schwarzmuller",
-      "progress": 50,
-    },
-    {
-      "name": "Biology",
-      "desc": "Academind by Maximilian Schwarzmuller",
-      "progress": 100,
-    },
-    {
-      "name": "Physics",
-      "desc": "Academind by Maximilian Schwarzmuller",
-      "progress": 25,
-    },
-    {
-      "name": "Chemistry",
-      "desc": "Academind by Maximilian Schwarzmuller",
-      "progress": 0,
-    },
-    {
-      "name": "Physics",
-      "desc": "Academind by Maximilian Schwarzmuller",
-      "progress": 25,
-    },
-    {
-      "name": "Chemistry",
-      "desc": "Academind by Maximilian Schwarzmuller",
-      "progress": 0,
-    },
-  ];
-
   final scrollController = ScrollController();
 
   @override
@@ -59,53 +30,63 @@ class _InClassActivitiesState extends State<InClassActivities> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text("In class activities"),
-      ),
-      body: LiveGrid(
-        padding: const EdgeInsets.all(16),
-        itemCount: coursesList.length,
-        controller: scrollController,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-        ),
-        itemBuilder: ((context, index, animation) => AnimationFadeList(
-              animation: animation,
-              widget: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 5,
-                        color: Colors.grey.shade200,
-                        spreadRadius: 1)
-                  ],
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
+      appBar: AppBar(title: const Text("In class activities")),
+      body: Consumer<ClassActivityProvider>(builder: (context, provider, __) {
+        return LiveGrid(
+          padding: const EdgeInsets.all(16),
+          itemCount: provider.inClassSubjects.length,
+          controller: scrollController,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+          ),
+          itemBuilder: ((context, index, animation) => AnimationFadeList(
+                animation: animation,
+                widget: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
-                    onTap: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          coursesList[index]["name"].toUpperCase(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 5,
+                          color: Colors.grey.shade200,
+                          spreadRadius: 1)
+                    ],
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(20),
+                      onTap: () {
+                        OneContext().pushNamed(AppRoutes.SUBJECTACTIVITIES,
+                            arguments: {
+                              "subjectId":
+                                  provider.inClassSubjects[index].subjectId!
+                            });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CachedImage(
+                            imageUrl:
+                                "${AppConstants.BASE_URL}/upload/subjectPic/${provider.inClassSubjects[index].image1!}",
                           ),
-                        )
-                      ],
+                          const SizedBox(height: 10),
+                          Text(
+                            provider.inClassSubjects[index].name!,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )),
-      ),
+              )),
+        );
+      }),
     );
   }
 }

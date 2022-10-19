@@ -41,7 +41,7 @@ class HomeProvider extends ChangeNotifier {
       Response apiResponse = await homeRepo.addBookMarkStory(jsonEncode(data));
       if (apiResponse.statusCode == 200) {
         // refresh stories
-        getStory();
+        await getStory();
         // refresh story page
         storyView(index: currentStoryIndex);
         notifyListeners();
@@ -59,7 +59,7 @@ class HomeProvider extends ChangeNotifier {
       if (apiResponse.statusCode == 200) {
         if (apiResponse.data["message"] == "Removed from Bookmarks") {
           // refresh stories
-          getStory();
+          await getStory();
           // refresh story page
           storyView(index: currentStoryIndex);
           notifyListeners();
@@ -88,5 +88,7 @@ class HomeProvider extends ChangeNotifier {
         AppConstants.storyList[currentStoryIndex]["image"],
       ),
     );
+
+    notifyListeners();
   }
 }

@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
 
             LoginModel loginModel = LoginModel(
               email: "s23702@gulfasian.com",
-              password: "123456789",
+              password: "12345678",
             );
             context.read<AuthProvider>().login(loginModel);
           },

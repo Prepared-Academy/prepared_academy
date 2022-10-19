@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:prepared_academy/views/auth/login.dart';
 import 'package:prepared_academy/views/auth/register.dart';
 import 'package:prepared_academy/views/exams_assignments/exam_assignments.dart';
+import 'package:prepared_academy/views/home/activities.dart';
 import 'package:prepared_academy/views/home/home.dart';
 import 'package:prepared_academy/views/home/navig.dart';
 import 'package:prepared_academy/views/home/story_view.dart';
+import 'package:prepared_academy/views/home/subject_activity.dart';
 import 'package:prepared_academy/views/subjects/chapter_content.dart';
 import 'package:prepared_academy/views/subjects/chapter_test.dart';
 import 'package:prepared_academy/views/subjects/chapters.dart';
@@ -21,7 +23,6 @@ class AppRoutes {
   static const SPLASHSCREEN = '/';
   static const HOMESCREEN = '/home';
   static const LOGIN = '/login';
-
   static const REGISTER = '/register';
   static const NAVIG = '/navig';
   static const CHAPTERS = '/chapters';
@@ -32,8 +33,9 @@ class AppRoutes {
   static const CHAPTERTEST = '/chaptertest';
   static const STORYVIEW = '/storyview';
   static const WRITEANSWER = '/writeanswer';
-
   static const PHOTOVIEW = '/photoview';
+  static const SUBJECTACTIVITIES = '/subjectactivities';
+  static const ACTIVITIES = '/activities';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -51,6 +53,8 @@ class AppRoutes {
       PDFVIEW: (context) => const PdfViewer(),
       CHAPTERTEST: (context) => const ChapterTest(),
       WRITEANSWER: (context) => const WriteAnswer(),
+      SUBJECTACTIVITIES: (context) => const SubjectActivites(),
+      ACTIVITIES: (context) => const Activities(),
     };
     return appRoutes;
   }
