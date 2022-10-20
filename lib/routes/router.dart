@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:prepared_academy/views/auth/login.dart';
 import 'package:prepared_academy/views/auth/register.dart';
 import 'package:prepared_academy/views/exams_assignments/exam_assignments.dart';
-import 'package:prepared_academy/views/home/activities.dart';
+import 'package:prepared_academy/views/class_activities/view_activites/activities.dart';
+import 'package:prepared_academy/views/class_activities/assignment_activity.dart';
 import 'package:prepared_academy/views/home/home.dart';
 import 'package:prepared_academy/views/home/navig.dart';
 import 'package:prepared_academy/views/home/story_view.dart';
-import 'package:prepared_academy/views/home/subject_activity.dart';
+import 'package:prepared_academy/views/class_activities/subject_activity.dart';
 import 'package:prepared_academy/views/subjects/chapter_content.dart';
 import 'package:prepared_academy/views/subjects/chapter_test.dart';
 import 'package:prepared_academy/views/subjects/chapters.dart';
@@ -16,7 +17,6 @@ import 'package:prepared_academy/views/subjects/pdf_viewer.dart';
 import 'package:prepared_academy/views/subjects/slides.dart';
 import 'package:prepared_academy/views/subjects/write_answer.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
-
 import '../views/auth/splash.dart';
 
 class AppRoutes {
@@ -36,6 +36,7 @@ class AppRoutes {
   static const PHOTOVIEW = '/photoview';
   static const SUBJECTACTIVITIES = '/subjectactivities';
   static const ACTIVITIES = '/activities';
+  static const ASSIGNMENTACTIVITY = '/assignmentactivities';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -55,6 +56,7 @@ class AppRoutes {
       WRITEANSWER: (context) => const WriteAnswer(),
       SUBJECTACTIVITIES: (context) => const SubjectActivites(),
       ACTIVITIES: (context) => const Activities(),
+      ASSIGNMENTACTIVITY: (context) => const AssignmentActivity(),
     };
     return appRoutes;
   }

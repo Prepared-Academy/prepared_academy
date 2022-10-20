@@ -2,7 +2,7 @@ import 'package:ff_navigation_bar_plus/ff_navigation_bar_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/views/home/home.dart';
-import 'package:prepared_academy/views/home/in_class_activities.dart';
+import 'package:prepared_academy/views/class_activities/in_class_activities.dart';
 import 'package:prepared_academy/views/home/live_quiz.dart';
 import 'package:prepared_academy/views/home/my_subjects.dart';
 

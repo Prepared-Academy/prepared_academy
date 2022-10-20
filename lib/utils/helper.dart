@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 import 'package:one_context/one_context.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -8,17 +8,11 @@ import 'package:timeago/timeago.dart' as timeago;
 final dialogContext = OneContext().dialog.context!;
 
 Future loadingStop() async {
-  Navigator.pop(dialogContext);
+  EasyLoading.dismiss();
 }
 
 Future loadingShow() async {
-  await QuickAlert.show(
-    barrierDismissible: false,
-    context: dialogContext,
-    type: QuickAlertType.loading,
-    title: 'Loading',
-    text: 'Please wait',
-  );
+  EasyLoading.show(status: 'Loading...');
 }
 
 Future successRegister() async {

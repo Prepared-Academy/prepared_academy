@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  connectivity_plus_windows
   stories_for_flutter
   syncfusion_pdfviewer_windows
   url_launcher_windows

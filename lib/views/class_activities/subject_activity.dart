@@ -105,6 +105,10 @@ class _SubjectActivitesState extends State<SubjectActivites> {
                                     ),
                                     MiniElevatedButton(
                                         onPressed: () {
+                                          context
+                                                  .read<ClassActivityProvider>()
+                                                  .activityId =
+                                              activity.activityId!;
                                           OneContext().pushNamed(
                                               AppRoutes.ACTIVITIES,
                                               arguments: {

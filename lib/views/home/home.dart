@@ -205,8 +205,7 @@ class _HomeState extends State<Home> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
+                            OneContext().push(
                               MaterialPageRoute(
                                 builder: (context) => const ViewPhoto(
                                   imageProvider: AssetImage(

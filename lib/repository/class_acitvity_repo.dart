@@ -44,4 +44,28 @@ class ClassActivityRepo {
       throw Exception(errorMessage);
     }
   }
+
+  Future<Response> getAssignmentActivity(int id) async {
+    try {
+      final Response response =
+          await client.get("${AppConstants.GET_ASSIGNMENT_ACTIVITY_URI}/$id");
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> activityAssignmentSubmit(String data) async {
+    try {
+      final Response response = await client
+          .post(AppConstants.ACTIVITY_ASSIGNMENT_SUBMIT_URI, data: data);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
 }

@@ -20,6 +20,10 @@ class AppConstants {
   static const String INCLASS_SUBJECTS_URI = '/api/muser/getmyinlinesubjects';
   static const String SUBJECT_ACTIVITY_URI = '/api/muser/getStudentActivities';
   static const String ACITVITIES_URI = '/api/muser/getActivityDays';
+  static const String GET_ASSIGNMENT_ACTIVITY_URI =
+      '/api/muser/getStudentAssignmentActivity';
+  static const String ACTIVITY_ASSIGNMENT_SUBMIT_URI =
+      '/api/muser/ActivityAssignmentSubmit';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';
