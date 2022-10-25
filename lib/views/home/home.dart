@@ -228,7 +228,8 @@ class _HomeState extends State<Home> {
                                 width: double.maxFinite,
                                 child: Image.asset(
                                   provider.getNewsFeedData[index].posts!.last
-                                      .subtitle!,
+                                      .subtitle!
+                                      .toString(),
                                   fit: BoxFit.cover,
                                 ),
                               ),

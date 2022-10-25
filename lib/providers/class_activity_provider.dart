@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/models/activity_model.dart';
 import 'package:prepared_academy/models/get_assignment_activity_model.dart';
+import 'package:prepared_academy/models/get_typequestion_model.dart';
 import 'package:prepared_academy/models/inclass_subjects_model.dart';
 import 'package:prepared_academy/models/subject_activity_model.dart';
 import 'package:prepared_academy/repository/class_acitvity_repo.dart';
@@ -20,6 +21,8 @@ class ClassActivityProvider extends ChangeNotifier {
   List<SubjectActivityModel> subjectActivities = [];
   List<ActivityModel> activities = [];
   List<StudentAssignmentActivity> studentsAssignmentActivity = [];
+  List<Questiontype> questionType = [];
+  List<Testquestion> testQuestion = [];
 
   // holding activityId to refresh Page
   int activityId = 0;
@@ -118,6 +121,26 @@ class ClassActivityProvider extends ChangeNotifier {
           Navigator.pop(context);
         }
       }
+    } catch (e) {
+      loadingStop();
+      rethrow;
+    }
+  }
+
+  Future getTest(int id) async {
+    try {
+      loadingShow();
+      Response apiResponse = await classActivityRepo.getTestActivity(id);
+      if (apiResponse.statusCode == 200) {
+        GetQuestiontypeModel getQuestiontypeModel =
+            GetQuestiontypeModel.fromJson(apiResponse.data);
+        questionType = getQuestiontypeModel.questiontypes!;
+        testQuestion = getQuestiontypeModel.testquestion!;
+        notifyListeners();
+      }
+      await Future.delayed(const Duration(seconds: 1));
+
+      loadingStop();
     } catch (e) {
       loadingStop();
       rethrow;

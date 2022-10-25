@@ -25,6 +25,7 @@ class AppConstants {
       '/api/muser/getStudentAssignmentActivity';
   static const String ACTIVITY_ASSIGNMENT_SUBMIT_URI =
       '/api/muser/ActivityAssignmentSubmit';
+  static const String GET_TEST_ACTIVITY_URI = '/api/muser/getTest';
 
 // Student Profile
   static const String PROFILE_URI = '/api/muser/getStudentProfile';

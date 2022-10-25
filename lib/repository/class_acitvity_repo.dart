@@ -68,4 +68,16 @@ class ClassActivityRepo {
       throw Exception(errorMessage);
     }
   }
+
+  Future<Response> getTestActivity(int id) async {
+    try {
+      final Response response =
+          await client.get("${AppConstants.GET_TEST_ACTIVITY_URI}/$id");
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
 }

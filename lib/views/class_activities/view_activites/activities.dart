@@ -2,6 +2,7 @@ import 'package:animation_wrappers/animations/scale_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/views/class_activities/view_activites/assignment.dart';
 import 'package:prepared_academy/views/class_activities/view_activites/library_video.dart';
+import 'package:prepared_academy/views/class_activities/view_activites/test.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/class_activity_provider.dart';
@@ -36,7 +37,7 @@ class _ActivitiesState extends State<Activities> {
         return 'Baseline Test';
 
       case 2:
-        return 'Assignmnt Activity';
+        return 'Assignment Activity';
 
       case 3:
         return 'Video Activity';
@@ -111,11 +112,13 @@ class _ActivitiesState extends State<Activities> {
             itemBuilder: (context, index) {
               final activity = provider.activities[index];
               return ScaleAnimation(
-                  child: activity.typeId == 2
-                      ? Assignment(activityModel: activity)
-                      : activity.typeId == 7
-                          ? LibraryVideo(activityModel: activity)
-                          : const SizedBox());
+                  child: activity.typeId == 1
+                      ? ClassTest(activityModel: activity)
+                      : activity.typeId == 2
+                          ? Assignment(activityModel: activity)
+                          : activity.typeId == 7
+                              ? LibraryVideo(activityModel: activity)
+                              : const SizedBox());
             },
           );
         },

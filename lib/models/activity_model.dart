@@ -23,6 +23,11 @@ class ActivityModel {
     this.visibility,
     this.status,
     this.submitStatus,
+    this.totalM,
+    this.activityId,
+    this.testDuration,
+    this.chapters,
+    this.score,
     this.chapterName,
     this.videos,
     this.libraries,
@@ -41,6 +46,11 @@ class ActivityModel {
   final String? chapterName;
   final List<Video>? videos;
   final List<Library>? libraries;
+  final String? totalM;
+  final int? activityId;
+  final int? testDuration;
+  final List<dynamic>? chapters;
+  final dynamic score;
 
   factory ActivityModel.fromJson(Map<String, dynamic> json) => ActivityModel(
         id: json["id"],
@@ -53,6 +63,14 @@ class ActivityModel {
         visibility: json["visibility"],
         status: json["status"],
         submitStatus: json["submitStatus"],
+        totalM: json["TotalM"] == null ? null : json["TotalM"],
+        activityId: json["activityId"] == null ? null : json["activityId"],
+        testDuration:
+            json["testDuration"] == null ? null : json["testDuration"],
+        chapters: json["chapters"] == null
+            ? null
+            : List<dynamic>.from(json["chapters"].map((x) => x)),
+        score: json["score"],
         chapterName: json["chapterName"],
         videos: json["videos"] == null
             ? null
@@ -74,6 +92,13 @@ class ActivityModel {
         "visibility": visibility,
         "status": status,
         "submitStatus": submitStatus,
+        "TotalM": totalM == null ? null : totalM,
+        "activityId": activityId == null ? null : activityId,
+        "testDuration": testDuration == null ? null : testDuration,
+        "chapters": chapters == null
+            ? null
+            : List<dynamic>.from(chapters!.map((x) => x)),
+        "score": score,
         "chapterName": chapterName,
         "videos": videos == null
             ? null

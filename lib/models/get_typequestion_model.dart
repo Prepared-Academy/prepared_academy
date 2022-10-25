@@ -1,26 +1,26 @@
 // To parse this JSON data, do
 //
-//     final getQuestiontypeModelDart = getQuestiontypeModelDartFromJson(jsonString);
+//     final getQuestiontypeModel = getQuestiontypeModelFromJson(jsonString);
 
 import 'dart:convert';
 
-GetQuestiontypeModelDart getQuestiontypeModelDartFromJson(String str) =>
-    GetQuestiontypeModelDart.fromJson(json.decode(str));
+GetQuestiontypeModel getQuestiontypeModelFromJson(String str) =>
+    GetQuestiontypeModel.fromJson(json.decode(str));
 
-String getQuestiontypeModelDartToJson(GetQuestiontypeModelDart data) =>
+String getQuestiontypeModelToJson(GetQuestiontypeModel data) =>
     json.encode(data.toJson());
 
-class GetQuestiontypeModelDart {
-  GetQuestiontypeModelDart({
-    required this.testquestion,
-    required this.questiontypes,
+class GetQuestiontypeModel {
+  GetQuestiontypeModel({
+    this.testquestion,
+    this.questiontypes,
   });
 
-  List<Testquestion> testquestion;
-  List<Questiontype> questiontypes;
+  final List<Testquestion>? testquestion;
+  final List<Questiontype>? questiontypes;
 
-  factory GetQuestiontypeModelDart.fromJson(Map<String, dynamic> json) =>
-      GetQuestiontypeModelDart(
+  factory GetQuestiontypeModel.fromJson(Map<String, dynamic> json) =>
+      GetQuestiontypeModel(
         testquestion: List<Testquestion>.from(
             json["testquestion"].map((x) => Testquestion.fromJson(x))),
         questiontypes: List<Questiontype>.from(
@@ -28,9 +28,10 @@ class GetQuestiontypeModelDart {
       );
 
   Map<String, dynamic> toJson() => {
-        "testquestion": List<dynamic>.from(testquestion.map((x) => x.toJson())),
+        "testquestion":
+            List<dynamic>.from(testquestion!.map((x) => x.toJson())),
         "questiontypes":
-            List<dynamic>.from(questiontypes.map((x) => x.toJson())),
+            List<dynamic>.from(questiontypes!.map((x) => x.toJson())),
       };
 }
 
@@ -74,8 +75,8 @@ class Testquestion {
     this.testmapId,
     this.typeId,
     this.question,
-    this.difficulty,
-    this.chapterName,
+    // this.difficulty,
+    // this.chapterName,
     this.questionType,
     this.qmarks,
     this.sequence,
@@ -87,8 +88,8 @@ class Testquestion {
   int? testmapId;
   int? typeId;
   String? question;
-  Difficulty? difficulty;
-  ChapterName? chapterName;
+  // Difficulty? difficulty;
+  // ChapterName? chapterName;
   String? questionType;
   int? qmarks;
   int? sequence;
@@ -100,8 +101,8 @@ class Testquestion {
         testmapId: json["testmapId"],
         typeId: json["typeId"],
         question: json["question"],
-        difficulty: difficultyValues.map[json["difficulty"]],
-        chapterName: chapterNameValues.map[json["chapterName"]],
+        // difficulty: difficultyValues.map[json["difficulty"]],
+        // chapterName: chapterNameValues.map[json["chapterName"]],
         questionType: json["questionType"],
         qmarks: json["Qmarks"],
         sequence: json["Sequence"],
@@ -114,37 +115,37 @@ class Testquestion {
         "testmapId": testmapId,
         "typeId": typeId,
         "question": question,
-        "difficulty": difficultyValues.reverse[difficulty],
-        "chapterName": chapterNameValues.reverse[chapterName],
+        // "difficulty": difficultyValues.reverse[difficulty],
+        // "chapterName": chapterNameValues.reverse[chapterName],
         "questionType": questionType,
         "Qmarks": qmarks,
         "Sequence": sequence,
       };
 }
 
-enum ChapterName { NUTRITION_IN_ANIMALS }
+// enum ChapterName { NUTRITION_IN_ANIMALS }
 
-final chapterNameValues =
-    EnumValues({"Nutrition in Animals": ChapterName.NUTRITION_IN_ANIMALS});
+// final chapterNameValues =
+//     EnumValues({"Nutrition in Animals": ChapterName.NUTRITION_IN_ANIMALS});
 
-enum Difficulty { LOW, MEDIUM, HARD }
+// enum Difficulty { LOW, MEDIUM, HARD }
 
-final difficultyValues = EnumValues({
-  "HARD": Difficulty.HARD,
-  "LOW": Difficulty.LOW,
-  "MEDIUM": Difficulty.MEDIUM
-});
+// final difficultyValues = EnumValues({
+//   "HARD": Difficulty.HARD,
+//   "LOW": Difficulty.LOW,
+//   "MEDIUM": Difficulty.MEDIUM
+// });
 
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
+// class EnumValues<T> {
+//   Map<String, T> map;
+//   Map<T, String> reverseMap;
 
-  EnumValues(this.map);
+//   EnumValues(this.map);
 
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
-}
+//   Map<T, String> get reverse {
+//     if (reverseMap == null) {
+//       reverseMap = map.map((k, v) => new MapEntry(v, k));
+//     }
+//     return reverseMap;
+//   }
+// }
