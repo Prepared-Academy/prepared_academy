@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
+import 'package:prepared_academy/providers/class_activity_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
+import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:slide_countdown/slide_countdown.dart';
@@ -25,7 +27,7 @@ class _ChapterTestState extends State<ChapterTest>
     const Duration(hours: 1, minutes: 30),
   );
   final _tabs = [
-    Tab(height: 35, text: 'Fill in the blanks'.toUpperCase()),
+    Tab(height: 35, text: 'Fill in the bs'.toUpperCase()),
     Tab(height: 35, text: 'Very short'.toUpperCase()),
     Tab(height: 35, text: 'Short'.toUpperCase()),
     Tab(height: 35, text: 'Long'.toUpperCase()),
@@ -41,8 +43,17 @@ class _ChapterTestState extends State<ChapterTest>
 
   @override
   void initState() {
-    _tabController = TabController(length: 4, vsync: this);
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final arguments = (ModalRoute.of(context)?.settings.arguments ??
+          <String, dynamic>{}) as Map;
+      if (arguments.isNotEmpty) {
+        Future.microtask(() =>
+            context.read<ClassActivityProvider>().getTest(arguments["id"]));
+        _tabController = TabController(length: 4, vsync: this);
+        super.initState();
+      }
+    });
   }
 
 // Warning when student want to leav the test

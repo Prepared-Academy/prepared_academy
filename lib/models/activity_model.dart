@@ -49,7 +49,7 @@ class ActivityModel {
   final String? totalM;
   final int? activityId;
   final int? testDuration;
-  final List<dynamic>? chapters;
+  List<Chapter>? chapters;
   final dynamic score;
 
   factory ActivityModel.fromJson(Map<String, dynamic> json) => ActivityModel(
@@ -69,7 +69,8 @@ class ActivityModel {
             json["testDuration"] == null ? null : json["testDuration"],
         chapters: json["chapters"] == null
             ? null
-            : List<dynamic>.from(json["chapters"].map((x) => x)),
+            : List<Chapter>.from(
+                json["chapters"].map((x) => Chapter.fromJson(x))),
         score: json["score"],
         chapterName: json["chapterName"],
         videos: json["videos"] == null
@@ -97,7 +98,7 @@ class ActivityModel {
         "testDuration": testDuration == null ? null : testDuration,
         "chapters": chapters == null
             ? null
-            : List<dynamic>.from(chapters!.map((x) => x)),
+            : List<dynamic>.from(chapters!.map((x) => x.toJson())),
         "score": score,
         "chapterName": chapterName,
         "videos": videos == null
@@ -178,5 +179,33 @@ class Video {
         "objImage": objImage,
         "objvideo": objvideo,
         "score": score,
+      };
+}
+
+class Chapter {
+  Chapter({
+    this.id,
+    this.chapterId,
+    this.category,
+    this.chapterName,
+  });
+
+  int? id;
+  int? chapterId;
+  String? category;
+  String? chapterName;
+
+  factory Chapter.fromJson(Map<String, dynamic> json) => Chapter(
+        id: json["id"],
+        chapterId: json["chapterId"],
+        category: json["category"],
+        chapterName: json["chapterName"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "chapterId": chapterId,
+        "category": category,
+        "chapterName": chapterName,
       };
 }

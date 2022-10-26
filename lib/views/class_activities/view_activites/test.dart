@@ -11,93 +11,167 @@ class ClassTest extends StatelessWidget {
   final ActivityModel activityModel;
   const ClassTest({super.key, required this.activityModel});
 
+  Widget chapterNames(List<Chapter> chapterList) => SizedBox(
+        height: 25,
+        child: ListView.builder(
+            itemExtent: 200,
+            shrinkWrap: false,
+            scrollDirection: Axis.horizontal,
+            itemCount: chapterList.length,
+            itemBuilder: (context, index) {
+              final chapter = chapterList[index];
+              return Text(
+                "• ${chapter.chapterName!} ",
+              );
+            }),
+      );
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 220,
+        height: 250,
         child: Card(
-          color: kWhite,
+          color: Colors.white,
           margin: const EdgeInsets.only(bottom: 10),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
               side: const BorderSide(color: kBorder)),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10),
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListTile(
-                      dense: true,
-                      leading: const SvgImage(
-                          imageUrl:
-                              "https://www.thepreparedacademy.com/assets/tempAssets/assignment_activity.svg"),
-                      title: Text(
-                        "Day ${activityModel.sequence}",
-                        style: const TextStyle(
-                          color: gRed,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                        ),
-                      ),
-                      subtitle: const Text(
-                        "Test Activity",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      // crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          activityModel.totalM.toString(),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 300),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListTile(
+                        dense: true,
+                        contentPadding: const EdgeInsets.all(0),
+                        leading: const SvgImage(
+                            imageUrl:
+                                "https://www.thepreparedacademy.com/assets/tempAssets/test_activity.svg"),
+                        title: Text(
+                          "Day ${activityModel.sequence}",
                           style: const TextStyle(
+                            color: gRed,
+                            fontWeight: FontWeight.w700,
                             fontSize: 18,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
-                          activityModel.testDuration.toString(),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        subtitle: const Text(
+                          "Test Activity",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
                           ),
                         ),
-                      ],
-                    ),
-                    const Spacer(),
-                    const Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        MiniElevatedButton(
-                            backgroundColor: activityModel.submitStatus == true
-                                ? gGreen
-                                : kPrimaryColor,
-                            onPressed: activityModel.submitStatus == true
-                                ? null
-                                : () {
-                                    OneContext().pushNamed(
-                                        AppRoutes.TESTACTIVITY,
-                                        arguments: {"id": activityModel.id});
-                                  },
-                            text: activityModel.submitStatus == true
-                                ? "Test Submitted"
-                                : "Launch Test")
-                      ],
-                    )
-                  ],
+                      ),
+                      Row(
+                        // crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Color((0xffffc14b)),
+                              border: Border.all(
+                                color: Colors.transparent,
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(7)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: RichText(
+                                text: TextSpan(
+                                  text: 'Total Marks - ',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text: activityModel.totalM.toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Color((0xffffc14b)),
+                              border: Border.all(
+                                color: Colors.transparent,
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(7)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: RichText(
+                                text: TextSpan(
+                                  text: 'Time Alloted - ',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text: activityModel.testDuration
+                                            .toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 0.0, vertical: 7),
+                        child: Text(
+                          'Chapters Included :',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      chapterNames(activityModel.chapters!),
+                      const Spacer(),
+                      const Divider(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          MiniElevatedButton(
+                              backgroundColor:
+                                  activityModel.submitStatus == true
+                                      ? gGreen
+                                      : kPrimaryColor,
+                              onPressed: activityModel.submitStatus == true
+                                  ? null
+                                  : () {
+                                      OneContext().pushNamed(
+                                          AppRoutes.CHAPTERTEST,
+                                          arguments: {"id": activityModel.id});
+                                    },
+                              text: activityModel.submitStatus == true
+                                  ? "Test Submitted"
+                                  : "Launch Test")
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
