@@ -3,7 +3,7 @@ import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/models/activity_model.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
-import 'package:prepared_academy/utils/validator.dart';
+
 import 'package:prepared_academy/widgets/buttons.dart';
 import 'package:prepared_academy/widgets/svg_image.dart';
 
@@ -76,7 +76,7 @@ class ClassTest extends StatelessWidget {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Color((0xffffc14b)),
+                              color: const Color((0xffffc14b)),
                               border: Border.all(
                                 color: Colors.transparent,
                               ),
@@ -106,7 +106,7 @@ class ClassTest extends StatelessWidget {
                           ),
                           Container(
                             decoration: BoxDecoration(
-                              color: Color((0xffffc14b)),
+                              color: const Color((0xffffc14b)),
                               border: Border.all(
                                 color: Colors.transparent,
                               ),

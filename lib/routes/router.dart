@@ -43,7 +43,8 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
       SPLASHSCREEN: (context) => const Splash(),
-      HOMESCREEN: (context) => const Home(),
+      // ignore: prefer_const_constructors
+      HOMESCREEN: (context) => Home(),
       LOGIN: (context) => const Login(),
       REGISTER: (context) => const Register(),
       NAVIG: (context) => const Navig(),

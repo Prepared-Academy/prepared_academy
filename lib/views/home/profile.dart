@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/models/profile_model.dart';
 import 'package:prepared_academy/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -6,7 +7,8 @@ import '../../themes/color_theme.dart';
 import '../../utils/app_constants.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  final ProfileModel profileModel;
+  const Profile({super.key, required this.profileModel});
 
   Widget profileAppBar() {
     return AppBar(
@@ -35,7 +37,7 @@ class Profile extends StatelessWidget {
     );
   }
 
-  Widget userProfDetails() {
+  Widget userProfDetails(String studentdetails) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
       child: Consumer<ProfileProvider>(
@@ -45,7 +47,7 @@ class Profile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                provider.profileModel.name.toString(),
+                provider.profileModel.name,
                 style: const TextStyle(
                     fontSize: 16, fontWeight: FontWeight.w800, color: kWhite),
               ),

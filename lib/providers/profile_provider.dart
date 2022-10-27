@@ -16,7 +16,7 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getMyInClassSubjects() async {
+  Future getProfileDetails() async {
     try {
       loadingShow();
       Response apiResponse = await profileRepo.getProfileDetails();
