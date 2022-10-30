@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/models/activity_model.dart';
 import 'package:prepared_academy/utils/validator.dart';
+import 'package:prepared_academy/views/class_activities/video_play.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
 import '../../../themes/color_theme.dart';
 import '../../../utils/app_constants.dart';
@@ -79,7 +80,30 @@ class LibraryVideo extends StatelessWidget {
                                       ),
                                     ),
                                   );
-                                } else {}
+                                } else {
+                                  // Play video
+
+                                  OneContext().showDialog(
+                                    barrierDismissible: false,
+                                    builder: (_) => Dialog(
+                                      backgroundColor: Colors.transparent,
+                                      elevation: 0,
+                                      child: Stack(
+                                        children: [
+                                          const Align(
+                                            alignment: Alignment.topRight,
+                                            child: CloseButton(
+                                                color: kPrimaryColor),
+                                          ),
+                                          VideoPlay(
+                                            videoUrl: library.link!,
+                                            isChapterVideo: false,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
                               },
                               text: library.librarytype == "image"
                                   ? "View"

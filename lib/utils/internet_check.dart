@@ -39,8 +39,8 @@ class InternetPopup {
         OneContext().showDialog(
           barrierDismissible: false,
           builder: (_) => const AlertDialog(
-            title: Text('No Internet Connection Found!'),
-            content: Text('No Internet Connection Found!'),
+            title: Text('No Internet'),
+            content: Text('Please check your internet connection.'),
           ),
         );
         // Alerts(context: context).customDialog(

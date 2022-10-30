@@ -8,11 +8,14 @@ import 'package:prepared_academy/utils/shared_preference.dart';
 
 import '../models/register_model.dart';
 import '../routes/router.dart';
+import '../setup.dart';
 import '../utils/helper.dart';
 import '../utils/snackbar.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool isLoading = true;
+  final locator = getIt.get<SharedPreferencesHelper>();
+
   final AuthRepo authRepo = AuthRepo();
 
   void loading(bool value) {
@@ -73,7 +76,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void logout() {
-    removeAll();
+    locator.removeAll();
     OneContext().pushNamedAndRemoveUntil(AppRoutes.REGISTER, (route) => false);
   }
 }

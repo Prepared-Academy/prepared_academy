@@ -68,4 +68,41 @@ class ClassActivityRepo {
       throw Exception(errorMessage);
     }
   }
+
+  Future<Response> getChatperModuleQuiz(int objectiveId) async {
+    try {
+      final Response response =
+          await client.get("${AppConstants.QUIZ_ACTIVITY_URI}/$objectiveId");
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> activityVideoQuizSubmit(Map<String, dynamic> data) async {
+    try {
+      final Response response = await client.post(
+          AppConstants.ACTIVITY_VIDEO_QUIZ_SUBMIT_URI,
+          queryParameters: data);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> unlockActivityUpdate(String data) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.UNLOCK_ACTIVITY_UPDATE, data: data);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
 }

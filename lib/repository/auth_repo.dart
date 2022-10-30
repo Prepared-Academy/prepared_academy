@@ -3,14 +3,15 @@ import 'package:get_it/get_it.dart';
 import 'package:prepared_academy/models/user_model.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/utils/shared_preference.dart';
-import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 import '../data/dio/dio_client.dart';
 import '../data/dio/dio_exception.dart';
+import '../setup.dart';
 import '../utils/snackbar.dart';
 
 class AuthRepo {
   var client = GetIt.I<DioClient>();
+  final locator = getIt.get<SharedPreferencesHelper>();
 
   Future<Response> login(String dataJson) async {
     try {
@@ -39,11 +40,7 @@ class AuthRepo {
 
   Future saveUser(UserModel userModel) async {
     String json = userModelToJson(userModel);
-    await setStringValue(AppConstants.TOKEN, userModel.accessToken!);
-    await setStringValue(AppConstants.USER, json);
-  }
-
-  Future<Stream<String?>> getUser() async {
-    return myPrefs.getStringStream(AppConstants.USER);
+    await locator.setStringValue(AppConstants.TOKEN, userModel.accessToken!);
+    await locator.setStringValue(AppConstants.USER, json);
   }
 }

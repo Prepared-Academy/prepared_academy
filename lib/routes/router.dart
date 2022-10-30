@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/views/auth/login.dart';
 import 'package:prepared_academy/views/auth/register.dart';
+import 'package:prepared_academy/views/class_activities/quiz_acitvity.dart';
 import 'package:prepared_academy/views/exams_assignments/exam_assignments.dart';
 import 'package:prepared_academy/views/class_activities/view_activites/activities.dart';
 import 'package:prepared_academy/views/class_activities/assignment_activity.dart';
@@ -37,6 +38,7 @@ class AppRoutes {
   static const SUBJECTACTIVITIES = '/subjectactivities';
   static const ACTIVITIES = '/activities';
   static const ASSIGNMENTACTIVITY = '/assignmentactivities';
+  static const QUIZACTIVITY = '/quizactivity';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -57,6 +59,7 @@ class AppRoutes {
       SUBJECTACTIVITIES: (context) => const SubjectActivites(),
       ACTIVITIES: (context) => const Activities(),
       ASSIGNMENTACTIVITY: (context) => const AssignmentActivity(),
+      QUIZACTIVITY: (context) => const QuizActivtiy(),
     };
     return appRoutes;
   }

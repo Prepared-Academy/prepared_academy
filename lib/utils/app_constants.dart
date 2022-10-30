@@ -24,6 +24,12 @@ class AppConstants {
       '/api/muser/getStudentAssignmentActivity';
   static const String ACTIVITY_ASSIGNMENT_SUBMIT_URI =
       '/api/muser/ActivityAssignmentSubmit';
+  static const String QUIZ_ACTIVITY_URI = '/api/muser/getstudentquiz';
+  static const String ACTIVITY_VIDEO_QUIZ_SUBMIT_URI =
+      '/api/muser/activityVideoQuizSubmit';
+
+  static const String UNLOCK_ACTIVITY_UPDATE =
+      '/api/muser/unlockActivityUpdate';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';
@@ -47,11 +53,13 @@ class AppConstants {
   static const String PLACEHOLDER_IMAGE = "assets/images/placeholder.png";
 
 // Story
+
   static const String FACTS_IMAGE = "assets/images/facts.png";
   static const String HISTORY_IMAGE = "assets/images/history.png";
   static const String PROVERBS_IMAGE = "assets/images/proverbs.png";
 
   // Icons
+
   static const String NOTIFICATION_ICON = "assets/icons/bell.png";
   static const String MENU_ICON = "assets/icons/menu.png";
   static const String BOOKMARK_ICON = "assets/icons/bookmark.png";
@@ -79,11 +87,11 @@ class AppConstants {
   static const String SLIDES_ICON = "assets/icons/slides.png";
   static const String ADDIMAGE_ICON = "assets/icons/addimage.png";
   static const String FULLNAME_ICON = "assets/icons/fullname.png";
-
   static const String SCHOOL_ICON = "assets/icons/school.png";
   static const String GRADES_ICON = "assets/icons/grades.png";
   static const String EMAIL_ICON = "assets/icons/email.png";
   static const String PASSWORD_ICON = "assets/icons/password.png";
+  static const String ACTIVITYLOCK_ICON = "assets/icons/activitylock.png";
 
   static List<String> gradesList = [
     '1',

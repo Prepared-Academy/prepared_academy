@@ -1,17 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+import 'package:prepared_academy/utils/shared_preference.dart';
 
+import '../../setup.dart';
 import '../../utils/app_constants.dart';
 
 class LoggingInterceptor extends InterceptorsWrapper {
   int maxCharactersPerLine = 200;
-  final myPrefs = RxSharedPreferences.getInstance();
+  final _prefsLocator = getIt.get<SharedPreferencesHelper>();
   LoggingInterceptor();
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    String token = await myPrefs.getString(AppConstants.TOKEN) ?? "";
+    String token = await _prefsLocator.getStringValue(AppConstants.TOKEN) ?? "";
     options.headers["Authorization"] = "Bearer $token";
     debugPrint("--> ${options.method} ${options.path}");
     debugPrint("Headers: ${options.headers.toString()}");

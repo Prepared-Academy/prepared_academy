@@ -133,7 +133,7 @@ class Video {
   final String? description;
   final String? objImage;
   final String? objvideo;
-  final double? score;
+  final int? score;
 
   factory Video.fromJson(Map<String, dynamic> json) => Video(
         id: json["id"],

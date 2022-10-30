@@ -34,3 +34,20 @@ String returnDateOnly(DateTime dateTime) {
   String convertedDate = DateFormat("dd/MM/yyyy").format(dateTime);
   return convertedDate;
 }
+
+// fetchpostbytime() {
+//   final todayDate = DateTime.now();
+
+//   final start =
+//       getDate(todayDate.subtract(Duration(days: todayDate.weekday - 1)));
+
+//   final end = getDate(
+//       todayDate.add(Duration(days: DateTime.daysPerWeek - todayDate.weekday)));
+
+//   List data = [];
+
+//   data.where(
+//       (element) => element["postData"] >= start && element["postData"] <= end);
+// }
+
+// DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);

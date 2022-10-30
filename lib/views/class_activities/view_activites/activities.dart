@@ -1,6 +1,7 @@
 import 'package:animation_wrappers/animations/scale_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/views/class_activities/view_activites/assignment.dart';
+import 'package:prepared_academy/views/class_activities/view_activites/chatper_video.dart';
 import 'package:prepared_academy/views/class_activities/view_activites/library_video.dart';
 import 'package:provider/provider.dart';
 
@@ -105,6 +106,7 @@ class _ActivitiesState extends State<Activities> {
       body: Consumer<ClassActivityProvider>(
         builder: (context, provider, __) {
           return ListView.builder(
+            reverse: true,
             padding: const EdgeInsets.all(16),
             shrinkWrap: true,
             itemCount: provider.activities.length,
@@ -115,7 +117,9 @@ class _ActivitiesState extends State<Activities> {
                       ? Assignment(activityModel: activity)
                       : activity.typeId == 7
                           ? LibraryVideo(activityModel: activity)
-                          : const SizedBox());
+                          : activity.typeId == 3
+                              ? ChapterVideo(activityModel: activity)
+                              : const SizedBox());
             },
           );
         },
