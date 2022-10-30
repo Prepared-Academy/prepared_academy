@@ -294,7 +294,7 @@ class _HomeState extends State<Home> {
         ),
       );
 
-  Widget _newsFeed() => Padding(
+  Widget newsFeed() => Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -304,7 +304,7 @@ class _HomeState extends State<Home> {
               return LiveList(
                 delay: animationDurationList,
                 shrinkWrap: true,
-                itemCount: provider.getNewsFeedData.length,
+                itemCount: provider.getNewsFeedData[0].posts!.length,
                 controller: scrollController,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: ((context, index, animation) {
@@ -340,9 +340,7 @@ class _HomeState extends State<Home> {
                                 height: 400,
                                 width: double.maxFinite,
                                 child: Image.asset(
-                                  provider.getNewsFeedData[index].posts!.last
-                                      .subtitle!
-                                      .toString(),
+                                  "provider.getNewsFeedData[index].posts!.last",
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -360,8 +358,9 @@ class _HomeState extends State<Home> {
                                       radius: 20,
                                     ),
                                     const SizedBox(width: 10),
-                                    const Text(
-                                      "PreparEd",
+                                    Text(
+                                      provider.getNewsFeedData[index].posts!
+                                          .first.title!,
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
@@ -430,8 +429,7 @@ class _HomeState extends State<Home> {
             children: [
               _storyWidget(),
               _suggestions(),
-              _newsFeed(),
-              NewsFeed(getNewsFeedModel: provider.getNewsFeedData[32]),
+              newsFeed(),
             ],
           ),
         );

@@ -4,7 +4,7 @@ import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:prepared_academy/providers/class_activity_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:slide_countdown/slide_countdown.dart';
-
+import 'package:stream_duration/stream_duration.dart';
 import '../../themes/color_theme.dart';
 
 class TestActivity extends StatefulWidget {

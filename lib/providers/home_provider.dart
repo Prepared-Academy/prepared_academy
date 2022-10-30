@@ -8,6 +8,8 @@ import 'package:prepared_academy/models/story_model.dart';
 import 'package:prepared_academy/repository/home_repo.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 
+import '../utils/helper.dart';
+
 class HomeProvider extends ChangeNotifier {
   bool isLoading = true;
 
@@ -39,13 +41,16 @@ class HomeProvider extends ChangeNotifier {
 
   Future getNewsPost() async {
     try {
+      loadingShow();
       Response apiResponse = await homeRepo.getNewsFeed();
       if (apiResponse.statusCode == 200) {
-        getNewsFeedData = getNewsFeedModelFromJson(jsonDecode(apiResponse.data))
-            as List<GetNewsFeedModel>;
+        getNewsFeedData =
+            getNewsFeedModelFromJson(jsonDecode(apiResponse.data));
         notifyListeners();
       }
+      loadingStop();
     } catch (e) {
+      loadingStop();
       rethrow;
     }
   }

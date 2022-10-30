@@ -7,8 +7,9 @@ import '../../themes/color_theme.dart';
 import '../../utils/app_constants.dart';
 
 class Profile extends StatelessWidget {
-  final ProfileModel profileModel;
-  const Profile({super.key, required this.profileModel});
+  const Profile({
+    super.key,
+  });
 
   Widget profileAppBar() {
     return AppBar(
@@ -37,7 +38,7 @@ class Profile extends StatelessWidget {
     );
   }
 
-  Widget userProfDetails(String studentdetails) {
+  Widget userProfDetails() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
       child: Consumer<ProfileProvider>(
@@ -47,7 +48,7 @@ class Profile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                provider.profileModel.name,
+                "provider.profileModel!.name",
                 style: const TextStyle(
                     fontSize: 16, fontWeight: FontWeight.w800, color: kWhite),
               ),

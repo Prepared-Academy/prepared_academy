@@ -4,11 +4,12 @@
 
 import 'dart:convert';
 
-GetNewsFeedModel getNewsFeedModelFromJson(String str) =>
-    GetNewsFeedModel.fromJson(json.decode(str));
+List<GetNewsFeedModel> getNewsFeedModelFromJson(String str) =>
+    List<GetNewsFeedModel>.from(
+        json.decode(str).map((x) => GetNewsFeedModel.fromJson(x)));
 
-String getNewsFeedModelToJson(GetNewsFeedModel data) =>
-    json.encode(data.toJson());
+String getNewsFeedModelToJson(List<GetNewsFeedModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class GetNewsFeedModel {
   GetNewsFeedModel({
