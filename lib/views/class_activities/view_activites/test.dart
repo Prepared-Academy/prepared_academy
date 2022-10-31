@@ -162,7 +162,7 @@ class ClassTest extends StatelessWidget {
                                   ? null
                                   : () {
                                       OneContext().pushNamed(
-                                          AppRoutes.CHAPTERTEST,
+                                          AppRoutes.TESTACTIVITY,
                                           arguments: {"id": activityModel.id});
                                     },
                               text: activityModel.submitStatus == true

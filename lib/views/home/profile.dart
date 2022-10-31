@@ -1,5 +1,7 @@
+import 'package:animation_wrappers/animations/fade_animation.dart';
+import 'package:animation_wrappers/animations/scale_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:prepared_academy/models/profile_model.dart';
+import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -81,26 +83,28 @@ class Profile extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
+          ScaleAnimation(
+            child: Card(
+              margin: const EdgeInsets.all(2),
+              elevation: 0,
+              child: ListTile(
+                leading: Image.asset(
+                  AppConstants.ACCOUNT_ICON,
+                  width: 25,
+                ),
+                title: RichText(
+                    text: const TextSpan(
+                        text: 'My Rewards',
+                        style: TextStyle(
+                            color: kBlack, fontWeight: FontWeight.w600),
+                        children: <TextSpan>[
+                      TextSpan(
+                        text: '\nView rewards and points',
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.w400),
+                      )
+                    ])),
               ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'My Rewards',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
             ),
           ),
           const Divider(
@@ -110,26 +114,28 @@ class Profile extends StatelessWidget {
             endIndent: 20,
             color: Colors.black,
           ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
+          ScaleAnimation(
+            child: Card(
+              margin: const EdgeInsets.all(2),
+              elevation: 0,
+              child: ListTile(
+                leading: Image.asset(
+                  AppConstants.ACCOUNT_ICON,
+                  width: 25,
+                ),
+                title: RichText(
+                    text: const TextSpan(
+                        text: 'My Reports',
+                        style: TextStyle(
+                            color: kBlack, fontWeight: FontWeight.w600),
+                        children: <TextSpan>[
+                      TextSpan(
+                        text: '\nView rewards and points',
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.w400),
+                      )
+                    ])),
               ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'My Reports',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
             ),
           ),
           const Divider(
@@ -139,26 +145,28 @@ class Profile extends StatelessWidget {
             endIndent: 20,
             color: Colors.black,
           ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
+          ScaleAnimation(
+            child: Card(
+              margin: const EdgeInsets.all(2),
+              elevation: 0,
+              child: ListTile(
+                leading: Image.asset(
+                  AppConstants.ACCOUNT_ICON,
+                  width: 25,
+                ),
+                title: RichText(
+                    text: const TextSpan(
+                        text: 'About Us',
+                        style: TextStyle(
+                            color: kBlack, fontWeight: FontWeight.w600),
+                        children: <TextSpan>[
+                      TextSpan(
+                        text: '\nView rewards and points',
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.w400),
+                      )
+                    ])),
               ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'About Us',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
             ),
           ),
           const Divider(
@@ -168,26 +176,28 @@ class Profile extends StatelessWidget {
             endIndent: 20,
             color: Colors.black,
           ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
+          ScaleAnimation(
+            child: Card(
+              margin: const EdgeInsets.all(2),
+              elevation: 0,
+              child: ListTile(
+                leading: Image.asset(
+                  AppConstants.ACCOUNT_ICON,
+                  width: 25,
+                ),
+                title: RichText(
+                    text: const TextSpan(
+                        text: 'Terms & Conditions',
+                        style: TextStyle(
+                            color: kBlack, fontWeight: FontWeight.w600),
+                        children: <TextSpan>[
+                      TextSpan(
+                        text: '\nView rewards and points',
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.w400),
+                      )
+                    ])),
               ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'Terms & Conditions',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
             ),
           ),
           const Divider(
@@ -197,26 +207,28 @@ class Profile extends StatelessWidget {
             endIndent: 20,
             color: Colors.black,
           ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
+          ScaleAnimation(
+            child: Card(
+              margin: const EdgeInsets.all(2),
+              elevation: 0,
+              child: ListTile(
+                leading: Image.asset(
+                  AppConstants.ACCOUNT_ICON,
+                  width: 25,
+                ),
+                title: RichText(
+                    text: const TextSpan(
+                        text: 'Password Reset',
+                        style: TextStyle(
+                            color: kBlack, fontWeight: FontWeight.w600),
+                        children: <TextSpan>[
+                      TextSpan(
+                        text: '\nView rewards and points',
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.w400),
+                      )
+                    ])),
               ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'Password Reset',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
             ),
           ),
           const Divider(
@@ -226,26 +238,28 @@ class Profile extends StatelessWidget {
             endIndent: 20,
             color: Colors.black,
           ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
+          ScaleAnimation(
+            child: Card(
+              margin: const EdgeInsets.all(2),
+              elevation: 0,
+              child: ListTile(
+                leading: Image.asset(
+                  AppConstants.ACCOUNT_ICON,
+                  width: 25,
+                ),
+                title: RichText(
+                    text: const TextSpan(
+                        text: 'Log Out',
+                        style: TextStyle(
+                            color: kBlack, fontWeight: FontWeight.w600),
+                        children: <TextSpan>[
+                      TextSpan(
+                        text: '\nView rewards and points',
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.w400),
+                      )
+                    ])),
               ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'Log Out',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
             ),
           ),
         ],
@@ -301,16 +315,18 @@ class Profile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Card(
-                    elevation: 0,
-                    color: kPrimaryColor,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        userProfImage(),
-                        userProfDetails(),
-                      ],
+                  ScaleAnimation(
+                    child: Card(
+                      elevation: 0,
+                      color: kPrimaryColor,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          userProfImage(),
+                          userProfDetails(),
+                        ],
+                      ),
                     ),
                   ),
                   profileListings(),

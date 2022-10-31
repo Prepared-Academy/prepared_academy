@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final getQuestiontypeModel = getQuestiontypeModelFromJson(jsonString);
+//     final ChapterTestModel = ChapterTestModelFromJson(jsonString);
 
 import 'dart:convert';
 
-GetQuestiontypeModel getQuestiontypeModelFromJson(String str) =>
-    GetQuestiontypeModel.fromJson(json.decode(str));
+ChapterTestModel chapterTestModelFromJson(String str) =>
+    ChapterTestModel.fromJson(json.decode(str));
 
-String getQuestiontypeModelToJson(GetQuestiontypeModel data) =>
+String chapterTestModelToJson(ChapterTestModel data) =>
     json.encode(data.toJson());
 
-class GetQuestiontypeModel {
-  GetQuestiontypeModel({
+class ChapterTestModel {
+  ChapterTestModel({
     this.testquestion,
     this.questiontypes,
   });
@@ -19,8 +19,8 @@ class GetQuestiontypeModel {
   final List<Testquestion>? testquestion;
   final List<Questiontype>? questiontypes;
 
-  factory GetQuestiontypeModel.fromJson(Map<String, dynamic> json) =>
-      GetQuestiontypeModel(
+  factory ChapterTestModel.fromJson(Map<String, dynamic> json) =>
+      ChapterTestModel(
         testquestion: List<Testquestion>.from(
             json["testquestion"].map((x) => Testquestion.fromJson(x))),
         questiontypes: List<Questiontype>.from(

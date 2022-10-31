@@ -48,8 +48,9 @@ class _ChapterTestState extends State<ChapterTest>
       final arguments = (ModalRoute.of(context)?.settings.arguments ??
           <String, dynamic>{}) as Map;
       if (arguments.isNotEmpty) {
-        Future.microtask(() =>
-            context.read<ClassActivityProvider>().getTest(arguments["id"]));
+        Future.microtask(() => context
+            .read<ClassActivityProvider>()
+            .getTestActivity(arguments["id"]));
         _tabController = TabController(length: 4, vsync: this);
         super.initState();
       }

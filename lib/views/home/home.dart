@@ -7,6 +7,7 @@ import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/models/get_newsfeed_model.dart';
 import 'package:prepared_academy/providers/home_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
+import 'package:prepared_academy/setup.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/views/home/drawer.dart';
@@ -424,14 +425,26 @@ class _HomeState extends State<Home> {
       ),
       endDrawer: DrawerBody(),
       body: Consumer<HomeProvider>(builder: (context, provider, __) {
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              _storyWidget(),
-              _suggestions(),
-              newsFeed(),
-            ],
-          ),
+        return Column(
+          children: [
+            _storyWidget(),
+            _suggestions(),
+            // newsFeed(),
+            Expanded(
+              child: SizedBox(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: provider.getNewsFeedData.length,
+                    itemBuilder: (context, index) {
+                      final postlist = provider.getNewsFeedData[index];
+                      return FadeAnimation(
+                          child: NewsFeed(
+                        getNewsFeedModel: postlist,
+                      ));
+                    }),
+              ),
+            )
+          ],
         );
       }),
     );

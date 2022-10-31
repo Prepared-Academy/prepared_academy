@@ -69,10 +69,10 @@ class ClassActivityRepo {
     }
   }
 
-  Future<Response> getTestActivity(int id) async {
+  Future<Response> getTestActivity(int testmapId) async {
     try {
       final Response response =
-          await client.get("${AppConstants.GET_TEST_ACTIVITY_URI}/$id");
+          await client.get("${AppConstants.GET_TEST_ACTIVITY_URI}/$testmapId");
       return response;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();

@@ -44,8 +44,7 @@ class HomeProvider extends ChangeNotifier {
       loadingShow();
       Response apiResponse = await homeRepo.getNewsFeed();
       if (apiResponse.statusCode == 200) {
-        getNewsFeedData =
-            getNewsFeedModelFromJson(jsonDecode(apiResponse.data));
+        getNewsFeedData = getNewsFeedModelFromJson(apiResponse.data);
         notifyListeners();
       }
       loadingStop();
