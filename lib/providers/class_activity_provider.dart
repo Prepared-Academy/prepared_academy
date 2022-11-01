@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/models/activity_model.dart';
 import 'package:prepared_academy/models/get_assignment_activity_model.dart';
-import 'package:prepared_academy/models/chapterTest_model.dart';
+import 'package:prepared_academy/models/chapter_test_model.dart';
 import 'package:prepared_academy/models/inclass_subjects_model.dart';
 import 'package:prepared_academy/models/subject_activity_model.dart';
 import 'package:prepared_academy/repository/class_acitvity_repo.dart';
@@ -21,7 +21,7 @@ class ClassActivityProvider extends ChangeNotifier {
   List<SubjectActivityModel> subjectActivities = [];
   List<ActivityModel> activities = [];
   List<StudentAssignmentActivity> studentsAssignmentActivity = [];
-  List<ChapterTestModel> chapterTestquizList = [];
+  ChapterTestModel chapterTestquizList = ChapterTestModel();
 
   // holding activityId to refresh Page
   int activityId = 0;
@@ -127,14 +127,13 @@ class ClassActivityProvider extends ChangeNotifier {
   }
 
   Future getTestActivity(int testmapId) async {
-    chapterTestquizList = [];
+    chapterTestquizList = ChapterTestModel();
     try {
       loadingShow();
       Response apiResponse = await classActivityRepo.getTestActivity(testmapId);
       if (apiResponse.statusCode == 200) {
         chapterTestquizList =
-            chapterTestModelFromJson(jsonDecode(apiResponse.data))
-                as List<ChapterTestModel>;
+            chapterTestModelFromJson(jsonEncode(apiResponse.data));
         notifyListeners();
       }
       loadingStop();

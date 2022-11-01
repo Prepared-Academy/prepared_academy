@@ -1,8 +1,15 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:html_editor_enhanced/html_editor.dart';
-import 'package:prepared_academy/models/chapterTest_model.dart';
+import 'package:prepared_academy/models/chapter_test_model.dart';
 import 'package:prepared_academy/providers/class_activity_provider.dart';
+import 'package:prepared_academy/repository/class_acitvity_repo.dart';
+import 'package:prepared_academy/utils/helper.dart';
 import 'package:provider/provider.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 // ignore: depend_on_referenced_packages
@@ -17,8 +24,12 @@ class TestActivity extends StatefulWidget {
 }
 
 class _TestActivityState extends State<TestActivity>
-    with SingleTickerProviderStateMixin {
-  int _current = 0;
+    with TickerProviderStateMixin {
+  // Initialization
+
+  final int _current = 0;
+  final ClassActivityRepo classActivityRepo = ClassActivityRepo();
+  List<ChapterTestModel> chapterTestquizList = [];
   final PageController _controller = PageController();
   late TabController _tabController;
   final HtmlEditorController controller = HtmlEditorController();
@@ -28,31 +39,29 @@ class _TestActivityState extends State<TestActivity>
     const Duration(hours: 1, minutes: 30),
   );
 
+  // Functions
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final arguments = (ModalRoute.of(context)?.settings.arguments ??
+          <String, dynamic>{}) as Map;
+      if (arguments.isNotEmpty) {
+        Future.microtask(
+            () => context.read<ClassActivityProvider>().getTestActivity(67));
+
+        // arguments["id"]
+      }
+    });
+    // _tabController = TabController(length: 3, vsync: this);
+  }
+
   @override
   void dispose() {
     _streamDuration.dispose();
     _tabController.dispose();
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        final arguments = (ModalRoute.of(context)?.settings.arguments ??
-            <String, dynamic>{}) as Map;
-        if (arguments.isNotEmpty) {
-          Future.microtask(() => context
-              .read<ClassActivityProvider>()
-              .getTestActivity(arguments["testmapId"]));
-          setState(() {
-            _tabController = TabController(
-                length: chapterTestModel.questiontypes!.length, vsync: this);
-          });
-        }
-      },
-    );
   }
 
   void nextPage() {
@@ -73,78 +82,121 @@ class _TestActivityState extends State<TestActivity>
         title: const Text("Test Activity"),
       ),
       body: Consumer<ClassActivityProvider>(builder: (context, provider, __) {
-        return provider.chapterTestquizList.isEmpty
-            ? const SizedBox()
-            : Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    SlideCountdown(
-                      duration: StreamDuration(
-                        const Duration(hours: 1, minutes: 30),
-                      ).duration,
-                      slideDirection: SlideDirection.down,
-                      icon: const Padding(
-                        padding: EdgeInsets.only(right: 5),
-                        child: Icon(
-                          Icons.alarm,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                      onDone: () {
-                        debugPrint("Done");
-                      },
-                    ),
-                    NestedScrollView(
-                        clipBehavior: Clip.none,
-                        headerSliverBuilder: (context, innerBoxIsScrolled) {
-                          return [
-                            SliverToBoxAdapter(
-                              child: TabBar(
-                                  indicatorColor: kPrimaryColor,
-                                  labelStyle: const TextStyle(color: kBlack),
-                                  unselectedLabelColor: Colors.grey,
-                                  isScrollable: true,
-                                  controller: _tabController,
-                                  tabs: chapterTestModel.questiontypes!
-                                      .map((e) => Tab(
-                                            text: '${e.questionType}',
-                                          ))
-                                      .toList()),
-                            )
-                          ];
-                        },
-                        body: const TabBarView(
-                          children: [],
-                        )),
-                    Card(
-                      color: Colors.white,
-                      elevation: 0,
-                      margin: const EdgeInsets.only(bottom: 10),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: const BorderSide(color: kBorder)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Consumer<ClassActivityProvider>(
-                          builder: (context, provider, __) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // SlideCountdown(
-                                //   duration: provider.testQuestion.single.testDuration.
-                                //   )
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
+        return
+            // provider.chapterTestquizList.isEmpty
+            //     ? const SizedBox()
+            //     :
+            Column(
+          children: [
+            TabBar(
+              indicatorColor: kPrimaryColor,
+              labelColor: kPrimaryColor,
+              labelStyle: const TextStyle(color: kBlack),
+              unselectedLabelColor: Colors.black38,
+              isScrollable: true,
+              controller: TabController(
+                  length: provider.chapterTestquizList.questiontypes!.length,
+                  vsync: this),
+              tabs: provider.chapterTestquizList.questiontypes!
+                  .map((e) => Tab(text: e.questionType))
+                  .toList(),
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: TabController(
+                    length: provider.chapterTestquizList.questiontypes!.length,
+                    vsync: this),
+                children: provider.chapterTestquizList.questiontypes!
+                    .map<Widget>((e) =>
+                        // e.questionType!.isEmpty
+                        //     ? SizedBox()
+                        //     :
+                        ListView.builder(
+                            shrinkWrap: false,
+                            itemBuilder: ((context, index) => Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Questions(
+                                      testquestion: provider
+                                          .chapterTestquizList.testquestion!,
+                                      type: "MCQ"),
+                                ))))
+                    .toList(),
+
+                // <Widget>[
+                //   Container(
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(8.0),
+                //     ),
+                //     child: Questions(
+                //         testquestion:
+                //             provider.chapterTestquizList.testquestion!,
+                //         type: "MCQ"),
+                //   ),
+                //   Container(
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(8.0),
+                //       color: Colors.orangeAccent,
+                //     ),
+                //   ),
+                //   Container(
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(8.0),
+                //       color: Colors.greenAccent,
+                //     ),
+                //   ),
+                // ],
+              ),
+            ),
+            // Card(
+            //   color: Colors.white,
+            //   elevation: 0,
+            //   margin: const EdgeInsets.only(bottom: 10),
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(10.0),
+            //       side: const BorderSide(color: kBorder)),
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(16),
+            //     child: Consumer<ClassActivityProvider>(
+            //       builder: (context, provider, __) {
+            //         return Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             // SlideCountdown(
+            //             //   duration: provider.testQuestion.single.testDuration.
+            //             //   )
+            //           ],
+            //         );
+            //       },
+            //     ),
+            //   ),
+            // )
+          ],
+        );
       }),
     );
+  }
+}
+
+class Questions extends StatelessWidget {
+  final List<Testquestion> testquestion;
+  final String type;
+  const Questions({super.key, required this.testquestion, required this.type});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: testquestion.length,
+        itemBuilder: (context, index) {
+          final questions = testquestion[index];
+
+          if (questions.questionType == type) {
+            return HtmlWidget(questions.question!
+                .replaceAll("(?s)<(\\w+)\\b[^<>]*>.*?</\\1>", ""));
+          } else {
+            return SizedBox();
+          }
+        });
   }
 }
