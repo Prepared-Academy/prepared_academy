@@ -50,7 +50,7 @@ class _ChapterTestState extends State<ChapterTest>
       if (arguments.isNotEmpty) {
         Future.microtask(() => context
             .read<ClassActivityProvider>()
-            .getTestActivity(arguments["id"]));
+            .getTestActivity(arguments["testmapId"]));
         _tabController = TabController(length: 4, vsync: this);
         super.initState();
       }

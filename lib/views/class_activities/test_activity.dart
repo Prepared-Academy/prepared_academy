@@ -1,17 +1,11 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:get_it/get_it.dart';
 
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:prepared_academy/models/chapter_test_model.dart';
 import 'package:prepared_academy/providers/class_activity_provider.dart';
 import 'package:prepared_academy/repository/class_acitvity_repo.dart';
-import 'package:prepared_academy/utils/helper.dart';
 import 'package:provider/provider.dart';
-import 'package:slide_countdown/slide_countdown.dart';
 // ignore: depend_on_referenced_packages
 import 'package:stream_duration/stream_duration.dart';
 import '../../themes/color_theme.dart';
@@ -101,17 +95,16 @@ class _TestActivityState extends State<TestActivity>
                   .map((e) => Tab(text: e.questionType))
                   .toList(),
             ),
+
             Expanded(
               child: TabBarView(
                 controller: TabController(
-                    length: provider.chapterTestquizList.questiontypes!.length,
+                    length: provider.chapterTestquizList.testquestion!.length,
                     vsync: this),
-                children: provider.chapterTestquizList.questiontypes!
-                    .map<Widget>((e) =>
-                        // e.questionType!.isEmpty
-                        //     ? SizedBox()
-                        //     :
-                        ListView.builder(
+                children: provider.chapterTestquizList.testquestion!
+                    .map<Widget>((e) => e.questionType!.isEmpty
+                        ? SizedBox()
+                        : ListView.builder(
                             shrinkWrap: false,
                             itemBuilder: ((context, index) => Container(
                                   decoration: BoxDecoration(
@@ -124,7 +117,7 @@ class _TestActivityState extends State<TestActivity>
                                 ))))
                     .toList(),
 
-                // <Widget>[
+                //     <Widget>[
                 //   Container(
                 //     decoration: BoxDecoration(
                 //       borderRadius: BorderRadius.circular(8.0),
@@ -182,6 +175,7 @@ class _TestActivityState extends State<TestActivity>
 class Questions extends StatelessWidget {
   final List<Testquestion> testquestion;
   final String type;
+
   const Questions({super.key, required this.testquestion, required this.type});
 
   @override
@@ -195,8 +189,20 @@ class Questions extends StatelessWidget {
             return HtmlWidget(questions.question!
                 .replaceAll("(?s)<(\\w+)\\b[^<>]*>.*?</\\1>", ""));
           } else {
-            return SizedBox();
+            return const SizedBox();
           }
         });
+  }
+}
+
+class Sequences extends StatelessWidget {
+  final List<Testquestion> testquestion;
+  final List<Questiontype> questiontype;
+  const Sequences(
+      {super.key, required this.questiontype, required this.testquestion});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

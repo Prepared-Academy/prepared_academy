@@ -1,10 +1,7 @@
-import 'package:animation_wrappers/animations/fade_animation.dart';
 import 'package:animation_wrappers/animations/scale_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../../themes/color_theme.dart';
 import '../../utils/app_constants.dart';
 
