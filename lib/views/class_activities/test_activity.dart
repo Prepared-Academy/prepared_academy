@@ -101,45 +101,51 @@ class _TestActivityState extends State<TestActivity>
                 controller: TabController(
                     length: provider.chapterTestquizList.testquestion!.length,
                     vsync: this),
-                children: provider.chapterTestquizList.testquestion!
-                    .map<Widget>((e) => e.questionType!.isEmpty
-                        ? SizedBox()
-                        : ListView.builder(
-                            shrinkWrap: false,
-                            itemBuilder: ((context, index) => Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Questions(
-                                      testquestion: provider
-                                          .chapterTestquizList.testquestion!,
-                                      type: "MCQ"),
-                                ))))
-                    .toList(),
+                children:
+                    // provider.chapterTestquizList.testquestion!
+                    //     .map<Widget>((e) =>
+                    //         // e.questionType!.isEmpty
+                    //         //     ? SizedBox()
+                    //         //     :
+                    //         ListView.builder(
+                    //             shrinkWrap: false,
+                    //             itemBuilder: ((context, index) => Container(
+                    //                   decoration: BoxDecoration(
+                    //                     borderRadius: BorderRadius.circular(8.0),
+                    //                   ),
+                    //                   child: Questions(
+                    //                       testquestion: provider
+                    //                           .chapterTestquizList.testquestion!,
+                    //                       type: "MCQ"),
+                    //                 ))))
+                    //     .toList(),
 
-                //     <Widget>[
-                //   Container(
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(8.0),
-                //     ),
-                //     child: Questions(
-                //         testquestion:
-                //             provider.chapterTestquizList.testquestion!,
-                //         type: "MCQ"),
-                //   ),
-                //   Container(
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(8.0),
-                //       color: Colors.orangeAccent,
-                //     ),
-                //   ),
-                //   Container(
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(8.0),
-                //       color: Colors.greenAccent,
-                //     ),
-                //   ),
-                // ],
+                    <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.black12,
+                    ),
+                    child:
+                        // const Sequences(),
+                        Questions(
+                            testquestion:
+                                provider.chapterTestquizList.testquestion!,
+                            type: "MCQ"),
+                  ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(8.0),
+                  //     color: Colors.orangeAccent,
+                  //   ),
+                  // ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(8.0),
+                  //     color: Colors.greenAccent,
+                  //   ),
+                  // ),
+                ],
               ),
             ),
             // Card(
@@ -195,14 +201,18 @@ class Questions extends StatelessWidget {
   }
 }
 
-class Sequences extends StatelessWidget {
-  final List<Testquestion> testquestion;
-  final List<Questiontype> questiontype;
-  const Sequences(
-      {super.key, required this.questiontype, required this.testquestion});
+// class Sequences extends StatelessWidget {
+//   const Sequences({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Consumer<ClassActivityProvider>(builder: ((context, provider, child) 
+//     {
+//       return ListView.builder(
+//         itemBuilder: (context,index) {
+//           if(provider.chapterTestquizList.questiontypes![index].sequence == provider.chapterTestquizList.testquestion![index].sequence) {
+//             return HtmlWidget(provider.chapterTestquizList.testquestion[index].question!.replaceAll("(?s)<(\\w+)\\b[^<>]*>.*?</\\1>", ""))
+//         }))
+//     } )))
+//   }
+// }

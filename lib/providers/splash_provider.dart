@@ -22,7 +22,7 @@ class SplashProvider extends ChangeNotifier {
     });
     await await Future.delayed(const Duration(seconds: 3));
     if (token != "") {
-      OneContext().pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
+      OneContext().pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
     } else {
       OneContext().pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
     }
