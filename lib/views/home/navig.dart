@@ -15,7 +15,7 @@ class Navig extends StatefulWidget {
 }
 
 class _NavigState extends State<Navig> {
-  int selectedIndex = 0;
+  int selectedIndex = 2;
 
   List<Widget> widgetOptions = [
     const Home(),

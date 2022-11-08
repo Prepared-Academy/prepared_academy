@@ -361,7 +361,7 @@ class _HomeState extends State<Home> {
                                     Text(
                                       provider.getNewsFeedData[index].posts!
                                           .first.title!,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -383,7 +383,7 @@ class _HomeState extends State<Home> {
                                 ),
                                 const SizedBox(height: 2),
                                 const Text(
-                                  "Learn how to rank your e-commence website on Google",
+                                  "Learn how to rank your e-commerce website on Google",
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,

@@ -21,7 +21,6 @@ class _TestActivityState extends State<TestActivity>
     with TickerProviderStateMixin {
   // Initialization
 
-  final int _current = 0;
   final ClassActivityRepo classActivityRepo = ClassActivityRepo();
   List<ChapterTestModel> chapterTestquizList = [];
   final PageController _controller = PageController();
@@ -95,11 +94,10 @@ class _TestActivityState extends State<TestActivity>
                   .map((e) => Tab(text: e.questionType))
                   .toList(),
             ),
-
             Expanded(
               child: TabBarView(
                 controller: TabController(
-                    length: provider.chapterTestquizList.testquestion!.length,
+                    length: provider.chapterTestquizList.questiontypes!.length,
                     vsync: this),
                 children:
                     // provider.chapterTestquizList.testquestion!
@@ -124,7 +122,7 @@ class _TestActivityState extends State<TestActivity>
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
-                      color: Colors.black12,
+                      color: Colors.white,
                     ),
                     child:
                         // const Sequences(),
@@ -145,6 +143,12 @@ class _TestActivityState extends State<TestActivity>
                   //     color: Colors.greenAccent,
                   //   ),
                   // ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.greenAccent,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -161,7 +165,7 @@ class _TestActivityState extends State<TestActivity>
             //       builder: (context, provider, __) {
             //         return Column(
             //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
+            //           children: const [
             //             // SlideCountdown(
             //             //   duration: provider.testQuestion.single.testDuration.
             //             //   )
