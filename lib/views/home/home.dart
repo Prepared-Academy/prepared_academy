@@ -304,7 +304,7 @@ class _HomeState extends State<Home> {
               return LiveList(
                 delay: animationDurationList,
                 shrinkWrap: true,
-                itemCount: provider.getNewsFeedData[0].posts!.length,
+                itemCount: provider.getNewsFeedData.length,
                 controller: scrollController,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: ((context, index, animation) {
@@ -359,8 +359,9 @@ class _HomeState extends State<Home> {
                                     ),
                                     const SizedBox(width: 10),
                                     Text(
-                                      provider.getNewsFeedData[index].posts!
-                                          .first.title!,
+                                      provider.getNewsFeedData[index].posts![1]
+                                          .title!
+                                          .toString(),
                                       style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
@@ -405,7 +406,7 @@ class _HomeState extends State<Home> {
                   );
                 }),
               );
-            }),
+            })
           ],
         ),
       );
@@ -423,29 +424,17 @@ class _HomeState extends State<Home> {
         ],
       ),
       endDrawer: DrawerBody(),
-      body: Consumer<HomeProvider>(builder: (context, provider, __) {
-        return Column(
-          children: [
-            _storyWidget(),
-            _suggestions(),
-            // newsFeed(),
-            Expanded(
-              child: SizedBox(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: provider.getNewsFeedData.length,
-                    itemBuilder: (context, index) {
-                      final postlist = provider.getNewsFeedData[index];
-                      return FadeAnimation(
-                          child: NewsFeed(
-                        getNewsFeedModel: postlist,
-                      ));
-                    }),
-              ),
-            )
-          ],
-        );
-      }),
+      body: SingleChildScrollView(
+        child: Consumer<HomeProvider>(builder: (context, provider, __) {
+          return Column(
+            children: [
+              _storyWidget(),
+              _suggestions(),
+              newsFeed(),
+            ],
+          );
+        }),
+      ),
     );
   }
 }

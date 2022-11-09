@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
@@ -5,10 +6,12 @@ import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:prepared_academy/models/chapter_test_model.dart';
 import 'package:prepared_academy/providers/class_activity_provider.dart';
 import 'package:prepared_academy/repository/class_acitvity_repo.dart';
+import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:provider/provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:stream_duration/stream_duration.dart';
 import '../../themes/color_theme.dart';
+import '../../widgets/input_decoration.dart';
 
 class TestActivity extends StatefulWidget {
   const TestActivity({super.key});
@@ -25,6 +28,7 @@ class _TestActivityState extends State<TestActivity>
   List<ChapterTestModel> chapterTestquizList = [];
   final PageController _controller = PageController();
   late TabController _tabController;
+  final _schoolController = TextEditingController();
   final HtmlEditorController controller = HtmlEditorController();
   int testmapId = -1;
   ChapterTestModel chapterTestModel = ChapterTestModel();
@@ -67,6 +71,30 @@ class _TestActivityState extends State<TestActivity>
         duration: const Duration(milliseconds: 1), curve: Curves.easeIn);
   }
 
+  Widget _schoolSelectionField() => DropdownSearch<String>(
+        dropdownButtonProps: const DropdownButtonProps(
+          padding: EdgeInsets.all(0),
+          icon: Icon(Icons.arrow_drop_down, color: kPrimaryColor),
+        ),
+        popupProps: const PopupProps.menu(
+          showSearchBox: true,
+          showSelectedItems: true,
+        ),
+        items: AppConstants.schoolList,
+        dropdownDecoratorProps: DropDownDecoratorProps(
+          dropdownSearchDecoration: inputDecoration(labelText: "School"),
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "required";
+          }
+          return null;
+        },
+        onChanged: ((value) {
+          _schoolController.text = value ?? "";
+        }),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,59 +125,68 @@ class _TestActivityState extends State<TestActivity>
             Expanded(
               child: TabBarView(
                 controller: TabController(
-                    length: provider.chapterTestquizList.questiontypes!.length,
+                    length: provider.chapterTestquizList.testquestion!.length,
                     vsync: this),
-                children:
-                    // provider.chapterTestquizList.testquestion!
-                    //     .map<Widget>((e) =>
-                    //         // e.questionType!.isEmpty
-                    //         //     ? SizedBox()
-                    //         //     :
-                    //         ListView.builder(
-                    //             shrinkWrap: false,
-                    //             itemBuilder: ((context, index) => Container(
-                    //                   decoration: BoxDecoration(
-                    //                     borderRadius: BorderRadius.circular(8.0),
-                    //                   ),
-                    //                   child: Questions(
-                    //                       testquestion: provider
-                    //                           .chapterTestquizList.testquestion!,
-                    //                       type: "MCQ"),
-                    //                 ))))
-                    //     .toList(),
+                children: provider.chapterTestquizList.testquestion!
+                    .map<Widget>((e) =>
+                        // e.questionType!.isEmpty
+                        //     ? SizedBox()
+                        //     :
+                        ListView.builder(
+                            shrinkWrap: false,
+                            itemBuilder: ((context, index) => Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Questions(
+                                    testquestion: provider
+                                        .chapterTestquizList.testquestion!,
+                                    type: "MCQ",
+                                    questiontype: provider
+                                        .chapterTestquizList.questiontypes!,
+                                  ),
+                                ))))
+                    .toList(),
+                // <Widget>[
+                //   Container(
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(20.0),
+                //       color: Colors.white,
+                //     ),
+                //     child:
+                //         // const Sequences(),
+                //         Questions(
+                //             testquestion:
+                //                 provider.chapterTestquizList.testquestion!,
+                //             type: "MCQ",
+                //             questiontype:
+                //                 provider.chapterTestquizList.questiontypes!),
+                //   ),
 
-                    <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: Colors.white,
-                    ),
-                    child:
-                        // const Sequences(),
-                        Questions(
-                            testquestion:
-                                provider.chapterTestquizList.testquestion!,
-                            type: "MCQ"),
-                  ),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(8.0),
-                  //     color: Colors.orangeAccent,
-                  //   ),
-                  // ),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(8.0),
-                  //     color: Colors.greenAccent,
-                  //   ),
-                  // ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.greenAccent,
-                    ),
-                  ),
-                ],
+                //   const Text(
+                //     'data',
+                //     style: TextStyle(fontSize: 50),
+                //   ),
+
+                // Container(
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(8.0),
+                //     color: Colors.orangeAccent,
+                //   ),
+                // ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(8.0),
+                //     color: Colors.greenAccent,
+                //   ),
+                // ),
+                //   Container(
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(8.0),
+                //       color: Colors.greenAccent,
+                //     ),
+                //   ),
+                // ],
               ),
             ),
             // Card(
@@ -185,13 +222,18 @@ class _TestActivityState extends State<TestActivity>
 class Questions extends StatelessWidget {
   final List<Testquestion> testquestion;
   final String type;
+  final List<Questiontype> questiontype;
 
-  const Questions({super.key, required this.testquestion, required this.type});
+  const Questions(
+      {super.key,
+      required this.testquestion,
+      required this.type,
+      required this.questiontype});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: testquestion.length,
+        itemCount: questiontype.length,
         itemBuilder: (context, index) {
           final questions = testquestion[index];
 

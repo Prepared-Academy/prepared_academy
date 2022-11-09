@@ -1,15 +1,28 @@
 import 'package:animation_wrappers/animations/scale_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/providers/profile_provider.dart';
+import 'package:prepared_academy/widgets/cached_image.dart';
 import 'package:provider/provider.dart';
 import '../../themes/color_theme.dart';
 import '../../utils/app_constants.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({
     super.key,
   });
 
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => context.read<ProfileProvider>().getProfileDetails());
+  }
+
+  @override
   Widget profileAppBar() {
     return AppBar(
       foregroundColor: kWhite,
@@ -42,32 +55,59 @@ class Profile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
       child: Consumer<ProfileProvider>(
         builder: ((context, provider, __) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          return Row(
             children: [
-              const Text(
-                "provider.profileModel!.name",
-                style: TextStyle(
-                    fontSize: 16, fontWeight: FontWeight.w800, color: kWhite),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Container(
+                  child: CachedImage(
+                    imageUrl:
+                        "${AppConstants.BASE_URL}/upload/userProfile/${provider.profileModel.profileImage}",
+                  ),
+                ),
               ),
-              Text(
-                provider.profileModel.email.toString(),
-                style: const TextStyle(fontSize: 14, color: kWhite),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                provider.profileModel.schoolName.toString(),
-                style: const TextStyle(fontSize: 14, color: kWhite),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                provider.profileModel.grade.toString(),
-                style: const TextStyle(fontSize: 14, color: kWhite),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      provider.profileModel.name.toString(),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: kWhite),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      provider.profileModel.email.toString(),
+                      style: const TextStyle(fontSize: 14, color: kWhite),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      provider.profileModel.schoolName.toString(),
+                      style: const TextStyle(fontSize: 14, color: kWhite),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      "Grade: ${provider.profileModel.grade.toString()}",
+                      style: const TextStyle(fontSize: 14, color: kWhite),
+                    ),
+                  ),
+                ],
               ),
             ],
           );
@@ -320,7 +360,7 @@ class Profile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          userProfImage(),
+                          // userProfImage(),
                           userProfDetails(),
                         ],
                       ),
