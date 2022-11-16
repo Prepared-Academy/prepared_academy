@@ -123,6 +123,15 @@ class _LoginState extends State<Login> {
                 },
               ),
             ),
+            Expanded(
+              child: CustomOutlinedButton(
+                text: "Login Button date",
+                onPressed: () {
+                  OneContext().pushNamedAndRemoveUntil(
+                      AppRoutes.REGISTER, (route) => false);
+                },
+              ),
+            )
           ],
         ),
       );

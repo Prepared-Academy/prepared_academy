@@ -19,6 +19,7 @@ import 'package:prepared_academy/views/subjects/slides.dart';
 import 'package:prepared_academy/views/subjects/write_answer.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
 import '../views/auth/splash.dart';
+import '../views/home/notification.dart';
 
 class AppRoutes {
   static const SPLASHSCREEN = '/';
@@ -39,6 +40,7 @@ class AppRoutes {
   static const ACTIVITIES = '/activities';
   static const ASSIGNMENTACTIVITY = '/assignmentactivities';
   static const TESTACTIVITY = '/testactivities';
+  static const INAPPNOTIFICATION = '/notification';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -61,6 +63,7 @@ class AppRoutes {
       ACTIVITIES: (context) => const Activities(),
       ASSIGNMENTACTIVITY: (context) => const AssignmentActivity(),
       TESTACTIVITY: (context) => const TestActivity(),
+      INAPPNOTIFICATION: (context) => const Notifications(),
     };
     return appRoutes;
   }

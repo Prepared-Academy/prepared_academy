@@ -6,6 +6,7 @@ import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/providers/auth_provider.dart';
 import 'package:prepared_academy/providers/class_activity_provider.dart';
 import 'package:prepared_academy/providers/home_provider.dart';
+import 'package:prepared_academy/providers/inappnotification_provider.dart';
 import 'package:prepared_academy/providers/profile_provider.dart';
 import 'package:prepared_academy/providers/splash_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
@@ -44,6 +45,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => ClassActivityProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => InAppNotificationProvider()),
       ],
       child: const MyApp(),
     ),

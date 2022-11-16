@@ -6,12 +6,12 @@ import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/models/get_newsfeed_model.dart';
 import 'package:prepared_academy/providers/home_provider.dart';
+import 'package:prepared_academy/repository/home_repo.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/views/home/drawer.dart';
-import 'package:prepared_academy/views/home/newsfeed.dart';
-
+import 'package:prepared_academy/views/home/notification.dart';
 import 'package:prepared_academy/widgets/icon_button.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +42,10 @@ class _HomeState extends State<Home> {
       );
 
   Widget _notificationButton() => CustomIconButton(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => const Notifications()));
+        },
         iconImage: AppConstants.NOTIFICATION_ICON,
       );
 
@@ -299,7 +302,7 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FadeAnimation(child: const Text("Newsfeed")),
+            FadeAnimation(child: const Text("Newsfeed1")),
             Consumer<HomeProvider>(builder: (context, provider, __) {
               return LiveList(
                 delay: animationDurationList,
@@ -358,11 +361,9 @@ class _HomeState extends State<Home> {
                                       radius: 20,
                                     ),
                                     const SizedBox(width: 10),
-                                    Text(
-                                      provider.getNewsFeedData[index].posts![1]
-                                          .title!
-                                          .toString(),
-                                      style: const TextStyle(
+                                    const Text(
+                                      " provider.getNewsFeedData[].posts[].title",
+                                      style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -425,16 +426,30 @@ class _HomeState extends State<Home> {
       ),
       endDrawer: DrawerBody(),
       body: SingleChildScrollView(
-        child: Consumer<HomeProvider>(builder: (context, provider, __) {
-          return Column(
-            children: [
-              _storyWidget(),
-              _suggestions(),
-              newsFeed(),
-            ],
-          );
-        }),
-      ),
+          child: Column(
+        children: [
+          _storyWidget(),
+          _suggestions(),
+          newsFeed(),
+          FutureBuilder<List<Post>>(
+              future: HomeRepo().getNewsFeed(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: ((context, index) {
+                        return ListTile(
+                          title: Text(snapshot.data![index].title!),
+                        );
+                      }));
+                }
+              })
+        ],
+      )),
     );
   }
 }

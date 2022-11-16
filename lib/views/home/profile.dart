@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      provider.profileModel.name.toString(),
+                      provider.profileModel.name!,
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w800,
@@ -83,7 +83,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      provider.profileModel.email.toString(),
+                      provider.profileModel.email!,
                       style: const TextStyle(fontSize: 14, color: kWhite),
                     ),
                   ),
@@ -126,7 +126,7 @@ class _ProfileState extends State<Profile> {
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
-                  AppConstants.ACCOUNT_ICON,
+                  AppConstants.MYREWARDS,
                   width: 25,
                 ),
                 title: RichText(
@@ -157,7 +157,7 @@ class _ProfileState extends State<Profile> {
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
-                  AppConstants.ACCOUNT_ICON,
+                  AppConstants.MYREPORTS,
                   width: 25,
                 ),
                 title: RichText(
@@ -188,7 +188,7 @@ class _ProfileState extends State<Profile> {
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
-                  AppConstants.ACCOUNT_ICON,
+                  AppConstants.ABOUTUS,
                   width: 25,
                 ),
                 title: RichText(
@@ -219,7 +219,7 @@ class _ProfileState extends State<Profile> {
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
-                  AppConstants.ACCOUNT_ICON,
+                  AppConstants.TERMS,
                   width: 25,
                 ),
                 title: RichText(
@@ -250,7 +250,7 @@ class _ProfileState extends State<Profile> {
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
-                  AppConstants.ACCOUNT_ICON,
+                  AppConstants.PASS_RESET,
                   width: 25,
                 ),
                 title: RichText(
@@ -281,7 +281,7 @@ class _ProfileState extends State<Profile> {
               elevation: 0,
               child: ListTile(
                 leading: Image.asset(
-                  AppConstants.ACCOUNT_ICON,
+                  AppConstants.LOG_OUT,
                   width: 25,
                 ),
                 title: RichText(
@@ -356,14 +356,7 @@ class _ProfileState extends State<Profile> {
                     child: Card(
                       elevation: 0,
                       color: kPrimaryColor,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          // userProfImage(),
-                          userProfDetails(),
-                        ],
-                      ),
+                      child: userProfDetails(),
                     ),
                   ),
                   profileListings(),

@@ -30,6 +30,10 @@ class AppConstants {
 // Student Profile
   static const String PROFILE_URI = '/api/muser/getStudentProfile';
 
+// Inapp Notifications
+
+  static const String NOTIFICATION_URI = '/api/muser/getnotifications';
+
   // sharePreference
   static const String ONBOARDING = 'onboarding';
   static const String TOKEN = 'token';
@@ -89,6 +93,15 @@ class AppConstants {
   static const String GRADES_ICON = "assets/icons/grades.png";
   static const String EMAIL_ICON = "assets/icons/email.png";
   static const String PASSWORD_ICON = "assets/icons/password.png";
+
+  // Profile Page
+
+  static const String MYREWARDS = "assets/images/medal.png";
+  static const String MYREPORTS = "assets/images/clipboard.png";
+  static const String ABOUTUS = "assets/images/conversation.png";
+  static const String TERMS = "assets/images/terms-and-conditions.png";
+  static const String PASS_RESET = "assets/images/reset-password.png";
+  static const String LOG_OUT = "assets/images/turn-off.png";
 
   static List<String> gradesList = [
     '1',

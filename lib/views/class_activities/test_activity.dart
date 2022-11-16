@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:stream_duration/stream_duration.dart';
 import '../../themes/color_theme.dart';
+import '../../widgets/buttons.dart';
 import '../../widgets/input_decoration.dart';
 
 class TestActivity extends StatefulWidget {
@@ -127,66 +128,67 @@ class _TestActivityState extends State<TestActivity>
                 controller: TabController(
                     length: provider.chapterTestquizList.testquestion!.length,
                     vsync: this),
-                children: provider.chapterTestquizList.testquestion!
-                    .map<Widget>((e) =>
-                        // e.questionType!.isEmpty
-                        //     ? SizedBox()
-                        //     :
-                        ListView.builder(
-                            shrinkWrap: false,
-                            itemBuilder: ((context, index) => Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Questions(
-                                    testquestion: provider
-                                        .chapterTestquizList.testquestion!,
-                                    type: "MCQ",
-                                    questiontype: provider
-                                        .chapterTestquizList.questiontypes!,
-                                  ),
-                                ))))
-                    .toList(),
-                // <Widget>[
-                //   Container(
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20.0),
-                //       color: Colors.white,
-                //     ),
-                //     child:
-                //         // const Sequences(),
-                //         Questions(
-                //             testquestion:
-                //                 provider.chapterTestquizList.testquestion!,
-                //             type: "MCQ",
-                //             questiontype:
-                //                 provider.chapterTestquizList.questiontypes!),
-                //   ),
+                children:
+                    // provider.chapterTestquizList.testquestion!
+                    //     .map<Widget>((e) =>
+                    //         // e.questionType!.isEmpty
+                    //         //     ? SizedBox()
+                    //         //     :
+                    //         ListView.builder(
+                    //             shrinkWrap: false,
+                    //             itemBuilder: ((context, index) => Container(
+                    //                   decoration: BoxDecoration(
+                    //                     borderRadius: BorderRadius.circular(8.0),
+                    //                   ),
+                    //                   child: Questions(
+                    //                     testquestion: provider
+                    //                         .chapterTestquizList.testquestion!,
+                    //                     type: "MCQ",
+                    //                     questiontype: provider
+                    //                         .chapterTestquizList.questiontypes!,
+                    //                   ),
+                    //                 ))))
+                    //     .toList(),
+                    <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
+                    ),
+                    child:
+                        // const Sequences(),
+                        Questions(
+                            testquestion:
+                                provider.chapterTestquizList.testquestion!,
+                            type: "MCQ",
+                            questiontype:
+                                provider.chapterTestquizList.questiontypes!),
+                  ),
 
-                //   const Text(
-                //     'data',
-                //     style: TextStyle(fontSize: 50),
-                //   ),
+                  //   const Text(
+                  //     'data',
+                  //     style: TextStyle(fontSize: 50),
+                  //   ),
 
-                // Container(
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(8.0),
-                //     color: Colors.orangeAccent,
-                //   ),
-                // ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(8.0),
-                //     color: Colors.greenAccent,
-                //   ),
-                // ),
-                //   Container(
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(8.0),
-                //       color: Colors.greenAccent,
-                //     ),
-                //   ),
-                // ],
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(8.0),
+                  //     color: Colors.orangeAccent,
+                  //   ),
+                  // ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(8.0),
+                  //     color: Colors.greenAccent,
+                  //   ),
+                  // ),
+                  //   Container(
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(8.0),
+                  //       color: Colors.greenAccent,
+                  //     ),
+                  //   ),
+                ],
               ),
             ),
             // Card(
@@ -211,7 +213,8 @@ class _TestActivityState extends State<TestActivity>
             //       },
             //     ),
             //   ),
-            // )
+            // ),
+            CustomButton(onPressed: () {}, text: "Submit"),
           ],
         );
       }),
@@ -259,6 +262,5 @@ class Questions extends StatelessWidget {
 //           if(provider.chapterTestquizList.questiontypes![index].sequence == provider.chapterTestquizList.testquestion![index].sequence) {
 //             return HtmlWidget(provider.chapterTestquizList.testquestion[index].question!.replaceAll("(?s)<(\\w+)\\b[^<>]*>.*?</\\1>", ""))
 //         }))
-//     } )))
-//   }
+//     } ))) 
 // }
