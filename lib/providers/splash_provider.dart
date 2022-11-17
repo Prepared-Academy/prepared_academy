@@ -1,3 +1,4 @@
+import 'package:app_version_update/app_version_update.dart';
 import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/repository/auth_repo.dart';
@@ -27,5 +28,18 @@ class SplashProvider extends ChangeNotifier {
     } else {
       OneContext().pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
     }
+    // checkForUpdate();
+  }
+
+  Future<void> checkForUpdate() async {
+    await AppVersionUpdate.checkForUpdates().then((data) async {
+      if (data.canUpdate!) {
+        AppVersionUpdate.showAlertUpdate(
+          mandatory: true,
+          appVersionResult: data,
+          context: OneContext().context,
+        );
+      }
+    });
   }
 }

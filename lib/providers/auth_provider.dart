@@ -17,6 +17,7 @@ class AuthProvider extends ChangeNotifier {
   final locator = getIt.get<SharedPreferencesHelper>();
 
   final AuthRepo authRepo = AuthRepo();
+  UserModel userModel = UserModel();
 
   void loading(bool value) {
     isLoading = value;
@@ -29,7 +30,7 @@ class AuthProvider extends ChangeNotifier {
       String dataJson = loginModelToJson(loginModel);
       Response apiResponse = await authRepo.login(dataJson);
       if (apiResponse.statusCode == 200) {
-        UserModel userModel = UserModel.fromJson(apiResponse.data);
+        userModel = UserModel.fromJson(apiResponse.data);
         if (userModel.message!.contains("Resend verification link in")) {
           loadingStop();
           NotificationsService.showSnackbar(userModel.message!);
@@ -38,9 +39,8 @@ class AuthProvider extends ChangeNotifier {
           loadingStop();
           NotificationsService.showSnackbar(userModel.message!);
         } else if (apiResponse.data["message"] == "Login Successful") {
-          // await setupInit();
           await authRepo.saveUser(userModel);
-
+          await authRepo.creatLoginTime(userModel.user!.id!);
           loadingStop();
           OneContext()
               .pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
@@ -76,7 +76,8 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void logout() {
+    authRepo.updateLogoutTime(userModel.user!.id!);
     locator.removeAll();
-    OneContext().pushNamedAndRemoveUntil(AppRoutes.REGISTER, (route) => false);
+    OneContext().pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
   }
 }

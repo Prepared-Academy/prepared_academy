@@ -7,6 +7,8 @@ class AppConstants {
   static const String REGISTRATION_URI = '/api/muser/registration';
   static const String LOGIN_URI = '/api/muser/login';
   static const String LOGOUT_URI = '/api/muser/logout';
+  static const String CREATE_LOGIN_TIME_URI = '/api/muser/createloginTime';
+  static const String UPDATE_LOGOUT_TIME_URI = '/api/muser/updateLogoutTime';
   static const String VERIFY_OTP_URI = '/api/muser/verifyOTP';
   static const String SEND_OTP_URI = '/api/muser/sendOTPMail';
   static const String UPDATE_PASS_URI = '/api/muser/UpdatePassword';
@@ -14,7 +16,6 @@ class AppConstants {
   static const String STORY_URI = '/api/muser/getDailyFacts';
   static const String BOOKMARKSTORY_URI = '/api/muser/addBookmark';
   static const String REMOVEBOOKMARK_URI = '/api/muser/removeBookmark';
-  static const String UPDATELOGOUTTIME_URI = '/api/muser/updateLogoutTime';
 
 // In Class Acitivities
   static const String INCLASS_SUBJECTS_URI = '/api/muser/getmyinlinesubjects';

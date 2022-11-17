@@ -38,6 +38,32 @@ class AuthRepo {
     }
   }
 
+  Future<Response> creatLoginTime(int id) async {
+    try {
+      final Response response = await client
+          .post(AppConstants.CREATE_LOGIN_TIME_URI, data: {"id": id});
+
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> updateLogoutTime(int id) async {
+    try {
+      final Response response = await client
+          .post(AppConstants.UPDATE_LOGOUT_TIME_URI, data: {"id": id});
+
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
   Future saveUser(UserModel userModel) async {
     String json = userModelToJson(userModel);
     await locator.setStringValue(AppConstants.TOKEN, userModel.accessToken!);

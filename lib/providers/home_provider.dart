@@ -9,8 +9,9 @@ import 'package:prepared_academy/utils/app_constants.dart';
 
 class HomeProvider extends ChangeNotifier {
   bool isLoading = true;
-
   final HomeRepo homeRepo = HomeRepo();
+
+  // Story
   StoryModel storyModel = StoryModel();
   List<StoryUsers> story = [];
   late StoryUsers storyUsers;
@@ -22,6 +23,7 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Fetch all story
   Future getStory() async {
     try {
       Response apiResponse = await homeRepo.stories();
@@ -35,6 +37,7 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
+// Mark story bookmarked
   Future addStoryBookMark(int refId, int typeId) async {
     try {
       var data = {"refId": refId, "typeId": typeId};
@@ -51,6 +54,7 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
+// Mark story remove from bookmarked
   Future removeBookmarkStory(int bookMarkId) async {
     try {
       var data = {"bookmarkId": bookMarkId};
@@ -70,7 +74,9 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
+// View story by index
   void storyView({int? index}) {
+    currentStoryIndex = index!;
     List<Fact>? storyModel1 = [];
     story = [];
 
@@ -81,13 +87,14 @@ class HomeProvider extends ChangeNotifier {
     } else if (index == 2) {
       storyModel1 = storyModel.proverbs;
     }
-    story.add(
+
+    story = [
       StoryUsers(
         storyModel1!,
         AppConstants.storyList[currentStoryIndex]["name"],
         AppConstants.storyList[currentStoryIndex]["image"],
-      ),
-    );
+      )
+    ];
 
     notifyListeners();
   }

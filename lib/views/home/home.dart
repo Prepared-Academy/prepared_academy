@@ -5,10 +5,10 @@ import 'package:like_button/like_button.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/providers/home_provider.dart';
-import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/views/home/drawer.dart';
+import 'package:prepared_academy/views/home/story.dart';
 import 'package:prepared_academy/widgets/icon_button.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
 import 'package:provider/provider.dart';
@@ -51,58 +51,6 @@ class _HomeState extends State<Home> {
           iconImage: AppConstants.MENU_ICON,
         ),
       );
-
-  Widget _storyWidget() => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      color: kPrimaryColor,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15), color: Colors.white),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FadeAnimation(child: const Text("Perals of wisdom")),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(
-                AppConstants.storyList.length,
-                (index) => ScaleAnimation(
-                  child: GestureDetector(
-                    onTap: () {
-                      context.read<HomeProvider>().storyView(index: index);
-                      context.read<HomeProvider>().currentStoryIndex = index;
-                      OneContext().pushNamed(AppRoutes.STORYVIEW);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 5,
-                                color: Colors.grey,
-                                spreadRadius: 1)
-                          ],
-                        ),
-                        child: CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage(
-                              AppConstants.storyList[index]["image"]),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ));
 
   Widget _suggestions() => Padding(
         padding: const EdgeInsets.only(top: 20),
@@ -309,7 +257,7 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _storyWidget(),
+            const Story(),
             _suggestions(),
             _newsFeed(),
           ],

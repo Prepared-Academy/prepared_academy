@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:one_context/one_context.dart';
+import 'package:prepared_academy/providers/auth_provider.dart';
 import 'package:prepared_academy/utils/shared_preference.dart';
+import 'package:provider/provider.dart';
 
 import '../../setup.dart';
 import '../../utils/app_constants.dart';
@@ -52,19 +55,15 @@ class LoggingInterceptor extends InterceptorsWrapper {
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
     debugPrint(
         "ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}");
+
+    if (err.response?.statusCode == 401) {
+      //catch the 401 here
+
+      debugPrint('REVOKED TOKEN USED -----> LOGOUT USER NOW');
+      OneContext().context!.read<AuthProvider>().logout();
+      handler.next(err);
+    }
+
     return super.onError(err, handler);
   }
 }
-
-// class TokenIntercepter extends Interceptor {
-//   @override
-//   Future onRequest(
-//       RequestOptions options, RequestInterceptorHandler handler) async {
-//     String token = await myPrefs.getString(AppConstants.TOKEN) ?? "";
-//     options.headers["Authorization"] = "Bearer $token";
-
-//     debugPrint("--> -------????????? ${options.headers}");
-
-//     return super.onRequest(options, handler);
-//   }
-// }
