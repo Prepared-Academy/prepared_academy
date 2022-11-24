@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/views/auth/forgotpassword.dart';
 import 'package:prepared_academy/views/auth/login.dart';
 import 'package:prepared_academy/views/auth/register.dart';
 import 'package:prepared_academy/views/class_activities/test_activity.dart';
@@ -26,6 +27,7 @@ class AppRoutes {
   static const HOMESCREEN = '/home';
   static const LOGIN = '/login';
   static const REGISTER = '/register';
+  static const FORGOTPASSWORD = '/forgot';
   static const NAVIG = '/navig';
   static const CHAPTERS = '/chapters';
   static const CHAPTERCONTENT = '/chaptercontent';
@@ -64,6 +66,7 @@ class AppRoutes {
       ASSIGNMENTACTIVITY: (context) => const AssignmentActivity(),
       TESTACTIVITY: (context) => const TestActivity(),
       INAPPNOTIFICATION: (context) => const Notifications(),
+      FORGOTPASSWORD: (context) => const ForgotPassword(),
     };
     return appRoutes;
   }

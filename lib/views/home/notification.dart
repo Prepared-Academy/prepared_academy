@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prepared_academy/models/inapp_notification.dart';
 import 'package:prepared_academy/providers/inappnotification_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -74,26 +73,35 @@ class Notifications extends StatelessWidget {
                   ),
                   child: Consumer<InAppNotificationProvider>(
                       builder: (context, provider, __) {
-                    return ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: CircleAvatar(
-                          child: Image.network(
-                            'https://avatars.githubusercontent.com/u/37553901?v=4',
-                            height: 80.0,
-                            width: 80.0,
-                          ),
-                        ),
-                      ),
-                      title: Text(
-                        provider.inappNotificationModel.notifications!.first
-                            .message!,
-                        textAlign: TextAlign.start,
-                      ),
-                      subtitle: const Text(
-                        'new quiz session has started, join now!!!!!!',
-                        textAlign: TextAlign.start,
-                      ),
+                    return ListView.builder(
+                      itemCount: provider.inappNotificationModel.count,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: CircleAvatar(
+                                child: Image.network(
+                                  'https://avatars.githubusercontent.com/u/37553901?v=4',
+                                  height: 80.0,
+                                  width: 80.0,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              provider.inappNotificationModel
+                                  .notifications![index].message!
+                                  .toString(),
+                              style: const TextStyle(color: Colors.white),
+                              textAlign: TextAlign.start,
+                            ),
+                            const Text(
+                              'new quiz session has started, join now!!!!!!',
+                              textAlign: TextAlign.start,
+                            ),
+                          ],
+                        );
+                      },
                     );
                   })))
         ])

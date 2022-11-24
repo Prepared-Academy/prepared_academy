@@ -59,11 +59,9 @@ class _ProfileState extends State<Profile> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Container(
-                  child: CachedImage(
-                    imageUrl:
-                        "${AppConstants.BASE_URL}/upload/userProfile/${provider.profileModel.profileImage}",
-                  ),
+                child: CachedImage(
+                  imageUrl:
+                      "${AppConstants.BASE_URL}/upload/userProfile/${provider.profileModel.profileImage}",
                 ),
               ),
               Column(
@@ -93,7 +91,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      provider.profileModel.schoolName.toString(),
+                      provider.profileModel.schoolName!.toString(),
                       style: const TextStyle(fontSize: 14, color: kWhite),
                     ),
                   ),
@@ -103,7 +101,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      "Grade: ${provider.profileModel.grade.toString()}",
+                      "Grade: ${provider.profileModel.grade!.toString()}",
                       style: const TextStyle(fontSize: 14, color: kWhite),
                     ),
                   ),

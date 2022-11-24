@@ -5,17 +5,17 @@ import 'package:prepared_academy/repository/inappnotification_repo.dart';
 import 'package:prepared_academy/utils/helper.dart';
 
 class InAppNotificationProvider extends ChangeNotifier {
+  InAppNotificationRepo inAppNotificationRepo = InAppNotificationRepo();
   InappNotificationModel inappNotificationModel = InappNotificationModel();
 
   Future getInappNotifications() async {
     try {
       loadingShow();
       Response apiResponse =
-          await InAppNotificationRepo().getInAppNotifications();
+          await inAppNotificationRepo.getInAppNotifications();
       if (apiResponse.statusCode == 200) {
         inappNotificationModel =
-            inappNotificationModelToJson((apiResponse.data))
-                as InappNotificationModel;
+            InappNotificationModel.fromJson(apiResponse.data);
         notifyListeners();
       }
       loadingStop();

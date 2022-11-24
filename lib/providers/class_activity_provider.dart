@@ -36,6 +36,7 @@ class ClassActivityProvider extends ChangeNotifier {
       loadingShow();
       Response apiResponse = await classActivityRepo.getMyInClassSubjects();
       if (apiResponse.statusCode == 200) {
+        print("aayittind");
         inClassSubjects =
             inClassSubjectsModelFromJson(jsonEncode(apiResponse.data));
         notifyListeners();

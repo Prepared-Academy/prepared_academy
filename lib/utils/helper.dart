@@ -26,7 +26,6 @@ Future successRegister() async {
 String returnTimeAgo(DateTime dateTime) {
   final fifteenAgo = dateTime;
   String agoTime = timeago.format(fifteenAgo);
-
   return agoTime;
 }
 

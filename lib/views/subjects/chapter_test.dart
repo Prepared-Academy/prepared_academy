@@ -138,6 +138,8 @@ class _ChapterTestState extends State<ChapterTest>
                   Questions(type: "Very short"),
                   Questions(type: "Short"),
                   Questions(type: "Long"),
+                  Questions(type: "Very Long Answer"),
+                  Questions(type: "Asana")
                 ],
               ),
             )

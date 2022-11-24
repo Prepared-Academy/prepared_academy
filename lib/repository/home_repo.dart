@@ -21,12 +21,11 @@ class HomeRepo {
     }
   }
 
-  Future<List<Post>> getNewsFeed() async {
+  Future<Response> getNewsFeed() async {
     try {
       final Response response = await client.get(AppConstants.GET_NEWSFEED_URI);
-      GetNewsFeedModel getNewsFeedModel =
-          GetNewsFeedModel.fromJson(response.data);
-      return getNewsFeedModel.posts!;
+
+      return response;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       NotificationsService.showSnackbar(errorMessage);

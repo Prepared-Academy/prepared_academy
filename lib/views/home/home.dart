@@ -343,7 +343,7 @@ class _HomeState extends State<Home> {
                                 height: 400,
                                 width: double.maxFinite,
                                 child: Image.asset(
-                                  "provider.getNewsFeedData[index].posts!.last",
+                                  AppConstants.DEMOPOST_IMAGE,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -361,9 +361,10 @@ class _HomeState extends State<Home> {
                                       radius: 20,
                                     ),
                                     const SizedBox(width: 10),
-                                    const Text(
-                                      " provider.getNewsFeedData[].posts[].title",
-                                      style: TextStyle(
+                                    Text(
+                                      provider.getNewsFeedData[index].posts!
+                                          .first.title!,
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -385,7 +386,7 @@ class _HomeState extends State<Home> {
                                 ),
                                 const SizedBox(height: 2),
                                 const Text(
-                                  "Learn how to rank your e-commerce website on Google",
+                                  "Learn how to rank your e-commence website on Google",
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
@@ -407,6 +408,123 @@ class _HomeState extends State<Home> {
                   );
                 }),
               );
+              // LiveList(
+              //   delay: animationDurationList,
+              //   shrinkWrap: true,
+              //   itemCount: provider.getNewsFeedData.length,
+              //   controller: scrollController,
+              //   physics: const NeverScrollableScrollPhysics(),
+              //   itemBuilder: ((context, index, animation) {
+              //     return AnimationFadeList(
+              //       animation: animation,
+              //       widget: Container(
+              //         margin: const EdgeInsets.only(top: 10, bottom: 20),
+              //         decoration: BoxDecoration(
+              //             border: Border.all(color: kBorder),
+              //             borderRadius: BorderRadius.circular(15)),
+              //         child: Column(
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             children: List.generate(
+              //               provider.getNewsFeedData[index].posts!.length,
+              //               (index) => Text(
+              //                 provider
+              //                     .getNewsFeedData[index].posts![index].title!,
+              //                 style: const TextStyle(
+              //                   fontSize: 16,
+              //                   fontWeight: FontWeight.w500,
+              //                   color: kBlack,
+              //                 ),
+              //               ),
+
+              //             )
+
+              //             //  [
+              //             //   GestureDetector(
+              //             //     onTap: () {
+              //             //       OneContext().push(
+              //             //         MaterialPageRoute(
+              //             //           builder: (context) => const ViewPhoto(
+              //             //             imageProvider: AssetImage(
+              //             //               AppConstants.DEMOPOST_IMAGE,
+              //             //             ),
+              //             //           ),
+              //             //         ),
+              //             //       );
+              //             //     },
+              //             //     child: ClipRRect(
+              //             //       borderRadius: const BorderRadius.only(
+              //             //         topLeft: Radius.circular(15),
+              //             //         topRight: Radius.circular(15),
+              //             //       ),
+              //             //       child: Container(
+              //             //         color: Colors.white,
+              //             //         height: 400,
+              //             //         width: double.maxFinite,
+              //             //         child: Image.asset(
+              //             //           "provider.getNewsFeedData[index].posts!.last",
+              //             //           fit: BoxFit.cover,
+              //             //         ),
+              //             //       ),
+              //             //     ),
+              //             //   ),
+              //             //   Padding(
+              //             //     padding: const EdgeInsets.all(16),
+              //             //     child: Column(
+              //             //       crossAxisAlignment: CrossAxisAlignment.start,
+              //             //       children: [
+              //             //         Row(
+              //             //           children: [
+              //             //             CircleAvatar(
+              //             //               backgroundColor: Colors.grey.shade200,
+              //             //               radius: 20,
+              //             //             ),
+              //             //             const SizedBox(width: 10),
+              //             //             const Text(
+              //             //               " provider.getNewsFeedData[].posts[].title",
+              //             //               style: TextStyle(
+              //             //                 fontSize: 16,
+              //             //                 fontWeight: FontWeight.w500,
+              //             //               ),
+              //             //             ),
+              //             //             const Spacer(),
+              //             //             const LikeButton(
+              //             //               likeCount: 45,
+              //             //               size: 24,
+              //             //             ),
+              //             //           ],
+              //             //         ),
+              //             //         const SizedBox(height: 15),
+              //             //         const Text(
+              //             //           "Top 7 Best Automatic Subtitle Generators",
+              //             //           style: TextStyle(
+              //             //             fontSize: 15,
+              //             //             fontWeight: FontWeight.bold,
+              //             //           ),
+              //             //         ),
+              //             //         const SizedBox(height: 2),
+              //             //         const Text(
+              //             //           "Learn how to rank your e-commerce website on Google",
+              //             //           style: TextStyle(
+              //             //             fontSize: 12,
+              //             //             fontWeight: FontWeight.w500,
+              //             //           ),
+              //             //         ),
+              //             //         const SizedBox(height: 10),
+              //             //         const Text(
+              //             //           "Since we started using Semrush, our keywords are much more targeted and we are seeing much more traffic and activity.",
+              //             //           style: TextStyle(
+              //             //             fontSize: 12,
+              //             //           ),
+              //             //         )
+              //             //       ],
+              //             //     ),
+              //             //   )
+              //             // ],
+              //             ),
+              //       ),
+              //     );
+              //   }),
+              // );
             })
           ],
         ),
@@ -431,23 +549,6 @@ class _HomeState extends State<Home> {
           _storyWidget(),
           _suggestions(),
           newsFeed(),
-          FutureBuilder<List<Post>>(
-              future: HomeRepo().getNewsFeed(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: ((context, index) {
-                        return ListTile(
-                          title: Text(snapshot.data![index].title!),
-                        );
-                      }));
-                }
-              })
         ],
       )),
     );

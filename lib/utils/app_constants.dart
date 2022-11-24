@@ -121,7 +121,7 @@ class AppConstants {
   static List<String> schoolList = [
     'Delhi Private School',
     'Gulf Asian English School',
-    'India international School',
+    'Indian international School',
     'Pace International School',
     'prepared',
   ];

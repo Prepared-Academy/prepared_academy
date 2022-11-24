@@ -100,7 +100,12 @@ class _LoginState extends State<Login> {
 
   Widget _forgotPassword() => Align(
         alignment: Alignment.topRight,
-        child: CustomTextButton(onPressed: () {}, text: "Forgot password?"),
+        child: CustomTextButton(
+            onPressed: () {
+              OneContext().pushNamedAndRemoveUntil(
+                  AppRoutes.FORGOTPASSWORD, (route) => false);
+            },
+            text: "Forgot password?"),
       );
 
   Widget _registerAccount() => Padding(
@@ -123,15 +128,6 @@ class _LoginState extends State<Login> {
                 },
               ),
             ),
-            Expanded(
-              child: CustomOutlinedButton(
-                text: "Login Button date",
-                onPressed: () {
-                  OneContext().pushNamedAndRemoveUntil(
-                      AppRoutes.REGISTER, (route) => false);
-                },
-              ),
-            )
           ],
         ),
       );
