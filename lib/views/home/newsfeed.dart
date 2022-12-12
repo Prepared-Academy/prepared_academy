@@ -15,7 +15,7 @@ import '../../animation/animation_list.dart';
 
 class NewsFeed extends StatelessWidget {
   final scrollController = ScrollController();
-  final GetNewsFeedModel getNewsFeedModel;
+  final NewsFeedModel getNewsFeedModel;
   NewsFeed({
     Key? key,
     required this.getNewsFeedModel,

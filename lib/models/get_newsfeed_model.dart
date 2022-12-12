@@ -1,18 +1,16 @@
 // To parse this JSON data, do
 //
-//     final getNewsFeedModel = getNewsFeedModelFromJson(jsonString);
+//     final newsFeedModel = newsFeedModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<GetNewsFeedModel> getNewsFeedModelFromJson(String str) =>
-    List<GetNewsFeedModel>.from(
-        json.decode(str).map((x) => GetNewsFeedModel.fromJson(x)));
+NewsFeedModel newsFeedModelFromJson(String str) =>
+    NewsFeedModel.fromJson(json.decode(str));
 
-String getNewsFeedModelToJson(List<GetNewsFeedModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String newsFeedModelToJson(NewsFeedModel data) => json.encode(data.toJson());
 
-class GetNewsFeedModel {
-  GetNewsFeedModel({
+class NewsFeedModel {
+  NewsFeedModel({
     this.posts,
     this.recentlyLearned,
     this.suggestedVideo,
@@ -22,13 +20,10 @@ class GetNewsFeedModel {
   final List<Post>? posts;
   final List<RecentlyLearned>? recentlyLearned;
   final List<SuggestedVideo>? suggestedVideo;
-  final String? imei;
+  final dynamic imei;
 
-  factory GetNewsFeedModel.fromJson(Map<String, dynamic> json) =>
-      GetNewsFeedModel(
-        posts: json["posts"] == null
-            ? null
-            : List<Post>.from(json["posts"].map((x) => Post.fromJson(x))),
+  factory NewsFeedModel.fromJson(Map<String, dynamic> json) => NewsFeedModel(
+        posts: List<Post>.from(json["posts"].map((x) => Post.fromJson(x))),
         recentlyLearned: List<RecentlyLearned>.from(
             json["recentlyLearned"].map((x) => RecentlyLearned.fromJson(x))),
         suggestedVideo: List<SuggestedVideo>.from(
@@ -37,9 +32,7 @@ class GetNewsFeedModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "posts": posts == null
-            ? null
-            : List<dynamic>.from(posts!.map((x) => x.toJson())),
+        "posts": List<dynamic>.from(posts!.map((x) => x.toJson())),
         "recentlyLearned":
             List<dynamic>.from(recentlyLearned!.map((x) => x.toJson())),
         "suggestedVideo":
@@ -101,7 +94,7 @@ class Post {
         id: json["id"],
         userId: json["userId"],
         title: json["title"],
-        subtitle: json["subtitle"],
+        subtitle: json["subtitle"] == null ? null : json["subtitle"],
         // category: categoryValues.map[json["category"]],
         attachment1: json["attachment1"],
         attachment2: json["attachment2"],
@@ -126,7 +119,7 @@ class Post {
         "id": id,
         "userId": userId,
         "title": title,
-        "subtitle": subtitle,
+        "subtitle": subtitle == null ? null : subtitle,
         // "category": categoryValues.reverse[category],
         "attachment1": attachment1,
         "attachment2": attachment2,
@@ -187,21 +180,21 @@ class RecentlyLearned {
     this.chapterCompleted,
   });
 
-  int? id;
-  int? videoId;
-  int? studentId;
-  int? title;
-  int? objectiveId;
-  String? description;
-  String? objectiveImage;
-  int? chapterId;
-  String? chapterName;
-  String? subjectName;
-  int? quizattend;
-  int? bookmarkStatus;
-  int? bookmarkId;
-  int? typeId;
-  int? chapterCompleted;
+  final int? id;
+  final int? studentId;
+  final int? videoId;
+  final int? objectiveId;
+  final String? title;
+  final String? description;
+  final String? objectiveImage;
+  final int? chapterId;
+  final String? chapterName;
+  final String? subjectName;
+  final int? quizattend;
+  final int? bookmarkId;
+  final int? bookmarkStatus;
+  final int? typeId;
+  final int? chapterCompleted;
 
   factory RecentlyLearned.fromJson(Map<String, dynamic> json) =>
       RecentlyLearned(
@@ -253,14 +246,14 @@ class SuggestedVideo {
     this.description,
   });
 
-  int? objectiveId;
-  String? name;
-  int? id;
-  int? chapterId;
-  String? title;
-  String? objvideoLink;
-  String? objImage;
-  String? description;
+  final int? objectiveId;
+  final String? name;
+  final int? id;
+  final int? chapterId;
+  final String? title;
+  final String? objvideoLink;
+  final String? objImage;
+  final String? description;
 
   factory SuggestedVideo.fromJson(Map<String, dynamic> json) => SuggestedVideo(
         objectiveId: json["objectiveId"],
@@ -292,7 +285,9 @@ class SuggestedVideo {
 //   EnumValues(this.map);
 
 //   Map<T, String> get reverse {
-//     reverseMap;
+//     if (reverseMap == null) {
+//       reverseMap = map.map((k, v) => new MapEntry(v, k));
+//     }
 //     return reverseMap;
 //   }
 // }

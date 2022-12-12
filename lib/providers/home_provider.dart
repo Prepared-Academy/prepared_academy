@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -10,12 +12,13 @@ import 'package:prepared_academy/utils/app_constants.dart';
 
 import '../utils/helper.dart';
 
+// ignore: duplicate_ignore
 class HomeProvider extends ChangeNotifier {
   bool isLoading = true;
 
   final HomeRepo homeRepo = HomeRepo();
   StoryModel storyModel = StoryModel();
-  List<GetNewsFeedModel> getNewsFeedData = [];
+  List<NewsFeedModel> getNewsFeedData = [];
   List<StoryUsers> story = [];
   late StoryUsers storyUsers;
   late Fact fact;
@@ -42,11 +45,9 @@ class HomeProvider extends ChangeNotifier {
   Future getNewsPost() async {
     try {
       loadingShow();
-      Response apiResponse = (await homeRepo.getNewsFeed());
+      Response apiResponse = await homeRepo.getNewsFeed();
       if (apiResponse.statusCode == 200) {
-        getNewsFeedData =
-            getNewsFeedModelFromJson(jsonDecode((apiResponse.data)));
-        notifyListeners();
+        NewsFeedModel getNewsFeed = NewsFeedModel.fromJson(apiResponse.data);
       }
       loadingStop();
     } catch (e) {

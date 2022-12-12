@@ -29,6 +29,7 @@ class AppConstants {
 
 // Student Profile
   static const String PROFILE_URI = '/api/muser/getStudentProfile';
+  static const String GETREPORTS_URI = 'api/muser/getStudentReport';
 
 // Inapp Notifications
 

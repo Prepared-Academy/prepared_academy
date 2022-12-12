@@ -35,7 +35,7 @@ class ClassActivityRepo {
 
   Future<Response> getActivities(int activityId) async {
     try {
-      final Response response =
+      final response =
           await client.get("${AppConstants.ACITVITIES_URI}/$activityId");
       return response;
     } on DioError catch (e) {

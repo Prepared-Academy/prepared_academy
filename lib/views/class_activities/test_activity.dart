@@ -72,6 +72,7 @@ class _TestActivityState extends State<TestActivity>
         duration: const Duration(milliseconds: 1), curve: Curves.easeIn);
   }
 
+  // ignore: unused_element
   Widget _schoolSelectionField() => DropdownSearch<String>(
         dropdownButtonProps: const DropdownButtonProps(
           padding: EdgeInsets.all(0),

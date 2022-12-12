@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/utils/app_constants.dart';

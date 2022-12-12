@@ -49,7 +49,7 @@ class Assignment extends StatelessWidget {
                         ),
                       ),
                       subtitle: const Text(
-                        "Assignmnt Activity",
+                        "Assignment Activity",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,

@@ -19,4 +19,15 @@ class ProfileRepo {
       throw Exception(errorMessage);
     }
   }
+
+  Future<Response> getStudentReport() async {
+    try {
+      final Response response = await client.get(AppConstants.GETREPORTS_URI);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
 }

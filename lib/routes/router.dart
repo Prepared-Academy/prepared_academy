@@ -10,6 +10,8 @@ import 'package:prepared_academy/views/class_activities/view_activites/activitie
 import 'package:prepared_academy/views/class_activities/assignment_activity.dart';
 import 'package:prepared_academy/views/home/home.dart';
 import 'package:prepared_academy/views/home/navig.dart';
+import 'package:prepared_academy/views/home/profile/my_reports.dart';
+import 'package:prepared_academy/views/home/profile/my_rewards.dart';
 import 'package:prepared_academy/views/home/story_view.dart';
 import 'package:prepared_academy/views/class_activities/subject_activity.dart';
 import 'package:prepared_academy/views/subjects/chapter_content.dart';
@@ -43,6 +45,8 @@ class AppRoutes {
   static const ASSIGNMENTACTIVITY = '/assignmentactivities';
   static const TESTACTIVITY = '/testactivities';
   static const INAPPNOTIFICATION = '/notification';
+  static const MYREWARDSPAGE = '/rewards';
+  static const MYREPORTSPAGE = '/reports';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -67,6 +71,8 @@ class AppRoutes {
       TESTACTIVITY: (context) => const TestActivity(),
       INAPPNOTIFICATION: (context) => const Notifications(),
       FORGOTPASSWORD: (context) => const ForgotPassword(),
+      MYREWARDSPAGE: (context) => const MyRewards(),
+      MYREPORTSPAGE: (context) => const MyReports()
     };
     return appRoutes;
   }

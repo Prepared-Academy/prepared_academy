@@ -62,7 +62,7 @@ class _InClassActivitiesState extends State<InClassActivities> {
                         OneContext().pushNamed(AppRoutes.SUBJECTACTIVITIES,
                             arguments: {
                               "subjectId":
-                                  provider.inClassSubjects[index].subjectId!
+                                  provider.inClassSubjects[index].studentId!
                             });
                       },
                       child: Column(

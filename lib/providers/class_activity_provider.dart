@@ -36,7 +36,6 @@ class ClassActivityProvider extends ChangeNotifier {
       loadingShow();
       Response apiResponse = await classActivityRepo.getMyInClassSubjects();
       if (apiResponse.statusCode == 200) {
-        print("aayittind");
         inClassSubjects =
             inClassSubjectsModelFromJson(jsonEncode(apiResponse.data));
         notifyListeners();
@@ -48,11 +47,11 @@ class ClassActivityProvider extends ChangeNotifier {
     }
   }
 
-  Future getSubjectActivities(int subjectId) async {
+  Future getSubjectActivities(int gradeId) async {
     try {
       loadingShow();
       Response apiResponse =
-          await classActivityRepo.getSubjectActivities(subjectId);
+          await classActivityRepo.getSubjectActivities(gradeId);
       if (apiResponse.statusCode == 200) {
         subjectActivities =
             subjectActivityModelFromJson(jsonEncode(apiResponse.data));

@@ -1,6 +1,8 @@
 import 'package:animation_wrappers/animations/scale_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/providers/profile_provider.dart';
+import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/widgets/cached_image.dart';
 import 'package:provider/provider.dart';
 import '../../themes/color_theme.dart';
@@ -22,7 +24,6 @@ class _ProfileState extends State<Profile> {
     Future.microtask(() => context.read<ProfileProvider>().getProfileDetails());
   }
 
-  @override
   Widget profileAppBar() {
     return AppBar(
       foregroundColor: kWhite,
@@ -71,7 +72,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      provider.profileModel.name!,
+                      provider.profileModel.name!.toString(),
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w800,
@@ -91,7 +92,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      provider.profileModel.schoolName!.toString(),
+                      provider.profileModel.schoolName!,
                       style: const TextStyle(fontSize: 14, color: kWhite),
                     ),
                   ),
@@ -119,26 +120,31 @@ class _ProfileState extends State<Profile> {
       child: Column(
         children: [
           ScaleAnimation(
-            child: Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.MYREWARDS,
-                  width: 25,
+            child: GestureDetector(
+              onTap: () => OneContext().pushNamed(
+                AppRoutes.MYREWARDSPAGE,
+              ),
+              child: Card(
+                margin: const EdgeInsets.all(2),
+                elevation: 0,
+                child: ListTile(
+                  leading: Image.asset(
+                    AppConstants.MYREWARDS,
+                    width: 25,
+                  ),
+                  title: RichText(
+                      text: const TextSpan(
+                          text: 'My Rewards',
+                          style: TextStyle(
+                              color: kBlack, fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                        TextSpan(
+                          text: '\n View rewards and points',
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.w400),
+                        )
+                      ])),
                 ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'My Rewards',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
               ),
             ),
           ),
@@ -150,32 +156,37 @@ class _ProfileState extends State<Profile> {
             color: Colors.black,
           ),
           ScaleAnimation(
-            child: Card(
-              margin: const EdgeInsets.all(2),
-              elevation: 0,
-              child: ListTile(
-                leading: Image.asset(
-                  AppConstants.MYREPORTS,
-                  width: 25,
+            child: GestureDetector(
+              onTap: () => OneContext().pushNamed(
+                AppRoutes.MYREPORTSPAGE,
+              ),
+              child: Card(
+                margin: const EdgeInsets.all(2),
+                elevation: 0,
+                child: ListTile(
+                  leading: Image.asset(
+                    AppConstants.MYREPORTS,
+                    width: 25,
+                  ),
+                  title: RichText(
+                      text: const TextSpan(
+                          text: 'My Reports',
+                          style: TextStyle(
+                              color: kBlack, fontWeight: FontWeight.w600),
+                          children: <TextSpan>[
+                        TextSpan(
+                          text: '\nView rewards and points',
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.w400),
+                        )
+                      ])),
                 ),
-                title: RichText(
-                    text: const TextSpan(
-                        text: 'My Reports',
-                        style: TextStyle(
-                            color: kBlack, fontWeight: FontWeight.w600),
-                        children: <TextSpan>[
-                      TextSpan(
-                        text: '\nView rewards and points',
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      )
-                    ])),
               ),
             ),
           ),
           const Divider(
             height: 5,
-            thickness: 0.08,
+            thickness: 0.28,
             indent: 20,
             endIndent: 20,
             color: Colors.black,
@@ -237,7 +248,7 @@ class _ProfileState extends State<Profile> {
           ),
           const Divider(
             height: 3,
-            thickness: 0.08,
+            thickness: 0.05,
             indent: 20,
             endIndent: 20,
             color: Colors.black,

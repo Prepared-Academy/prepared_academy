@@ -6,7 +6,6 @@ import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/models/get_newsfeed_model.dart';
 import 'package:prepared_academy/providers/home_provider.dart';
-import 'package:prepared_academy/repository/home_repo.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
@@ -125,66 +124,69 @@ class _HomeState extends State<Home> {
             )),
             const SizedBox(height: 10),
             SizedBox(
-              height: 100,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) => ScaleAnimation(
-                  child: SizedBox(
-                    width: 350,
-                    child: Card(
-                      color: Colors.transparent,
-                      elevation: 0,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 4),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: const BorderSide(color: kBorder)),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
-                          child: Center(
-                            child: ListTile(
-                              leading: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey.shade200,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              title: Text(
-                                "Mathematics".toUpperCase(),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
+                height: 100,
+                child: Consumer<HomeProvider>(builder: (context, provider, __) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: provider.getNewsFeedData.length,
+                    itemBuilder: (context, index) => ScaleAnimation(
+                      child: SizedBox(
+                        width: 350,
+                        child: Card(
+                          color: Colors.transparent,
+                          elevation: 0,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 4),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: const BorderSide(color: kBorder)),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(10),
+                              onTap: () {},
+                              child: Center(
+                                child: ListTile(
+                                  leading: Container(
+                                    height: 60,
+                                    width: 60,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey.shade200,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                  ),
+                                  title: Text(
+                                    provider.getNewsFeedData[index]
+                                        .suggestedVideo![index].title!,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  subtitle: const Text(
+                                    "Understanding elementary shapes",
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      overflow: TextOverflow.ellipsis,
+                                      color: kPrimaryColor,
+                                    ),
+                                  ),
+                                  trailing: const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    color: kPrimaryColor,
+                                    size: 15,
+                                  ),
                                 ),
-                              ),
-                              subtitle: const Text(
-                                "Understanding elementary shapes",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  overflow: TextOverflow.ellipsis,
-                                  color: kPrimaryColor,
-                                ),
-                              ),
-                              trailing: const Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                color: kPrimaryColor,
-                                size: 15,
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-            ),
+                  );
+                })),
           ],
         ),
       );
@@ -362,8 +364,16 @@ class _HomeState extends State<Home> {
                                     ),
                                     const SizedBox(width: 10),
                                     Text(
-                                      provider.getNewsFeedData[index].posts!
+                                      provider.getNewsFeedData.first.posts!
                                           .first.title!,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      provider.getNewsFeedData[index]
+                                          .posts![index].title!,
                                       style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
@@ -438,88 +448,6 @@ class _HomeState extends State<Home> {
 
               //             )
 
-              //             //  [
-              //             //   GestureDetector(
-              //             //     onTap: () {
-              //             //       OneContext().push(
-              //             //         MaterialPageRoute(
-              //             //           builder: (context) => const ViewPhoto(
-              //             //             imageProvider: AssetImage(
-              //             //               AppConstants.DEMOPOST_IMAGE,
-              //             //             ),
-              //             //           ),
-              //             //         ),
-              //             //       );
-              //             //     },
-              //             //     child: ClipRRect(
-              //             //       borderRadius: const BorderRadius.only(
-              //             //         topLeft: Radius.circular(15),
-              //             //         topRight: Radius.circular(15),
-              //             //       ),
-              //             //       child: Container(
-              //             //         color: Colors.white,
-              //             //         height: 400,
-              //             //         width: double.maxFinite,
-              //             //         child: Image.asset(
-              //             //           "provider.getNewsFeedData[index].posts!.last",
-              //             //           fit: BoxFit.cover,
-              //             //         ),
-              //             //       ),
-              //             //     ),
-              //             //   ),
-              //             //   Padding(
-              //             //     padding: const EdgeInsets.all(16),
-              //             //     child: Column(
-              //             //       crossAxisAlignment: CrossAxisAlignment.start,
-              //             //       children: [
-              //             //         Row(
-              //             //           children: [
-              //             //             CircleAvatar(
-              //             //               backgroundColor: Colors.grey.shade200,
-              //             //               radius: 20,
-              //             //             ),
-              //             //             const SizedBox(width: 10),
-              //             //             const Text(
-              //             //               " provider.getNewsFeedData[].posts[].title",
-              //             //               style: TextStyle(
-              //             //                 fontSize: 16,
-              //             //                 fontWeight: FontWeight.w500,
-              //             //               ),
-              //             //             ),
-              //             //             const Spacer(),
-              //             //             const LikeButton(
-              //             //               likeCount: 45,
-              //             //               size: 24,
-              //             //             ),
-              //             //           ],
-              //             //         ),
-              //             //         const SizedBox(height: 15),
-              //             //         const Text(
-              //             //           "Top 7 Best Automatic Subtitle Generators",
-              //             //           style: TextStyle(
-              //             //             fontSize: 15,
-              //             //             fontWeight: FontWeight.bold,
-              //             //           ),
-              //             //         ),
-              //             //         const SizedBox(height: 2),
-              //             //         const Text(
-              //             //           "Learn how to rank your e-commerce website on Google",
-              //             //           style: TextStyle(
-              //             //             fontSize: 12,
-              //             //             fontWeight: FontWeight.w500,
-              //             //           ),
-              //             //         ),
-              //             //         const SizedBox(height: 10),
-              //             //         const Text(
-              //             //           "Since we started using Semrush, our keywords are much more targeted and we are seeing much more traffic and activity.",
-              //             //           style: TextStyle(
-              //             //             fontSize: 12,
-              //             //           ),
-              //             //         )
-              //             //       ],
-              //             //     ),
-              //             //   )
-              //             // ],
               //             ),
               //       ),
               //     );

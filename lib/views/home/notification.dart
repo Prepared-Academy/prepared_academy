@@ -74,7 +74,8 @@ class Notifications extends StatelessWidget {
                   child: Consumer<InAppNotificationProvider>(
                       builder: (context, provider, __) {
                     return ListView.builder(
-                      itemCount: provider.inappNotificationModel.count,
+                      itemCount:
+                          provider.inappNotificationModel.notifications!.length,
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
@@ -90,8 +91,7 @@ class Notifications extends StatelessWidget {
                             ),
                             Text(
                               provider.inappNotificationModel
-                                  .notifications![index].message!
-                                  .toString(),
+                                  .notifications![index].message!,
                               style: const TextStyle(color: Colors.white),
                               textAlign: TextAlign.start,
                             ),

@@ -17,9 +17,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     bool result = await emailAuth.sendOtp(
         recipientMail: _emailController.value.text, otpLength: 4);
     if (result) {
-      print("OTP is sented");
+      // ignore: avoid_print
+      print("OTP is verified");
     } else {
-      print("OTP Failed");
+      // ignore: avoid_print
+      print("OTP not verified");
     }
   }
 
@@ -28,6 +30,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         recipientMail: _emailController.value.text,
         userOtp: _otpcontroller.value.text);
     if (result) {
+      // ignore: avoid_print
       print("OTP is verified");
     } else {
       print("OTP not verified");

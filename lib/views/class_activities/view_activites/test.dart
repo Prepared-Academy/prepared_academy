@@ -12,18 +12,20 @@ class ClassTest extends StatelessWidget {
   const ClassTest({super.key, required this.activityModel});
 
   Widget chapterNames(List<Chapter> chapterList) => SizedBox(
-        height: 25,
-        child: ListView.builder(
-            itemExtent: 200,
-            shrinkWrap: false,
-            scrollDirection: Axis.horizontal,
-            itemCount: chapterList.length,
-            itemBuilder: (context, index) {
-              final chapter = chapterList[index];
-              return Text(
-                "• ${chapter.chapterName!} ",
-              );
-            }),
+        height: 33,
+        child: Expanded(
+          child: ListView.builder(
+              // itemExtent: 200,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: chapterList.length,
+              itemBuilder: (context, index) {
+                final chapter = chapterList[index];
+                return Text(
+                  "• ${chapter.chapterName!} ",
+                );
+              }),
+        ),
       );
 
   @override
