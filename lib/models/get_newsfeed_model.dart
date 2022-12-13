@@ -61,8 +61,8 @@ class Post {
     this.createdAt,
     this.updatedAt,
     this.visibility,
-    // this.userName,
-    // this.profileImage,
+    this.userName,
+    this.profileImage,
     this.role,
     this.likeStatus,
   });
@@ -85,8 +85,8 @@ class Post {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final int? visibility;
-  // final UserName? userName;
-  // final ProfileImage? profileImage;
+  final String? userName;
+  final String? profileImage;
   final int? role;
   final int? likeStatus;
 
@@ -109,8 +109,8 @@ class Post {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         visibility: json["visibility"],
-        // userName: userNameValues.map[json["userName"]],
-        // profileImage: profileImageValues.map[json["profileImage"]],
+        userName: json["userName"],
+        profileImage: json["profileImage"],
         role: json["role"],
         likeStatus: json["likeStatus"],
       );
@@ -134,8 +134,8 @@ class Post {
         "created_at": createdAt!.toIso8601String(),
         "updated_at": updatedAt!.toIso8601String(),
         "visibility": visibility,
-        // "userName": userNameValues.reverse[userName],
-        // "profileImage": profileImageValues.reverse[profileImage],
+        "userName": userName,
+        "profileImage": profileImage,
         "role": role,
         "likeStatus": likeStatus,
       };

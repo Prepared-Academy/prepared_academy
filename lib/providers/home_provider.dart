@@ -18,7 +18,7 @@ class HomeProvider extends ChangeNotifier {
 
   final HomeRepo homeRepo = HomeRepo();
   StoryModel storyModel = StoryModel();
-  List<NewsFeedModel> getNewsFeedData = [];
+  NewsFeedModel getNewsFeedData = NewsFeedModel();
   List<StoryUsers> story = [];
   late StoryUsers storyUsers;
   late Fact fact;
@@ -47,7 +47,8 @@ class HomeProvider extends ChangeNotifier {
       loadingShow();
       Response apiResponse = await homeRepo.getNewsFeed();
       if (apiResponse.statusCode == 200) {
-        NewsFeedModel getNewsFeed = NewsFeedModel.fromJson(apiResponse.data);
+        getNewsFeedData = NewsFeedModel.fromJson(apiResponse.data);
+        notifyListeners();
       }
       loadingStop();
     } catch (e) {
