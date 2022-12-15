@@ -7,7 +7,6 @@ import 'package:prepared_academy/providers/auth_provider.dart';
 import 'package:prepared_academy/providers/class_activity_provider.dart';
 import 'package:prepared_academy/providers/home_provider.dart';
 import 'package:prepared_academy/providers/live_quiz_provider.dart';
-import 'package:prepared_academy/providers/splash_provider.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/setup.dart';
 import 'package:prepared_academy/themes/app_theme.dart';
@@ -39,7 +38,6 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SplashProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => ClassActivityProvider()),

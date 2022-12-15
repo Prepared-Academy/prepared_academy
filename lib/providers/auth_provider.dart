@@ -8,6 +8,7 @@ import 'package:prepared_academy/utils/shared_preference.dart';
 
 import '../models/register_model.dart';
 import '../routes/router.dart';
+import '../services/notification_services.dart';
 import '../setup.dart';
 import '../utils/helper.dart';
 import '../utils/snackbar.dart';
@@ -41,6 +42,7 @@ class AuthProvider extends ChangeNotifier {
         } else if (apiResponse.data["message"] == "Login Successful") {
           await authRepo.saveUser(userModel);
           await authRepo.creatLoginTime(userModel.user!.id!);
+          NotificationServices.saveFirebaseToken(userModel.user!.id!);
           loadingStop();
           OneContext()
               .pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);

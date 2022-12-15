@@ -1,7 +1,6 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:prepared_academy/providers/splash_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:prepared_academy/services/splash_services.dart';
 
 import '../../utils/app_constants.dart';
 
@@ -16,7 +15,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => context.read<SplashProvider>().init());
+    SplashServices.init();
   }
 
   @override

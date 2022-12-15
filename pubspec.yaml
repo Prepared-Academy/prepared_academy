@@ -90,6 +90,8 @@ dependencies:
   # curved_labeled_navigation_bar: ^2.0.2
   # vimeo_video_player: ^0.0.6
   url_launcher: 6.1.6
+  flutter_local_notifications: ^12.0.4
+  firebase_messaging: ^14.1.4
 
 dev_dependencies:
   flutter_test:
@@ -102,6 +104,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
   package_rename: ^1.0.0+1
+
 
 
 package_rename_config:

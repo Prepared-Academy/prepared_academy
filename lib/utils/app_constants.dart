@@ -38,6 +38,8 @@ class AppConstants {
   static const String GET_STUDENT_DASHBOARD_URI =
       '/api/muser/getStudentDashboard';
 
+  static const String SAVE_FIREBASE_TOKEN = '/api/muser/save-token';
+
   static const String LIKE_POSTS_URI = '/api/muser/likeposts';
   static const String UNLIKE_POSTS_URI = '/api/muser/unlikeposts';
 
