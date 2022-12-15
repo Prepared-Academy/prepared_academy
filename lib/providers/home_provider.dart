@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:prepared_academy/models/get_student_dashboard_model.dart';
 import 'package:prepared_academy/models/story_model.dart';
 import 'package:prepared_academy/repository/home_repo.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
@@ -18,9 +19,26 @@ class HomeProvider extends ChangeNotifier {
   late Fact fact;
   int currentStoryIndex = 0;
 
+  // Get Student Dashboard
+  List<Post> postsList = [];
+  List<SuggestedVideo> suggestedVideoList = [];
+  GetStudentDashBoardModel getStudentDashBoardModel =
+      GetStudentDashBoardModel();
+
   void loading(bool value) {
     isLoading = value;
     notifyListeners();
+  }
+
+  Future init() async {
+    try {
+      loading(true);
+      await getStory();
+      await getRecentlyLearned();
+      loading(false);
+    } catch (e) {
+      loading(false);
+    }
   }
 
   // Fetch all story
@@ -97,5 +115,62 @@ class HomeProvider extends ChangeNotifier {
     ];
 
     notifyListeners();
+  }
+
+  // Fetch all story
+  Future getRecentlyLearned() async {
+    postsList = [];
+    suggestedVideoList = [];
+    try {
+      Response apiResponse = await homeRepo.getStudentDashboard();
+
+      if (apiResponse.statusCode == 200) {
+        getStudentDashBoardModel =
+            GetStudentDashBoardModel.fromJson(apiResponse.data);
+        postsList = getStudentDashBoardModel.posts ?? [];
+        suggestedVideoList = getStudentDashBoardModel.suggestedVideo ?? [];
+
+        notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // like Unlike Post
+
+  Future<bool> onLikeButtonTapped(bool isLiked, int id) async {
+    if (isLiked) {
+      unLikePosts(id);
+    } else {
+      likePosts(id);
+    }
+
+    /// send your request here
+    // final bool success= await sendRequest();
+    /// if failed, you can do nothing
+    // return success? !isLiked:isLiked;
+
+    return !isLiked;
+  }
+
+  Future likePosts(int id) async {
+    try {
+      var data = {"id": id};
+      Response apiResponse = await homeRepo.likePosts(jsonEncode(data));
+      if (apiResponse.statusCode == 200) {}
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future unLikePosts(int id) async {
+    try {
+      var data = {"id": id};
+      Response apiResponse = await homeRepo.unLikePosts(jsonEncode(data));
+      if (apiResponse.statusCode == 200) {}
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -10,8 +10,8 @@ class SvgImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.network(
       imageUrl,
-      height: 50,
-      width: 50,
+      height: 70,
+      width: 70,
       fit: BoxFit.cover,
       placeholderBuilder: (BuildContext context) => Image.asset(
         AppConstants.PLACEHOLDER_IMAGE,

@@ -24,7 +24,11 @@ class Story extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FadeAnimation(child: const Text("Perals of wisdom")),
+            FadeAnimation(
+                child: const Text(
+              "Perals of wisdom",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+            )),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -51,7 +55,7 @@ class Story extends StatelessWidget {
                           ],
                         ),
                         child: CircleAvatar(
-                          radius: 30,
+                          radius: 40,
                           backgroundColor: Colors.white,
                           backgroundImage: AssetImage(
                               AppConstants.storyList[index]["image"]),

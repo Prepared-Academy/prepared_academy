@@ -43,4 +43,40 @@ class HomeRepo {
       throw Exception(errorMessage);
     }
   }
+
+  Future<Response> getStudentDashboard() async {
+    try {
+      final Response response =
+          await client.get(AppConstants.GET_STUDENT_DASHBOARD_URI);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> likePosts(String data) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.LIKE_POSTS_URI, data: data);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> unLikePosts(String data) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.UNLIKE_POSTS_URI, data: data);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
 }

@@ -1,10 +1,12 @@
-import 'package:ff_navigation_bar_plus/ff_navigation_bar_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/views/home/home.dart';
 import 'package:prepared_academy/views/class_activities/in_class_activities.dart';
-import 'package:prepared_academy/views/home/live_quiz.dart';
 import 'package:prepared_academy/views/home/my_subjects.dart';
+import 'package:prepared_academy/views/home/rewards.dart';
+import 'drawer.dart';
+
+final GlobalKey<ScaffoldState> navigScaffoldKey = GlobalKey();
 
 class Navig extends StatefulWidget {
   const Navig({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class _NavigState extends State<Navig> {
     const Home(),
     MySubjects(),
     const InClassActivities(),
-    LiveQuiz(),
+    const Rewards(),
     const Home(),
   ];
 
@@ -46,98 +48,129 @@ class _NavigState extends State<Navig> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Scaffold(
-        body: Center(
-          child: widgetOptions.elementAt(selectedIndex),
-        ),
+      key: navigScaffoldKey,
+      endDrawer: DrawerBody(),
+      body: Center(
+        child: widgetOptions.elementAt(selectedIndex),
       ),
-      bottomNavigationBar: FFNavigationBar(
-        theme: FFNavigationBarTheme(
-          showSelectedItemShadow: false,
-          unselectedItemTextStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 10,
-          ),
-          selectedItemTextStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 10,
-          ),
-          unselectedItemLabelColor: Colors.grey.shade500,
-          barBackgroundColor: Colors.white,
-          selectedItemBorderColor: Colors.transparent,
-          selectedItemBackgroundColor: kPrimaryColor,
-          selectedItemIconColor: Colors.white,
-          selectedItemLabelColor: kPrimaryColor,
+      //   bottomNavigationBar: CurvedNavigationBar(
+      //     key: bottomNavigationKey,
+      //     index: 0,
+      //     items: const [
+      //       CurvedNavigationBarItem(
+      //         child: Icon(Icons.home_outlined),
+      //       ),
+      //       CurvedNavigationBarItem(
+      //         child: Icon(Icons.search),
+      //       ),
+      //       CurvedNavigationBarItem(
+      //         child: Icon(Icons.chat_bubble_outline),
+      //       ),
+      //       CurvedNavigationBarItem(
+      //         child: Icon(Icons.newspaper),
+      //       ),
+      //       CurvedNavigationBarItem(
+      //         child: Icon(Icons.perm_identity),
+      //       ),
+      //     ],
+      //     color: Colors.transparent,
+      //     buttonBackgroundColor: kPrimaryColor,
+      //     backgroundColor: Colors.transparent,
+      //     animationCurve: Curves.easeInOut,
+      //     animationDuration: const Duration(milliseconds: 0),
+      //     onTap: onItemTap,
+      //     letIndexChange: (index) => true,
+      //   ),
+      // );
+
+      // bottomNavigationBar: FFNavigationBar(
+      //   theme: FFNavigationBarTheme(
+      //     showSelectedItemShadow: false,
+      //     unselectedItemTextStyle: const TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       fontSize: 10,
+      //     ),
+      //     selectedItemTextStyle: const TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       fontSize: 10,
+      //     ),
+      //     unselectedItemLabelColor: Colors.grey.shade500,
+      //     barBackgroundColor: Colors.white,
+      //     selectedItemBorderColor: Colors.transparent,
+      //     selectedItemBackgroundColor: kPrimaryColor,
+      //     selectedItemIconColor: Colors.white,
+      //     selectedItemLabelColor: kPrimaryColor,
+      //   ),
+      //   selectedIndex: selectedIndex,
+      //   onSelectTab: onItemTap,
+      //   items: [
+      //     FFNavigationBarItem(
+      //       iconData: Icons.home_rounded,
+      //       label: 'Home',
+      //     ),
+      //     FFNavigationBarItem(
+      //       iconData: Icons.subject,
+      //       label: 'Subjects',
+      //     ),
+      //     FFNavigationBarItem(
+      //       iconData: Icons.assignment,
+      //       label: 'Activities',
+      //     ),
+      //     FFNavigationBarItem(
+      //       iconData: Icons.emoji_events_rounded,
+      //       label: 'Rewards',
+      //     ),
+      //     FFNavigationBarItem(
+      //       iconData: Icons.person,
+      //       label: 'Account',
+      //     ),
+      //   ],
+      // );
+
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 10,
+        backgroundColor: Colors.white,
+        selectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 8,
         ),
-        selectedIndex: selectedIndex,
-        onSelectTab: onItemTap,
-        items: [
-          FFNavigationBarItem(
-            iconData: Icons.home_rounded,
-            label: 'Home',
+        unselectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 8,
+        ),
+        unselectedItemColor: Colors.grey.shade500,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: selectedIndex,
+        selectedItemColor: kPrimaryColor,
+        // iconSize: iconSize,
+        onTap: onItemTap,
+        items: const [
+          BottomNavigationBarItem(
+              label: "Home",
+              activeIcon: Icon(Icons.home_rounded),
+              icon: Icon(Icons.home_outlined)),
+          BottomNavigationBarItem(
+            label: "Subjects",
+            activeIcon: Icon(Icons.subject),
+            icon: Icon(Icons.subject_outlined),
           ),
-          FFNavigationBarItem(
-            iconData: Icons.subject,
-            label: 'Subjects',
+          BottomNavigationBarItem(
+            label: "Activities",
+            activeIcon: Icon(Icons.assignment),
+            icon: Icon(Icons.assignment_outlined),
           ),
-          FFNavigationBarItem(
-            iconData: Icons.assignment,
-            label: 'Activities',
+          BottomNavigationBarItem(
+            label: "Rewards",
+            activeIcon: Icon(Icons.emoji_events_rounded),
+            icon: Icon(Icons.emoji_events_outlined),
           ),
-          FFNavigationBarItem(
-            iconData: Icons.quiz,
-            label: 'Live Quiz',
-          ),
-          FFNavigationBarItem(
-            iconData: Icons.person,
-            label: 'Account',
-          ),
+          BottomNavigationBarItem(
+            label: "Profile",
+            activeIcon: Icon(Icons.person),
+            icon: Icon(Icons.person_outlined),
+          )
         ],
       ),
-
-      //  BottomNavigationBar(
-      //     elevation: 10,
-      //     backgroundColor: Colors.white,
-      //     selectedLabelStyle: const TextStyle(
-      //       fontWeight: FontWeight.bold,
-      //       fontSize: 10,
-      //     ),
-      //     unselectedLabelStyle: const TextStyle(
-      //       fontWeight: FontWeight.bold,
-      //       fontSize: 10,
-      //     ),
-      //     unselectedItemColor: Colors.grey.shade500,
-      //     type: BottomNavigationBarType.fixed,
-      //     currentIndex: selectedIndex,
-      //     selectedItemColor: kPrimaryColor,
-      //     // iconSize: iconSize,
-      //     onTap: onItemTap,
-      //     items: const [
-      //       BottomNavigationBarItem(
-      //           label: "Home",
-      //           activeIcon: Icon(Icons.home_rounded),
-      //           icon: Icon(Icons.home_outlined)),
-      //       BottomNavigationBarItem(
-      //         label: "Subjects",
-      //         activeIcon: Icon(Icons.subject),
-      //         icon: Icon(Icons.subject_outlined),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         label: "Activities",
-      //         activeIcon: Icon(Icons.assignment),
-      //         icon: Icon(Icons.assignment_outlined),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         label: "Live Quiz",
-      //         activeIcon: Icon(Icons.quiz),
-      //         icon: Icon(Icons.quiz_outlined),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         label: "Profile",
-      //         activeIcon: Icon(Icons.person),
-      //         icon: Icon(Icons.person_outlined),
-      //       )
-      //     ]),
     );
   }
 }

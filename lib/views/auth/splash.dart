@@ -37,8 +37,8 @@ class _SplashState extends State<Splash> {
               left: 0,
               right: 0,
               child: Image.asset(
-                AppConstants.LOGOWITHTEXT_IMAGE,
-                height: 25,
+                AppConstants.TEXTLOGO_IMAGE,
+                height: 20,
               ))
         ],
       ),

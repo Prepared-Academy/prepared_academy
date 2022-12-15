@@ -21,6 +21,7 @@ class ViewPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBlack,
       appBar: AppBar(backgroundColor: kBlack, foregroundColor: kWhite),
       body: Container(
         constraints: BoxConstraints.expand(

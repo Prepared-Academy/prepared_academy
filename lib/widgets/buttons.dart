@@ -18,7 +18,7 @@ class MiniElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 27,
+      height: 29,
       width: fullWidth == null ? null : MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -55,7 +55,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 45,
+      height: 44,
       width: fullWidth == null ? null : MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: onPressed,

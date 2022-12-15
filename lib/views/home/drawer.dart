@@ -23,6 +23,10 @@ class DrawerBody extends StatelessWidget {
       "imageicon": AppConstants.LIVE_ICON,
     },
     {
+      "name": "Live Quiz",
+      "imageicon": AppConstants.LIVE_QUIZ_ICON,
+    },
+    {
       "name": "Subscribe Now",
       "imageicon": AppConstants.SUBSCRIBE_ICON,
     },
@@ -61,14 +65,14 @@ class DrawerBody extends StatelessWidget {
         minLeadingWidth: 25,
         onTap: onTap,
         dense: true,
-        leading: Image.asset(imageIcon, height: 24),
+        leading: Image.asset(imageIcon, height: 20),
         title: Text(
           text,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
         ),
         trailing: const Icon(
           Icons.arrow_forward_ios_rounded,
-          size: 15,
+          size: 14,
         ),
       );
 
@@ -79,7 +83,7 @@ class DrawerBody extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 70,
+              height: 60,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
@@ -111,6 +115,8 @@ class DrawerBody extends StatelessWidget {
                       () {
                     if (index == 1) {
                       OneContext().pushNamed(AppRoutes.EXAMSASSIGNMENTS);
+                    } else if (index == 3) {
+                      OneContext().pushNamed(AppRoutes.LIVEQUIZ);
                     }
                   });
                 },

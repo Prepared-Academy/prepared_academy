@@ -199,7 +199,6 @@ class _QuestionsState extends State<Questions> {
                       foregroundColor: kPrimaryColor,
                       fullWidth: true,
                       onPressed: () {
-                        // TODO write answers!!!
                         // setState(() {
                         //   testQuestionList.indexWhere((element) => element[]);
                         // });

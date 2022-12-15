@@ -2,6 +2,8 @@
 //
 //     final activityModel = activityModelFromJson(jsonString);
 
+// ignore_for_file: unnecessary_question_mark
+
 import 'dart:convert';
 
 List<ActivityModel> activityModelFromJson(String str) =>
@@ -13,21 +15,29 @@ String activityModelToJson(List<ActivityModel> data) =>
 
 class ActivityModel {
   ActivityModel({
-    this.id,
-    this.category,
-    this.assignmentQuestion,
-    this.title,
-    this.typeId,
-    this.sequence,
-    this.activityDayMapId,
-    this.visibility,
-    this.status,
-    this.submitStatus,
-    this.chapterName,
-    this.videos,
-    this.libraries,
+    required this.publishDate,
+    required this.id,
+    required this.category,
+    required this.assignmentQuestion,
+    required this.title,
+    required this.typeId,
+    required this.sequence,
+    required this.activityDayMapId,
+    required this.visibility,
+    required this.status,
+    required this.activityId,
+    required this.score,
+    required this.submitStatus,
+    required this.activityDate,
+    required this.totalM,
+    required this.testDuration,
+    required this.chapters,
+    required this.chapterName,
+    required this.videos,
+    required this.libraries,
   });
 
+  final DateTime? publishDate;
   final int? id;
   final String? category;
   final String? assignmentQuestion;
@@ -37,12 +47,21 @@ class ActivityModel {
   final int? activityDayMapId;
   final int? visibility;
   final int? status;
+  final int? activityId;
+  final dynamic? score;
   final bool? submitStatus;
+  final DateTime? activityDate;
+  final String? totalM;
+  final int? testDuration;
+  final List<Chapter>? chapters;
   final String? chapterName;
   final List<Video>? videos;
   final List<Library>? libraries;
 
   factory ActivityModel.fromJson(Map<String, dynamic> json) => ActivityModel(
+        publishDate: json["publishDate"] == null
+            ? null
+            : DateTime.parse(json["publishDate"]),
         id: json["id"],
         category: json["category"],
         assignmentQuestion: json["assignmentQuestion"],
@@ -52,7 +71,18 @@ class ActivityModel {
         activityDayMapId: json["activityDayMapId"],
         visibility: json["visibility"],
         status: json["status"],
+        activityId: json["activityId"],
+        score: json["score"],
         submitStatus: json["submitStatus"],
+        activityDate: json["activityDate"] == null
+            ? null
+            : DateTime.parse(json["activityDate"]),
+        totalM: json["TotalM"],
+        testDuration: json["testDuration"],
+        chapters: json["chapters"] == null
+            ? null
+            : List<Chapter>.from(
+                json["chapters"].map((x) => Chapter.fromJson(x))),
         chapterName: json["chapterName"],
         videos: json["videos"] == null
             ? null
@@ -64,6 +94,8 @@ class ActivityModel {
       );
 
   Map<String, dynamic> toJson() => {
+        "publishDate":
+            publishDate == null ? null : publishDate!.toIso8601String(),
         "id": id,
         "category": category,
         "assignmentQuestion": assignmentQuestion,
@@ -73,7 +105,16 @@ class ActivityModel {
         "activityDayMapId": activityDayMapId,
         "visibility": visibility,
         "status": status,
+        "activityId": activityId,
+        "score": score,
         "submitStatus": submitStatus,
+        "activityDate":
+            activityDate == null ? null : activityDate!.toIso8601String(),
+        "TotalM": totalM,
+        "testDuration": testDuration,
+        "chapters": chapters == null
+            ? null
+            : List<dynamic>.from(chapters!.map((x) => x.toJson())),
         "chapterName": chapterName,
         "videos": videos == null
             ? null
@@ -84,13 +125,42 @@ class ActivityModel {
       };
 }
 
+class Chapter {
+  Chapter({
+    required this.id,
+    required this.chapterId,
+    required this.category,
+    required this.chapterName,
+  });
+
+  final int? id;
+  final int? chapterId;
+  final String? category;
+  final String? chapterName;
+
+  factory Chapter.fromJson(Map<String, dynamic> json) => Chapter(
+        id: json["id"],
+        chapterId: json["chapterId"],
+        category: json["category"],
+        chapterName: json["chapterName"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "chapterId": chapterId,
+        "category": category,
+        "chapterName": chapterName,
+      };
+}
+
 class Library {
   Library({
-    this.id,
-    this.subtitle,
-    this.description,
-    this.librarytype,
-    this.link,
+    required this.id,
+    required this.subtitle,
+    required this.description,
+    required this.librarytype,
+    required this.link,
+    required this.videoThumbnail,
   });
 
   final int? id;
@@ -98,6 +168,7 @@ class Library {
   final String? description;
   final String? librarytype;
   final String? link;
+  final String? videoThumbnail;
 
   factory Library.fromJson(Map<String, dynamic> json) => Library(
         id: json["id"],
@@ -105,6 +176,7 @@ class Library {
         description: json["description"],
         librarytype: json["librarytype"],
         link: json["link"],
+        videoThumbnail: json["videoThumbnail"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -113,30 +185,34 @@ class Library {
         "description": description,
         "librarytype": librarytype,
         "link": link,
+        "videoThumbnail": videoThumbnail,
       };
 }
 
 class Video {
   Video({
-    this.id,
-    this.objectiveId,
-    this.title,
-    this.description,
-    this.objImage,
-    this.objvideo,
-    this.score,
+    required this.id,
+    required this.objectiveVideoId,
+    required this.objectiveId,
+    required this.title,
+    required this.description,
+    required this.objImage,
+    required this.objvideo,
+    required this.score,
   });
 
   final int? id;
+  final int? objectiveVideoId;
   final int? objectiveId;
   final String? title;
   final String? description;
   final String? objImage;
   final String? objvideo;
-  final int? score;
+  final dynamic? score;
 
   factory Video.fromJson(Map<String, dynamic> json) => Video(
         id: json["id"],
+        objectiveVideoId: json["objectiveVideoId"],
         objectiveId: json["objectiveId"],
         title: json["title"],
         description: json["description"],
@@ -147,6 +223,7 @@ class Video {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "objectiveVideoId": objectiveVideoId,
         "objectiveId": objectiveId,
         "title": title,
         "description": description,

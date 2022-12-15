@@ -29,8 +29,17 @@ class AppConstants {
   static const String ACTIVITY_VIDEO_QUIZ_SUBMIT_URI =
       '/api/muser/activityVideoQuizSubmit';
 
-  static const String UNLOCK_ACTIVITY_UPDATE =
-      '/api/muser/unlockActivityUpdate';
+  static const String GET_TEST_ACTIVITY_URI =
+      '/api/muser/getShowClassTestQuestions';
+
+  static const String TEST_ACTIVITY_SUBMIT_URI =
+      '/api/muser/ActivityTestSubmitStudents';
+
+  static const String GET_STUDENT_DASHBOARD_URI =
+      '/api/muser/getStudentDashboard';
+
+  static const String LIKE_POSTS_URI = '/api/muser/likeposts';
+  static const String UNLIKE_POSTS_URI = '/api/muser/unlikeposts';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';
@@ -43,8 +52,7 @@ class AppConstants {
   static const String GUEST_MODE = 'guest_mode';
 
   // Images
-  static const String LOGOWITHTEXT_IMAGE = "assets/images/logowithtext.png";
-  static const String LOGO_IMAGE = "assets/images/logo.png";
+
   static const String DEMOPOST_IMAGE = "assets/images/demopost.jpg";
   static const String SERVICE = "images/service.png";
   static const String CLIENTS_IMAGE = "images/clients.png";
@@ -93,6 +101,16 @@ class AppConstants {
   static const String EMAIL_ICON = "assets/icons/email.png";
   static const String PASSWORD_ICON = "assets/icons/password.png";
   static const String ACTIVITYLOCK_ICON = "assets/icons/activitylock.png";
+  static const String VIDEOPLAY_ICON = "assets/icons/play.png";
+  static const String TROPHY_ICON = "assets/icons/trophy.png";
+  static const String NOTIFICATIONS_ICON = "assets/icons/notifications.png";
+  static const String LIVE_QUIZ_ICON = "assets/icons/livequiz.png";
+
+  // Logo
+
+  static const String LOGOWITHTEXT_IMAGE = "assets/logo/logowithtext.png";
+  static const String TEXTLOGO_IMAGE = "assets/logo/textlogo.png";
+  static const String LOGO_IMAGE = "assets/images/logo.png";
 
   static List<String> gradesList = [
     '1',

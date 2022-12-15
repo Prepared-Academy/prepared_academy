@@ -1,16 +1,14 @@
-import 'package:animation_wrappers/animation_wrappers.dart';
-import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
 import 'package:one_context/one_context.dart';
-import 'package:prepared_academy/animation/animation_list.dart';
 import 'package:prepared_academy/providers/home_provider.dart';
-import 'package:prepared_academy/themes/color_theme.dart';
+import 'package:prepared_academy/routes/router.dart';
+import 'package:prepared_academy/shimmers/home_shimmer.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
-import 'package:prepared_academy/views/home/drawer.dart';
+import 'package:prepared_academy/views/home/navig.dart';
+import 'package:prepared_academy/views/home/posts.dart';
+import 'package:prepared_academy/views/home/suggested_video.dart';
 import 'package:prepared_academy/views/home/story.dart';
 import 'package:prepared_academy/widgets/icon_button.dart';
-import 'package:prepared_academy/widgets/photo_view.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -21,13 +19,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final scrollController = ScrollController();
-
   @override
   void initState() {
     super.initState();
 
-    Future.microtask(() => context.read<HomeProvider>().getStory());
+    Future.microtask(() => context.read<HomeProvider>().init());
   }
 
   Widget _logoWithText() => Padding(
@@ -36,7 +32,7 @@ class _HomeState extends State<Home> {
       );
 
   Widget _notificationButton() => CustomIconButton(
-        onTap: () {},
+        onTap: () => OneContext().pushNamed(AppRoutes.NOTIFICATIONS),
         iconImage: AppConstants.NOTIFICATION_ICON,
       );
 
@@ -47,197 +43,8 @@ class _HomeState extends State<Home> {
 
   Widget _menuButton() => Builder(
         builder: (context) => CustomIconButton(
-          onTap: () => Scaffold.of(context).openEndDrawer(),
+          onTap: () => navigScaffoldKey.currentState!.openEndDrawer(),
           iconImage: AppConstants.MENU_ICON,
-        ),
-      );
-
-  Widget _suggestions() => Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FadeAnimation(
-                child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text("Suggested for you"),
-            )),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) => ScaleAnimation(
-                  child: SizedBox(
-                    width: 350,
-                    child: Card(
-                      color: Colors.transparent,
-                      elevation: 0,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 4),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: const BorderSide(color: kBorder)),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
-                          child: Center(
-                            child: ListTile(
-                              leading: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey.shade200,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              title: Text(
-                                "Mathematics".toUpperCase(),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              subtitle: const Text(
-                                "Understanding elementary shapes",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  overflow: TextOverflow.ellipsis,
-                                  color: kPrimaryColor,
-                                ),
-                              ),
-                              trailing: const Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                color: kPrimaryColor,
-                                size: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-
-  Widget _newsFeed() => Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FadeAnimation(child: const Text("Newsfeed")),
-            LiveList(
-              delay: animationDurationList,
-              shrinkWrap: true,
-              itemCount: 3,
-              controller: scrollController,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: ((context, index, animation) {
-                return AnimationFadeList(
-                  animation: animation,
-                  widget: Container(
-                    margin: const EdgeInsets.only(top: 10, bottom: 20),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: kBorder),
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            OneContext().push(
-                              MaterialPageRoute(
-                                builder: (context) => const ViewPhoto(
-                                  imageProvider: AssetImage(
-                                    AppConstants.DEMOPOST_IMAGE,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              topRight: Radius.circular(15),
-                            ),
-                            child: Container(
-                              color: Colors.white,
-                              height: 400,
-                              width: double.maxFinite,
-                              child: Image.asset(
-                                AppConstants.DEMOPOST_IMAGE,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Colors.grey.shade200,
-                                    radius: 20,
-                                  ),
-                                  const SizedBox(width: 10),
-                                  const Text(
-                                    "PreparEd",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const LikeButton(
-                                    likeCount: 45,
-                                    size: 24,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 15),
-                              const Text(
-                                "Top 7 Best Automatic Subtitle Generators",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              const Text(
-                                "Learn how to rank your e-commence website on Google",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                "Since we started using Semrush, our keywords are much more targeted and we are seeing much more traffic and activity.",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              }),
-            ),
-          ],
         ),
       );
 
@@ -253,16 +60,13 @@ class _HomeState extends State<Home> {
           _menuButton(),
         ],
       ),
-      endDrawer: DrawerBody(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Story(),
-            _suggestions(),
-            _newsFeed(),
-          ],
-        ),
-      ),
+      body: context.watch<HomeProvider>().isLoading
+          ? const HomeShimmer()
+          : SingleChildScrollView(
+              child: Column(
+                children: const [Story(), SuggestedVideo(), Posts()],
+              ),
+            ),
     );
   }
 }

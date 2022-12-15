@@ -3,14 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/views/auth/login.dart';
 import 'package:prepared_academy/views/auth/register.dart';
-import 'package:prepared_academy/views/class_activities/quiz_acitvity.dart';
+import 'package:prepared_academy/views/class_activities/chapter_video/quiz_acitvity.dart';
 import 'package:prepared_academy/views/exams_assignments/exam_assignments.dart';
-import 'package:prepared_academy/views/class_activities/view_activites/activities.dart';
-import 'package:prepared_academy/views/class_activities/assignment_activity.dart';
+import 'package:prepared_academy/views/class_activities/activities.dart';
+import 'package:prepared_academy/views/class_activities/assignment/assignment_activity.dart';
 import 'package:prepared_academy/views/home/home.dart';
 import 'package:prepared_academy/views/home/navig.dart';
+import 'package:prepared_academy/views/home/notifications.dart';
 import 'package:prepared_academy/views/home/story_view.dart';
 import 'package:prepared_academy/views/class_activities/subject_activity.dart';
+import 'package:prepared_academy/views/live_quiz.dart';
 import 'package:prepared_academy/views/subjects/chapter_content.dart';
 import 'package:prepared_academy/views/subjects/chapter_test.dart';
 import 'package:prepared_academy/views/subjects/chapters.dart';
@@ -39,6 +41,8 @@ class AppRoutes {
   static const ACTIVITIES = '/activities';
   static const ASSIGNMENTACTIVITY = '/assignmentactivities';
   static const QUIZACTIVITY = '/quizactivity';
+  static const NOTIFICATIONS = '/notifications';
+  static const LIVEQUIZ = '/livequiz';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -60,6 +64,8 @@ class AppRoutes {
       ACTIVITIES: (context) => const Activities(),
       ASSIGNMENTACTIVITY: (context) => const AssignmentActivity(),
       QUIZACTIVITY: (context) => const QuizActivtiy(),
+      NOTIFICATIONS: (context) => const Notifications(),
+      LIVEQUIZ: (context) => const LiveQuiz(),
     };
     return appRoutes;
   }

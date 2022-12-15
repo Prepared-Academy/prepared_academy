@@ -94,10 +94,34 @@ class ClassActivityRepo {
     }
   }
 
-  Future<Response> unlockActivityUpdate(String data) async {
+  // Future<Response> unlockActivityUpdate(String data) async {
+  //   try {
+  //     final Response response =
+  //         await client.post(AppConstants.UNLOCK_ACTIVITY_UPDATE, data: data);
+  //     return response;
+  //   } on DioError catch (e) {
+  //     final errorMessage = DioExceptions.fromDioError(e).toString();
+  //     NotificationsService.showSnackbar(errorMessage);
+  //     throw Exception(errorMessage);
+  //   }
+  // }
+
+  Future<Response> getTestActivity(int id) async {
     try {
       final Response response =
-          await client.post(AppConstants.UNLOCK_ACTIVITY_UPDATE, data: data);
+          await client.get("${AppConstants.GET_TEST_ACTIVITY_URI}/$id");
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> activityTestSubmit(Map<String, dynamic> data) async {
+    try {
+      final Response response = await client
+          .post(AppConstants.TEST_ACTIVITY_SUBMIT_URI, queryParameters: data);
       return response;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();

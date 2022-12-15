@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Duration animationDurationList = const Duration(milliseconds: 50) * 5;
+Duration animationDurationList = const Duration(milliseconds: 30);
 
 class AnimationFadeList extends StatelessWidget {
   final Animation<double> animation;

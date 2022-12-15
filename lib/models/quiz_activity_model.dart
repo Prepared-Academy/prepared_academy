@@ -13,13 +13,13 @@ String quizActivityModelToJson(List<QuizActivityModel> data) =>
 
 class QuizActivityModel {
   QuizActivityModel({
-    this.questionId,
-    this.status,
-    this.quizmapId,
-    this.question,
-    this.taxonomyId,
-    this.taxonomyType,
-    this.options,
+    required this.questionId,
+    required this.status,
+    required this.quizmapId,
+    required this.question,
+    required this.taxonomyId,
+    required this.taxonomyType,
+    required this.options,
   });
 
   final int? questionId;
@@ -58,9 +58,9 @@ class QuizActivityModel {
 
 class Option {
   Option({
-    this.optionsId,
-    this.questionId,
-    this.options,
+    required this.optionsId,
+    required this.questionId,
+    required this.options,
   });
 
   final int? optionsId;
