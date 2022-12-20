@@ -24,8 +24,8 @@ class SharedPreferencesHelper {
     return myPrefs.getInt(key);
   }
 
-  Future<String?> getStringValue(String key) async {
-    return myPrefs.getString(key);
+  Future<String> getStringValue(String key) async {
+    return await myPrefs.getString(key) ?? "";
   }
 
   Future<Stream<String?>> getStringStream(String key) async {

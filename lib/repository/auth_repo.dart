@@ -69,4 +69,8 @@ class AuthRepo {
     await locator.setStringValue(AppConstants.TOKEN, userModel.accessToken!);
     await locator.setStringValue(AppConstants.USER, json);
   }
+
+  // Future<String> getToken() async {
+  //   return locator.getStringValue(AppConstants.TOKEN);
+  // }
 }

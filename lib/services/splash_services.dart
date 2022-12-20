@@ -1,12 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:app_version_update/app_version_update.dart';
+import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/repository/auth_repo.dart';
 import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/services/notification_services.dart';
+import 'package:prepared_academy/services/user_service.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
-
 import '../models/user_model.dart';
 import '../setup.dart';
 import '../utils/shared_preference.dart';
@@ -20,14 +21,17 @@ class SplashServices {
 
   static Future init() async {
     final userJson = await locator.getStringValue(AppConstants.USER);
-    if (userJson != null) {
+    if (userJson != "") {
       userModel = userModelFromJson(userJson);
       token = userModel.accessToken ?? "";
       userId = userModel.user!.id ?? -1;
+      UserService.token = token;
+
+      debugPrint("User Token: ${UserService.token}");
     }
-    await await Future.delayed(const Duration(seconds: 3));
+    // await await Future.delayed(const Duration(seconds: 3));
     if (token != "") {
-      NotificationServices.saveFirebaseToken(userId);
+      await NotificationServices.saveFirebaseToken(userId);
       OneContext().pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
     } else {
       OneContext().pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);

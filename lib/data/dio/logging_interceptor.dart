@@ -15,7 +15,7 @@ class LoggingInterceptor extends InterceptorsWrapper {
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    String token = await _prefsLocator.getStringValue(AppConstants.TOKEN) ?? "";
+    String token = await _prefsLocator.getStringValue(AppConstants.TOKEN);
     options.headers["Authorization"] = "Bearer $token";
     debugPrint("--> ${options.method} ${options.path}");
     debugPrint("Headers: ${options.headers.toString()}");

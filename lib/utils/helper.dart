@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 import 'package:one_context/one_context.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -8,13 +7,13 @@ import 'package:timeago/timeago.dart' as timeago;
 
 final dialogContext = OneContext().dialog.context!;
 
-Future loadingStop() async {
-  EasyLoading.dismiss();
-}
+// Future loadingStop() async {
+//   EasyLoading.dismiss();
+// }
 
-Future loadingShow() async {
-  EasyLoading.show(status: 'Loading...');
-}
+// Future loadingShow() async {
+//   EasyLoading.show(status: 'Loading...');
+// }
 
 Future successRegister() async {
   await QuickAlert.show(

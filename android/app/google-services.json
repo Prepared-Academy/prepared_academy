@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1071928122922",
+    "project_id": "prepared-app-2020",
+    "storage_bucket": "prepared-app-2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071928122922:android:2d9f24b471f1543212ed53",
+        "android_client_info": {
+          "package_name": "com.prepared.preparedacademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071928122922-2placaj5v0d5dss938mpm9p8111d34kg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlK9SaVLA-E6mDC47gGg9NBCMcKlf44gY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071928122922-2placaj5v0d5dss938mpm9p8111d34kg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

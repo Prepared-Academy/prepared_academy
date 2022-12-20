@@ -9,7 +9,9 @@ import 'package:prepared_academy/widgets/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-// import 'package:webviewx_plus/webviewx_plus.dart';
+
+import '../../setup.dart';
+import '../../utils/shared_preference.dart';
 
 class VideoPlay extends StatefulWidget {
   final String videoUrl;
@@ -33,10 +35,11 @@ class VideoPlay extends StatefulWidget {
 }
 
 class _VideoPlayState extends State<VideoPlay> {
+  final locator = getIt.get<SharedPreferencesHelper>();
+
   bool isShowQuizButton = false;
   late FlickManager flickManager;
-  // late WebViewXController webviewController;
-
+  String token = "";
   @override
   void initState() {
     super.initState();
@@ -50,8 +53,6 @@ class _VideoPlayState extends State<VideoPlay> {
       flickManager.flickVideoManager!.videoPlayerController!
           .addListener(checkVideo);
     }
-
-    // if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
   void checkVideo() {
@@ -76,7 +77,7 @@ class _VideoPlayState extends State<VideoPlay> {
 
   final iframe = '''
 <html>
-  <iframe src="https://player.vimeo.com/video/747516331?quality=720p" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="M2"></iframe><script src="https://player.vimeo.com/api/player.js"></script>
+  <iframe ...referrerpolicy="strict-origin" src="https://player.vimeo.com/video/747516331?quality=720p" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="M2"></iframe><script src="https://player.vimeo.com/api/player.js"></script>
 </html>
 ''';
 
@@ -102,34 +103,6 @@ class _VideoPlayState extends State<VideoPlay> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // WebViewX(
-              //   initialContent:
-              //       '',
-              //   initialSourceType: SourceType.html,
-              //   onWebViewCreated: (controller) =>
-              //       webviewController = controller,
-              //   height: 300,
-              //   width: double.infinity,
-              // ),
-              // Container(
-              //   color: kBlue,
-              //   height: 200,
-              //   child: const HtmlWidget(
-              //       '''<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/771493163?h=9a6f6d8fed&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="M2"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'''),
-              // ),
-
-              // const SizedBox(
-              //   height: 200,
-              //   child: WebView(
-              //     initialUrl: 'https://player.vimeo.com/video/471775891',
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 300,
-              //   child: InAppWebView(
-              //     initialUrlRequest: URLRequest(url: frm),
-              //   ),
-              // ),
               Flexible(
                 child: Card(
                   child: AspectRatio(

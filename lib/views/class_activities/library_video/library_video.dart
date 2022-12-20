@@ -5,12 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/models/activity_model.dart';
 import 'package:prepared_academy/utils/validator.dart';
-import 'package:prepared_academy/views/class_activities/video_play.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
 import '../../../themes/color_theme.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/helper.dart';
 import '../../../widgets/photo_view.dart';
+import 'libray_video_webview.dart';
 
 class LibraryVideo extends StatelessWidget {
   final ActivityModel activityModel;
@@ -92,7 +92,7 @@ class LibraryVideo extends StatelessWidget {
                                   // Play video
                                   OneContext().push(
                                     MaterialPageRoute(
-                                      builder: (_) => VideoPlay(
+                                      builder: (_) => LibraryVideoWebView(
                                         moduele: library.subtitle,
                                         description: library.description,
                                         videoUrl: library.link!,
