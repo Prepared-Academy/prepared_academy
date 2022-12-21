@@ -1,15 +1,16 @@
 import 'dart:ui';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/models/activity_model.dart';
 import 'package:prepared_academy/utils/validator.dart';
+import 'package:prepared_academy/views/class_activities/library_video/library_view.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
 import '../../../themes/color_theme.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/helper.dart';
-import '../../../widgets/photo_view.dart';
 import 'libray_video_webview.dart';
 
 class LibraryVideo extends StatelessWidget {
@@ -39,10 +40,22 @@ class LibraryVideo extends StatelessWidget {
                         topRight: Radius.circular(15),
                       ),
                       child: library.librarytype == "image"
-                          ? Image.network(
-                              "${AppConstants.BASE_URL}/${library.link}",
-                              fit: BoxFit.fitHeight,
-                              height: 80,
+                          ? CarouselSlider.builder(
+                              options: CarouselOptions(
+                                height: 80,
+                                autoPlay: true,
+                                enlargeCenterPage: false,
+                                viewportFraction: 1,
+                                autoPlayAnimationDuration:
+                                    const Duration(milliseconds: 1500),
+                              ),
+                              itemCount: library.images.length,
+                              itemBuilder: (BuildContext context, int itemIndex,
+                                      int pageViewIndex) =>
+                                  Image.network(
+                                "${AppConstants.BASE_URL}/${library.images[itemIndex].image}",
+                                fit: BoxFit.fitHeight,
+                              ),
                             )
                           : Container(
                               height: 80,
@@ -62,13 +75,13 @@ class LibraryVideo extends StatelessWidget {
                           children: [
                             const SizedBox(height: 10),
                             Text(
-                              library.subtitle!,
+                              library.subtitle,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              library.description!,
+                              library.description,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(fontSize: 14),
@@ -81,25 +94,26 @@ class LibraryVideo extends StatelessWidget {
                                 if (library.librarytype == "image") {
                                   OneContext().push(
                                     MaterialPageRoute(
-                                      builder: (context) => ViewPhoto(
-                                        imageProvider: NetworkImage(
-                                          "${AppConstants.BASE_URL}/${library.link}",
-                                        ),
-                                      ),
-                                    ),
+                                        builder: (context) => LibraryImagesView(
+                                              library: library,
+                                              title: library.subtitle,
+                                            )),
                                   );
                                 } else {
                                   // Play video
-                                  OneContext().push(
-                                    MaterialPageRoute(
-                                      builder: (_) => LibraryVideoWebView(
-                                        moduele: library.subtitle,
-                                        description: library.description,
-                                        videoUrl: library.link!,
-                                        isChapterVideo: false,
+
+                                  if (library.librarytype == "video") {
+                                    OneContext().push(
+                                      MaterialPageRoute(
+                                        builder: (_) => LibraryVideoWebView(
+                                          moduele: library.subtitle,
+                                          description: library.description,
+                                          videoUrl: library.link,
+                                          isChapterVideo: false,
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  } else {}
                                 }
                               },
                               text: library.librarytype == "image"

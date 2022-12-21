@@ -156,36 +156,73 @@ class Chapter {
 class Library {
   Library({
     required this.id,
+    required this.imageLibraryId,
     required this.subtitle,
     required this.description,
     required this.librarytype,
     required this.link,
     required this.videoThumbnail,
+    required this.images,
   });
 
-  final int? id;
-  final String? subtitle;
-  final String? description;
-  final String? librarytype;
-  final String? link;
-  final String? videoThumbnail;
+  final int id;
+  final int imageLibraryId;
+  final String subtitle;
+  final String description;
+  final String librarytype;
+  final String link;
+  final String videoThumbnail;
+  final List<LibraryImage> images;
 
   factory Library.fromJson(Map<String, dynamic> json) => Library(
         id: json["id"],
+        imageLibraryId: json["imageLibraryId"] ?? 0,
         subtitle: json["Subtitle"],
         description: json["description"],
         librarytype: json["librarytype"],
         link: json["link"],
         videoThumbnail: json["videoThumbnail"],
+        images: json["images"] == null
+            ? []
+            : List<LibraryImage>.from(
+                json["images"].map((x) => LibraryImage.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "imageLibraryId": imageLibraryId,
         "Subtitle": subtitle,
         "description": description,
         "librarytype": librarytype,
         "link": link,
         "videoThumbnail": videoThumbnail,
+        "images": images.isEmpty
+            ? null
+            : List<dynamic>.from(images.map((x) => x.toJson())),
+      };
+}
+
+class LibraryImage {
+  LibraryImage({
+    required this.id,
+    required this.imageLibraryId,
+    required this.image,
+  });
+
+  final int id;
+  final int imageLibraryId;
+  final String image;
+
+  factory LibraryImage.fromJson(Map<String, dynamic> json) => LibraryImage(
+        id: json["id"],
+        imageLibraryId: json["imageLibraryId"],
+        image: json["image"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "imageLibraryId": imageLibraryId,
+        "image": image,
       };
 }
 

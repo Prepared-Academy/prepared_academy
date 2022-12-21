@@ -36,11 +36,16 @@ class AuthProvider extends ChangeNotifier {
             .contains("Verification link sent to your mail")) {
           NotificationsService.showSnackbar(userModel.message!);
         } else if (apiResponse.data["message"] == "Login Successful") {
-          await authRepo.saveUser(userModel);
-          await authRepo.creatLoginTime(userModel.user!.id!);
-          NotificationServices.saveFirebaseToken(userModel.user!.id!);
-          OneContext()
-              .pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
+          if (userModel.user!.role == 0) {
+            await authRepo.saveUser(userModel);
+            await authRepo.creatLoginTime(userModel.user!.id!);
+            NotificationServices.saveFirebaseToken(userModel.user!.id!);
+            OneContext()
+                .pushNamedAndRemoveUntil(AppRoutes.NAVIG, (route) => false);
+          } else {
+            NotificationsService.showSnackbar(
+                apiResponse.data["Invalid credential"]);
+          }
         }
       }
 

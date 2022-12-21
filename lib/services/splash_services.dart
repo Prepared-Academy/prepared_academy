@@ -25,8 +25,7 @@ class SplashServices {
       userModel = userModelFromJson(userJson);
       token = userModel.accessToken ?? "";
       userId = userModel.user!.id ?? -1;
-      UserService.token = token;
-
+      await UserService.updateToken(token);
       debugPrint("User Token: ${UserService.token}");
     }
     // await await Future.delayed(const Duration(seconds: 3));
