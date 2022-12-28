@@ -43,6 +43,10 @@ class AppConstants {
   static const String LIKE_POSTS_URI = '/api/muser/likeposts';
   static const String UNLIKE_POSTS_URI = '/api/muser/unlikeposts';
 
+  // Student Profile
+  static const String PROFILE_URI = '/api/muser/getStudentProfile';
+  static const String GETREPORTS_URI = 'api/muser/getStudentReport';
+
   // sharePreference
   static const String ONBOARDING = 'onboarding';
   static const String TOKEN = 'token';
@@ -113,6 +117,15 @@ class AppConstants {
   static const String LOGOWITHTEXT_IMAGE = "assets/logo/logowithtext.png";
   static const String TEXTLOGO_IMAGE = "assets/logo/textlogo.png";
   static const String LOGO_IMAGE = "assets/images/logo.png";
+
+  // Profile Page
+
+  static const String MYREWARDS = "assets/icons/medal.png";
+  static const String MYREPORTS = "assets/icons/clipboard.png";
+  static const String ABOUTUS = "assets/icons/conversation.png";
+  static const String TERMS = "assets/icons/terms-and-conditions.png";
+  static const String PASS_RESET = "assets/icons/reset-password.png";
+  static const String LOG_OUT = "assets/icons/turn-off.png";
 
   static List<String> gradesList = [
     '1',

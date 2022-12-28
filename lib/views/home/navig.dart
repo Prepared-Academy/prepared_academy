@@ -3,6 +3,7 @@ import 'package:prepared_academy/themes/color_theme.dart';
 import 'package:prepared_academy/views/home/home.dart';
 import 'package:prepared_academy/views/class_activities/in_class_activities.dart';
 import 'package:prepared_academy/views/home/my_subjects.dart';
+import 'package:prepared_academy/views/home/profile.dart';
 import 'package:prepared_academy/views/home/rewards.dart';
 import 'drawer.dart';
 
@@ -16,14 +17,14 @@ class Navig extends StatefulWidget {
 }
 
 class _NavigState extends State<Navig> {
-  int selectedIndex = 2;
+  int selectedIndex = 4;
 
   List<Widget> widgetOptions = [
     const Home(),
     MySubjects(),
     const InClassActivities(),
     const Rewards(),
-    const Home(),
+    const Profile(),
   ];
 
   void onItemTap(int index) {

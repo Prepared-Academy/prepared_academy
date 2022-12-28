@@ -1,269 +1,210 @@
 import 'package:flutter/material.dart';
-
+import 'package:prepared_academy/components/change_image.dart';
+import 'package:prepared_academy/providers/auth_provider.dart';
+import 'package:prepared_academy/providers/profile_provider.dart';
+import 'package:provider/provider.dart';
 import '../../themes/color_theme.dart';
 import '../../utils/app_constants.dart';
+import '../../widgets/circle_image.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
-  Widget profileAppBar() {
-    return AppBar(
-      foregroundColor: kWhite,
-      automaticallyImplyLeading: false,
-      backgroundColor: kWhite,
-      title: const Text(
-        'Profile Page',
-        style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.w700, fontSize: 18),
-      ),
-    );
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  List options = [
+    {"name": "My Reports", "icon": AppConstants.MYREPORTS},
+    {"name": "About Us", "icon": AppConstants.ABOUTUS},
+    {"name": "Privacy Policy", "icon": AppConstants.TERMS},
+    {"name": "Password Reset", "icon": AppConstants.PASS_RESET},
+    {"name": "Log Out", "icon": AppConstants.LOG_OUT},
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => context.read<ProfileProvider>().getProfileDetails());
   }
 
-  Widget userProfImage() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image.network(
-          'https://avatars.githubusercontent.com/u/37553901?v=4',
-          height: 120.0,
-          width: 110.0,
-        ),
-      ),
-    );
-  }
+  Widget userProfile() {
+    return Consumer<ProfileProvider>(builder: (context, provider, __) {
+      return Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            color: kPrimaryColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  child: CircularProfileAvatar(
+                    "${AppConstants.BASE_URL}/upload/userProfile/${provider.profileModel.profileImage}", //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
+                    radius: 60,
+                    isEdit: true,
+                    animateFromOldImageOnUrlChange: true,
+                    backgroundColor: Colors.white,
+                    borderWidth: 6,
+                    borderColor: kWhite,
+                    elevation: 5.0,
+                    cacheImage: true,
+                    placeHolder: (context, url) =>
+                        Image.asset(AppConstants.PLACEHOLDER_IMAGE),
+                    errorWidget: (context, url, error) =>
+                        Image.asset(AppConstants.PLACEHOLDER_IMAGE),
 
-  Widget userProfDetails() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
-            'Aashini Venugopal',
-            style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w800, color: kWhite),
+                    onTap: () {},
+                    onEditTap: () {
+                      changeImage(false);
+                    },
+                  ),
+                ),
+                studentNameEmail(),
+              ],
+            ),
           ),
-          Text(
-            'aashini@gmail.com',
-            style: TextStyle(fontSize: 14, color: kWhite),
-          ),
-          SizedBox(
-            height: 2,
-          ),
-          Text(
-            'Gulf Asian Public School',
-            style: TextStyle(fontSize: 14, color: kWhite),
-          ),
-          SizedBox(
-            height: 2,
-          ),
-          Text(
-            'Grade 6',
-            style: TextStyle(fontSize: 14, color: kWhite),
-          ),
+          Positioned(
+              top: 15,
+              left: 10,
+              child: ClipOval(
+                child: Container(
+                  color: kWhite.withOpacity(0.2),
+                  height: 30.0, // height of the button
+                  width: 30.0, // width of the button
+                ),
+              )),
+          Positioned(
+              top: 0,
+              left: 50,
+              child: ClipOval(
+                child: Container(
+                  color: kWhite.withOpacity(0.2),
+                  height: 15.0, // height of the button
+                  width: 15.0, // width of the button
+                ),
+              )),
+          Positioned(
+              bottom: 20,
+              right: 30,
+              child: ClipOval(
+                child: Container(
+                  color: kWhite.withOpacity(0.2),
+                  height: 15.0, // height of the button
+                  width: 15.0, // width of the button
+                ),
+              )),
+          Positioned(
+              top: 0,
+              right: -10,
+              child: ClipOval(
+                child: Container(
+                  color: kWhite.withOpacity(0.2),
+                  height: 50.0, // height of the button
+                  width: 50.0, // width of the button
+                ),
+              )),
         ],
+      );
+    });
+  }
+
+  Widget studentNameEmail() {
+    return Flexible(
+      child: Consumer<ProfileProvider>(builder: (context, provider, __) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              provider.profileModel.schoolName ?? "",
+              style: const TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.w800, color: kWhite),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              provider.profileModel.name ?? "",
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.w800, color: kWhite),
+            ),
+            Text(
+              provider.profileModel.email ?? "",
+              style: const TextStyle(fontSize: 14, color: kWhite),
+            ),
+          ],
+        );
+      }),
+    );
+  }
+
+  Widget statWidget(String count, String statName) {
+    return Column(
+      children: [
+        Text(
+          count,
+          style: const TextStyle(
+              fontSize: 16, fontWeight: FontWeight.w600, color: kBlack),
+        ),
+        Text(
+          statName,
+          style: const TextStyle(
+              fontSize: 12, fontWeight: FontWeight.w500, color: kgrey),
+        ),
+      ],
+    );
+  }
+
+  Widget userStats() {
+    return Card(
+      elevation: 0,
+      margin: const EdgeInsets.all(0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: Consumer<ProfileProvider>(builder: (context, provider, __) {
+          return provider.isLoading
+              ? const SizedBox()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    statWidget(provider.profileModel.subjectsCount!.toString(),
+                        "Subjects"),
+                    statWidget(
+                        provider.profileModel.totalCompletion!, "Completion"),
+                    statWidget(
+                        provider.profileModel.grade!.toString(), "Grade"),
+                    statWidget(provider.profileModel.xp!.toString(), "XP"),
+                  ],
+                );
+        }),
       ),
     );
   }
 
   Widget profileListings() {
-    return Expanded(
-      child: Column(
-        children: [
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
-              ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'My Rewards',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
-            ),
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: options.length,
+      itemBuilder: (context, index) => Card(
+        elevation: 0,
+        child: ListTile(
+          dense: true,
+          minLeadingWidth: 0,
+          leading: Image.asset(
+            options[index]["icon"],
+            height: 25,
           ),
-          const Divider(
-            height: 5,
-            thickness: 0.08,
-            indent: 20,
-            endIndent: 20,
-            color: Colors.black,
+          title: Text(
+            options[index]["name"],
           ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
-              ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'My Reports',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
-            ),
-          ),
-          const Divider(
-            height: 5,
-            thickness: 0.08,
-            indent: 20,
-            endIndent: 20,
-            color: Colors.black,
-          ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
-              ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'About Us',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
-            ),
-          ),
-          const Divider(
-            height: 5,
-            thickness: 0.08,
-            indent: 20,
-            endIndent: 20,
-            color: Colors.black,
-          ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
-              ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'Terms & Conditions',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
-            ),
-          ),
-          const Divider(
-            height: 3,
-            thickness: 0.08,
-            indent: 20,
-            endIndent: 20,
-            color: Colors.black,
-          ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
-              ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'Password Reset',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
-            ),
-          ),
-          const Divider(
-            height: 3,
-            thickness: 0.08,
-            indent: 20,
-            endIndent: 20,
-            color: Colors.black,
-          ),
-          Card(
-            margin: const EdgeInsets.all(2),
-            elevation: 0,
-            child: ListTile(
-              leading: Image.asset(
-                AppConstants.ACCOUNT_ICON,
-                width: 25,
-              ),
-              title: RichText(
-                  text: const TextSpan(
-                      text: 'Log Out',
-                      style:
-                          TextStyle(color: kBlack, fontWeight: FontWeight.w600),
-                      children: <TextSpan>[
-                    TextSpan(
-                      text: '\nView rewards and points',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-                    )
-                  ])),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget profileLogo() {
-    return Align(
-      alignment: Alignment.center,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(
-              AppConstants.LOGO_IMAGE,
-              width: 140,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 11.0, bottom: 10),
-              child: Text(
-                "PreparEd App Version 1.1.0",
-                style: TextStyle(fontSize: 10),
-              ),
-            )
-          ],
+          onTap: () {
+            if (index == 4) {
+              context.read<AuthProvider>().logout();
+            }
+          },
         ),
       ),
     );
@@ -272,45 +213,30 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: false,
-          foregroundColor: kWhite,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          title: const Text(
-            "Profile",
-            style: TextStyle(color: kBlack, fontSize: 18),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            elevation: 0,
+            title: const Text("Profile", style: TextStyle(color: kWhite)),
+            foregroundColor: kWhite,
+            backgroundColor: kPrimaryColor,
+            centerTitle: true,
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+            ],
           ),
-          backgroundColor: kWhite,
-        ),
-        backgroundColor: Colors.white,
-        body: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Card(
-                    elevation: 0,
-                    color: kPrimaryColor,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        userProfImage(),
-                        userProfDetails(),
-                      ],
-                    ),
-                  ),
-                  profileListings(),
-                  // Spacer(),
-                  profileLogo(),
-                ],
-              ),
-            )
-          ],
-        ));
+          SliverAppBar(
+            expandedHeight: 150.0,
+            snap: true,
+            floating: true,
+            automaticallyImplyLeading: false,
+            flexibleSpace: FlexibleSpaceBar(background: userProfile()),
+          ),
+          SliverToBoxAdapter(child: userStats()),
+          SliverToBoxAdapter(child: profileListings())
+        ],
+      ),
+    );
   }
 }

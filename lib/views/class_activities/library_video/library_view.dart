@@ -30,9 +30,11 @@ class _LibraryImagesViewState extends State<LibraryImagesView> {
             CarouselSlider.builder(
               carouselController: buttonCarouselController,
               options: CarouselOptions(
+                pageSnapping: widget.library.images.length == 1 ? false : true,
                 autoPlay: false,
                 enlargeCenterPage: false,
                 viewportFraction: 1,
+                enableInfiniteScroll: false,
                 autoPlayAnimationDuration: const Duration(milliseconds: 1500),
                 autoPlayCurve: Curves.decelerate,
                 onPageChanged: (index, reason) {

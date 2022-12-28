@@ -20,6 +20,7 @@ import 'package:prepared_academy/views/subjects/pdf_viewer.dart';
 import 'package:prepared_academy/views/subjects/slides.dart';
 import 'package:prepared_academy/views/subjects/write_answer.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
+import '../views/auth/forgotpassword.dart';
 import '../views/auth/splash.dart';
 
 class AppRoutes {
@@ -43,6 +44,10 @@ class AppRoutes {
   static const QUIZACTIVITY = '/quizactivity';
   static const NOTIFICATIONS = '/notifications';
   static const LIVEQUIZ = '/livequiz';
+  static const INAPPNOTIFICATION = '/notification';
+  static const MYREWARDSPAGE = '/rewards';
+  static const MYREPORTSPAGE = '/reports';
+  static const FORGOTPASSWORD = '/forgot';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -66,6 +71,11 @@ class AppRoutes {
       QUIZACTIVITY: (context) => const QuizActivtiy(),
       NOTIFICATIONS: (context) => const Notifications(),
       LIVEQUIZ: (context) => const LiveQuiz(),
+
+      //   INAPPNOTIFICATION: (context) => const Notifications(),
+      FORGOTPASSWORD: (context) => const ForgotPassword(),
+      // MYREWARDSPAGE: (context) => const MyRewards(),
+      // MYREPORTSPAGE: (context) => const MyReports()
     };
     return appRoutes;
   }

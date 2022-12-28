@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
@@ -17,6 +19,7 @@ class AuthProvider extends ChangeNotifier {
   final locator = getIt.get<SharedPreferencesHelper>();
   final AuthRepo authRepo = AuthRepo();
   UserModel userModel = UserModel();
+  String email = "";
 
   void loading(bool value) {
     isLoading = value;
@@ -69,6 +72,44 @@ class AuthProvider extends ChangeNotifier {
           OneContext()
               .pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
           successRegister();
+        }
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
+      rethrow;
+    }
+  }
+
+  Future sendOTP(String email) async {
+    var data = {"email": email};
+    try {
+      loading(true);
+      Response apiResponse = await authRepo.forgotsentOTP(jsonEncode(data));
+      if (apiResponse.statusCode == 200) {
+        if (apiResponse.data["message"] == "User not found!!") {
+          NotificationsService.showSnackbar(apiResponse.data["message"]);
+        } else if (apiResponse.data["message"] == "Email sent Successfully!") {}
+      }
+      loading(false);
+    } catch (e) {
+      loading(false);
+      rethrow;
+    }
+  }
+
+  Future verifyOTP(String password, String email) async {
+    var data = {"email": email, "password": password};
+    try {
+      loading(true);
+      Response apiResponse = await authRepo.verifyOTP(jsonEncode(data));
+      if (apiResponse.statusCode == 200) {
+        if (apiResponse.data["message"] == "Incorrect OTP") {
+          NotificationsService.showSnackbar(apiResponse.data["message"]);
+        } else if (apiResponse.data["message"] == "OTP Verified") {
+          OneContext()
+              .pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
+          NotificationsService.showSnackbar("Password change successfully.");
         }
       }
       loading(false);

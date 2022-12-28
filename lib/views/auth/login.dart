@@ -100,7 +100,11 @@ class _LoginState extends State<Login> {
 
   Widget _forgotPassword() => Align(
         alignment: Alignment.topRight,
-        child: CustomTextButton(onPressed: () {}, text: "Forgot password?"),
+        child: CustomTextButton(
+            onPressed: () {
+              OneContext().pushNamed(AppRoutes.FORGOTPASSWORD);
+            },
+            text: "Forgot password?"),
       );
 
   Widget _registerAccount() => Padding(

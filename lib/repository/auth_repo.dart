@@ -64,6 +64,30 @@ class AuthRepo {
     }
   }
 
+  Future<Response> forgotsentOTP(String dataJson) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.SEND_OTP_URI, data: dataJson);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> verifyOTP(String dataJson) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.SEND_OTP_URI, data: dataJson);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
   Future saveUser(UserModel userModel) async {
     String json = userModelToJson(userModel);
     await locator.setStringValue(AppConstants.TOKEN, userModel.accessToken!);

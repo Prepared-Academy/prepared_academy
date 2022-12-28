@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
 
 ThemeData appTheme = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: Colors.grey.shade100,
   splashFactory: InkRipple.splashFactory,
+
   // useMaterial3: true,
-  appBarTheme: const AppBarTheme(
+  appBarTheme: AppBarTheme(
     elevation: 0.5,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey.shade100,
     foregroundColor: Colors.black,
-    titleTextStyle: TextStyle(
-      color: Colors.black,
+    titleTextStyle: const TextStyle(
+      color: kBlack,
       fontSize: 16,
       fontWeight: FontWeight.w500,
     ),

@@ -43,8 +43,10 @@ class LibraryVideo extends StatelessWidget {
                           ? CarouselSlider.builder(
                               options: CarouselOptions(
                                 height: 80,
-                                autoPlay: true,
+                                autoPlay:
+                                    library.images.length == 1 ? false : true,
                                 enlargeCenterPage: false,
+                                enableInfiniteScroll: false,
                                 viewportFraction: 1,
                                 autoPlayAnimationDuration:
                                     const Duration(milliseconds: 1500),
