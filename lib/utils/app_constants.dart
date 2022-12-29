@@ -11,7 +11,7 @@ class AppConstants {
   static const String UPDATE_LOGOUT_TIME_URI = '/api/muser/updateLogoutTime';
   static const String VERIFY_OTP_URI = '/api/muser/verifyOTP';
   static const String SEND_OTP_URI = '/api/muser/sendOTPMail';
-  static const String UPDATE_PASS_URI = '/api/muser/UpdatePassword';
+  static const String UPDATE_PASS_URI = '/api/muser/updatePassword';
 
   static const String STORY_URI = '/api/muser/getDailyFacts';
   static const String BOOKMARKSTORY_URI = '/api/muser/addBookmark';

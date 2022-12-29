@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/views/auth/login.dart';
+import 'package:prepared_academy/views/auth/pin_code.dart';
 import 'package:prepared_academy/views/auth/register.dart';
 import 'package:prepared_academy/views/class_activities/chapter_video/quiz_acitvity.dart';
 import 'package:prepared_academy/views/exams_assignments/exam_assignments.dart';
@@ -21,6 +22,7 @@ import 'package:prepared_academy/views/subjects/slides.dart';
 import 'package:prepared_academy/views/subjects/write_answer.dart';
 import 'package:prepared_academy/widgets/photo_view.dart';
 import '../views/auth/forgotpassword.dart';
+import '../views/auth/new_password.dart';
 import '../views/auth/splash.dart';
 
 class AppRoutes {
@@ -48,6 +50,8 @@ class AppRoutes {
   static const MYREWARDSPAGE = '/rewards';
   static const MYREPORTSPAGE = '/reports';
   static const FORGOTPASSWORD = '/forgot';
+  static const OTP = '/otp';
+  static const UPDATEPASSWORD = '/updatepassword';
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -71,9 +75,10 @@ class AppRoutes {
       QUIZACTIVITY: (context) => const QuizActivtiy(),
       NOTIFICATIONS: (context) => const Notifications(),
       LIVEQUIZ: (context) => const LiveQuiz(),
-
       //   INAPPNOTIFICATION: (context) => const Notifications(),
       FORGOTPASSWORD: (context) => const ForgotPassword(),
+      OTP: (context) => const OtpPage(),
+      UPDATEPASSWORD: (context) => const UpdatePassword(),
       // MYREWARDSPAGE: (context) => const MyRewards(),
       // MYREPORTSPAGE: (context) => const MyReports()
     };

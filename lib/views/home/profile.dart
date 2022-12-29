@@ -125,9 +125,8 @@ class _ProfileState extends State<Profile> {
             const SizedBox(height: 10),
             Text(
               provider.profileModel.name ?? "",
-              textAlign: TextAlign.center,
               style: const TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.w800, color: kWhite),
+                  fontSize: 19, fontWeight: FontWeight.w800, color: kWhite),
             ),
             Text(
               provider.profileModel.email ?? "",

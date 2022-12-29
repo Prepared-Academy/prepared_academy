@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 import 'package:prepared_academy/themes/color_theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/auth_provider.dart';
 
 class PinCode extends StatefulWidget {
   const PinCode({Key? key}) : super(key: key);
@@ -71,7 +74,7 @@ class _PinCodeState extends State<PinCode> {
           focusNode: focusNode,
           defaultPinTheme: defaultPinTheme,
           onCompleted: (pin) {
-            print(pin);
+            context.read<AuthProvider>().verifyOTP(pin);
           },
           focusedPinTheme: defaultPinTheme.copyWith(
             height: 68,
@@ -93,8 +96,7 @@ class _PinCodeState extends State<PinCode> {
 }
 
 class OtpPage extends StatefulWidget {
-  final String email;
-  const OtpPage({Key? key, required this.email}) : super(key: key);
+  const OtpPage({Key? key}) : super(key: key);
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -113,7 +115,7 @@ class _OtpPageState extends State<OtpPage> with AutomaticKeepAliveClientMixin {
           children: [
             const SizedBox(height: 50),
             Text(
-              'Please enter the verification code sent to\n${widget.email}',
+              'Please enter the verification code sent to\n${context.read<AuthProvider>().email}',
               textAlign: TextAlign.center,
               style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
             ),
@@ -127,7 +129,7 @@ class _OtpPageState extends State<OtpPage> with AutomaticKeepAliveClientMixin {
                     style: TextStyle(fontSize: 16)),
                 GestureDetector(
                   onTap: () {
-                    // NotificationsService.animatedSnackBar("message");
+                    context.read<AuthProvider>().reSendOTP();
                   },
                   child: const Text(
                     'Resend',

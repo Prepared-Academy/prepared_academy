@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/providers/auth_provider.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
@@ -7,40 +6,16 @@ import 'package:provider/provider.dart';
 
 import '../../widgets/input_decoration.dart';
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({super.key});
+class UpdatePassword extends StatefulWidget {
+  const UpdatePassword({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
+  State<UpdatePassword> createState() => _UpdatePasswordState();
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
-  final _emailController = TextEditingController();
-  final TextEditingController _otpcontroller = TextEditingController();
-
+class _UpdatePasswordState extends State<UpdatePassword> {
+  final _passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
-
-  void sendOTP() async {
-    // bool result = await emailAuth.sendOtp(
-    //     recipientMail: _emailController.value.text, otpLength: 4);
-    // if (result) {
-    //   // ignore: avoid_print
-    //   print("OTP is verified");
-    // } else {
-    //   // ignore: avoid_print
-    //   print("OTP not verified");
-    // }
-  }
-
-  void verifyOTP() {
-    // bool result = emailAuth.validateOtp(
-    //     recipientMail: _emailController.value.text,
-    //     userOtp: _otpcontroller.value.text);
-    // if (result) {
-    //   // ignore: avoid_print
-    //   print("OTP is verified");
-    // } else {}
-  }
 
   Widget _preparedLogo() {
     return Padding(
@@ -52,18 +27,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     );
   }
 
-  Widget _emailAddressField() {
+  Widget _passwordField() {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: TextFormField(
-        controller: _emailController,
+        controller: _passwordController,
         keyboardType: TextInputType.emailAddress,
-        decoration: inputDecoration(labelText: "Your email address"),
+        decoration: inputDecoration(labelText: "New password"),
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "required";
-          } else if (!EmailValidator.validate(value)) {
-            return "Invalid email";
           }
           return null;
         },
@@ -75,7 +48,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Forgot Password")),
+      appBar: AppBar(title: const Text("Update Password")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -83,7 +56,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Column(
             children: [
               _preparedLogo(),
-              _emailAddressField(),
+              _passwordField(),
               const SizedBox(height: 30),
               CustomButton(
                   fullWidth: true,
@@ -93,9 +66,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       : () {
                           context
                               .read<AuthProvider>()
-                              .sendOTP(_emailController.text);
+                              .updatePassword(_passwordController.text);
                         },
-                  text: "REQUEST OTP")
+                  text: "UPDATE")
             ],
           ),
         ),

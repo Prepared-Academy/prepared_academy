@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import '../../../services/user_service.dart';
-import '../../../utils/app_constants.dart';
 
 class LibraryVideoWebView extends StatefulWidget {
   final String videoUrl;
@@ -41,8 +40,7 @@ class _LibraryVideoWebViewState extends State<LibraryVideoWebView> {
           supportZoom: false,
         )),
         initialUrlRequest: URLRequest(
-            url: Uri.parse(
-                "${AppConstants.BASE_URL}/vimeovideo?webLink=${widget.videoUrl}"),
+            url: Uri.parse(widget.videoUrl),
             headers: {"Authorization": "Bearer ${UserService.token}"}),
         shouldOverrideUrlLoading: (controller, navigationAction) async {
           // var uri = navigationAction.request.url!;

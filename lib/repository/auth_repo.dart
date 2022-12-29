@@ -79,7 +79,19 @@ class AuthRepo {
   Future<Response> verifyOTP(String dataJson) async {
     try {
       final Response response =
-          await client.post(AppConstants.SEND_OTP_URI, data: dataJson);
+          await client.post(AppConstants.VERIFY_OTP_URI, data: dataJson);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
+
+  Future<Response> updatePassword(String dataJson) async {
+    try {
+      final Response response =
+          await client.post(AppConstants.UPDATE_PASS_URI, data: dataJson);
       return response;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
@@ -93,8 +105,4 @@ class AuthRepo {
     await locator.setStringValue(AppConstants.TOKEN, userModel.accessToken!);
     await locator.setStringValue(AppConstants.USER, json);
   }
-
-  // Future<String> getToken() async {
-  //   return locator.getStringValue(AppConstants.TOKEN);
-  // }
 }
