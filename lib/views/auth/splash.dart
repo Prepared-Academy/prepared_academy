@@ -1,4 +1,3 @@
-import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/services/splash_services.dart';
 
@@ -24,11 +23,9 @@ class _SplashState extends State<Splash> {
       body: Stack(
         children: [
           Center(
-            child: ScaleAnimation(
-              child: Image.asset(
-                AppConstants.LOGO_IMAGE,
-                height: 120,
-              ),
+            child: Image.asset(
+              AppConstants.LOGO_IMAGE,
+              height: 120,
             ),
           ),
           Positioned(

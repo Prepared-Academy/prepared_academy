@@ -1,11 +1,8 @@
-import 'package:animation_wrappers/animations/fade_animation.dart';
-import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
 import 'package:prepared_academy/widgets/widgets.dart';
 
-import '../../animation/animation_list.dart';
 import '../../themes/color_theme.dart';
 import '../../widgets/circle.dart';
 
@@ -40,11 +37,10 @@ class _ChaptersState extends State<Chapters> {
   Widget _suggestions() => Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        FadeAnimation(
-            child: const Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text("Suggested for you"),
-        )),
+        ),
         const SizedBox(height: 10),
         Container(
           height: 100,
@@ -117,22 +113,17 @@ class _ChaptersState extends State<Chapters> {
   Widget _chapterList() => Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        FadeAnimation(
-            child: const Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text("All Chapters"),
-        )),
+        ),
         // const SizedBox(height: 10),
-        LiveList(
-          delay: animationDurationList,
-          shrinkWrap: true,
-          itemCount: 3,
-          controller: scrollController,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: ((context, index, animation) {
-            return AnimationFadeList(
-              animation: animation,
-              widget: Stack(
+        ListView.builder(
+            shrinkWrap: true,
+            itemCount: 3,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Stack(
                 clipBehavior: Clip.none,
                 children: [
                   Container(
@@ -211,10 +202,8 @@ class _ChaptersState extends State<Chapters> {
                       child: ProgressCircle(
                           total: 100, current: index == 1 ? 60 : 0)),
                 ],
-              ),
-            );
-          }),
-        ),
+              );
+            }),
       ]));
   @override
   Widget build(BuildContext context) {

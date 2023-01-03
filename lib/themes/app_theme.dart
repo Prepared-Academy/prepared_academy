@@ -5,7 +5,9 @@ import 'package:prepared_academy/themes/color_theme.dart';
 ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: Colors.grey.shade100,
   splashFactory: InkRipple.splashFactory,
+  primaryColor: kPrimaryColor,
 
+  colorScheme: flexSchemeLight,
   // useMaterial3: true,
   appBarTheme: AppBarTheme(
     elevation: 0.5,

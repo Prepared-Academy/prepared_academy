@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
-  animation_wrappers:
-    dependency: "direct main"
-    description:
-      name: animation_wrappers
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   app_version_update:
     dependency: "direct main"
     description:
@@ -36,13 +29,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
-  auto_animated:
-    dependency: "direct main"
-    description:
-      name: auto_animated
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.0"
   back_button_interceptor:
     dependency: transitive
     description:

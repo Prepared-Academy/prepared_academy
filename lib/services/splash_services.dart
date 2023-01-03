@@ -10,6 +10,7 @@ import 'package:prepared_academy/services/user_service.dart';
 import 'package:prepared_academy/utils/app_constants.dart';
 import '../models/user_model.dart';
 import '../setup.dart';
+import '../utils/internet_check.dart';
 import '../utils/shared_preference.dart';
 
 class SplashServices {
@@ -20,6 +21,9 @@ class SplashServices {
   static int userId = -1;
 
   static Future init() async {
+    // Checking internet
+    InternetPopup().initialize();
+
     final userJson = await locator.getStringValue(AppConstants.USER);
     if (userJson != "") {
       userModel = userModelFromJson(userJson);

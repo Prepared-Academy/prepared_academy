@@ -62,9 +62,12 @@ class _HomeState extends State<Home> {
       ),
       body: context.watch<HomeProvider>().isLoading
           ? const HomeShimmer()
-          : SingleChildScrollView(
-              child: Column(
-                children: const [Story(), SuggestedVideo(), Posts()],
+          : RefreshIndicator(
+              onRefresh: context.read<HomeProvider>().init,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: const [Story(), SuggestedVideo(), Posts()],
+                ),
               ),
             ),
     );

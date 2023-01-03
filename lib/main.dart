@@ -12,7 +12,6 @@ import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/services/notification_services.dart';
 import 'package:prepared_academy/setup.dart';
 import 'package:prepared_academy/themes/app_theme.dart';
-import 'package:prepared_academy/utils/internet_check.dart';
 import 'package:prepared_academy/widgets/remove_scroll_glow.dart';
 import 'package:provider/provider.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
@@ -28,15 +27,12 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  InternetPopup().initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await requestPermission();
   await setupFlutterNotifications();
   showFlutterNotification();
   await setupInit();
-
-  // await removeAll();
 
   RxSharedPreferences(
     SharedPreferences.getInstance(),
@@ -47,7 +43,6 @@ void main() async {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   ));
-  // configLoading();
 
   runApp(
     MultiProvider(
@@ -84,19 +79,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// void configLoading() {
-//   EasyLoading.instance
-//     ..displayDuration = const Duration(milliseconds: 2000)
-//     ..indicatorType = EasyLoadingIndicatorType.chasingDots
-//     ..loadingStyle = EasyLoadingStyle.dark
-//     ..indicatorSize = 40.0
-//     ..radius = 10.0
-//     ..progressColor = kPrimaryColor
-//     ..backgroundColor = Colors.white
-//     ..indicatorColor = kPrimaryColor
-//     ..textColor = Colors.black
-//     ..maskColor = Colors.black.withOpacity(0.5)
-//     ..userInteractions = false
-//     ..dismissOnTap = false;
-// }
