@@ -47,6 +47,9 @@ class AppConstants {
   static const String PROFILE_URI = '/api/muser/getStudentProfile';
   static const String GETREPORTS_URI = 'api/muser/getStudentReport';
 
+  // Live QUiz
+  static const String GET_LIVE_QUIZ_URI = '/api/muser/getLiveQuizes';
+
   // sharePreference
   static const String ONBOARDING = 'onboarding';
   static const String TOKEN = 'token';

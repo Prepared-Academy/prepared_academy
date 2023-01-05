@@ -13,7 +13,7 @@ import 'package:prepared_academy/views/home/navig.dart';
 import 'package:prepared_academy/views/home/notifications.dart';
 import 'package:prepared_academy/views/home/story_view.dart';
 import 'package:prepared_academy/views/class_activities/subject_activity.dart';
-import 'package:prepared_academy/views/live_quiz.dart';
+import 'package:prepared_academy/views/live_quiz/live_quiz.dart';
 import 'package:prepared_academy/views/subjects/chapter_content.dart';
 import 'package:prepared_academy/views/subjects/chapter_test.dart';
 import 'package:prepared_academy/views/subjects/chapters.dart';
