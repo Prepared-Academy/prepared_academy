@@ -96,6 +96,9 @@ dependencies:
   email_validator: ^2.1.17
   pinput: ^2.2.20
   fluttertoast: ^8.1.2
+  web_socket_channel: ^2.2.0
+  lottie: ^2.1.0
+  material_dialogs: ^1.1.4
   
   
 
@@ -141,6 +144,7 @@ flutter:
     - assets/icons/
     - assets/inclass/
     - assets/logo/
+    - assets/lottie/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

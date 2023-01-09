@@ -63,19 +63,17 @@ class _TestActivityState extends State<TestActivity>
             barrierDismissible: false,
             cancelBtnText: "Leave test",
             confirmBtnText: "Continue",
+            confirmBtnColor: kBlue,
             context: context,
             type: QuickAlertType.warning,
             title: 'Oops..!',
             text:
                 'Are you sure you want to leave?\nYou will loose your unsaved answers',
             onCancelBtnTap: () {
-              // Navigator.pop(context, true);
-
               Navigator.of(context, rootNavigator: true).pop(true);
             },
             onConfirmBtnTap: () {
               Navigator.of(context, rootNavigator: true).pop(false);
-              // Navigator.pop(context, false);
             }) ??
         false;
   }

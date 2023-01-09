@@ -16,31 +16,8 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   final _emailController = TextEditingController();
-  final TextEditingController _otpcontroller = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
-
-  void sendOTP() async {
-    // bool result = await emailAuth.sendOtp(
-    //     recipientMail: _emailController.value.text, otpLength: 4);
-    // if (result) {
-    //   // ignore: avoid_print
-    //   print("OTP is verified");
-    // } else {
-    //   // ignore: avoid_print
-    //   print("OTP not verified");
-    // }
-  }
-
-  void verifyOTP() {
-    // bool result = emailAuth.validateOtp(
-    //     recipientMail: _emailController.value.text,
-    //     userOtp: _otpcontroller.value.text);
-    // if (result) {
-    //   // ignore: avoid_print
-    //   print("OTP is verified");
-    // } else {}
-  }
 
   Widget _preparedLogo() {
     return Padding(

@@ -13,7 +13,9 @@ import 'package:prepared_academy/views/home/navig.dart';
 import 'package:prepared_academy/views/home/notifications.dart';
 import 'package:prepared_academy/views/home/story_view.dart';
 import 'package:prepared_academy/views/class_activities/subject_activity.dart';
+import 'package:prepared_academy/views/live_quiz/enter_pin.dart';
 import 'package:prepared_academy/views/live_quiz/live_quiz.dart';
+import 'package:prepared_academy/views/live_quiz/live_quiz_start.dart';
 import 'package:prepared_academy/views/subjects/chapter_content.dart';
 import 'package:prepared_academy/views/subjects/chapter_test.dart';
 import 'package:prepared_academy/views/subjects/chapters.dart';
@@ -46,6 +48,9 @@ class AppRoutes {
   static const QUIZACTIVITY = '/quizactivity';
   static const NOTIFICATIONS = '/notifications';
   static const LIVEQUIZ = '/livequiz';
+  static const ENTERPIN = '/enterpin';
+  static const LIVEQUIZSTART = '/livequizstart';
+
   static const INAPPNOTIFICATION = '/notification';
   static const MYREWARDSPAGE = '/rewards';
   static const MYREPORTSPAGE = '/reports';
@@ -75,10 +80,14 @@ class AppRoutes {
       QUIZACTIVITY: (context) => const QuizActivtiy(),
       NOTIFICATIONS: (context) => const Notifications(),
       LIVEQUIZ: (context) => const LiveQuiz(),
+      ENTERPIN: (context) => EnterPin(),
+      LIVEQUIZSTART: (context) => const LiveQuizStart(),
+
       //   INAPPNOTIFICATION: (context) => const Notifications(),
       FORGOTPASSWORD: (context) => const ForgotPassword(),
       OTP: (context) => const OtpPage(),
       UPDATEPASSWORD: (context) => const UpdatePassword(),
+
       // MYREWARDSPAGE: (context) => const MyRewards(),
       // MYREPORTSPAGE: (context) => const MyReports()
     };

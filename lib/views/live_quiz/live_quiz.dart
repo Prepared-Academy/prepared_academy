@@ -109,7 +109,9 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:one_context/one_context.dart';
 import 'package:prepared_academy/providers/live_quiz_provider.dart';
+import 'package:prepared_academy/routes/router.dart';
 import 'package:prepared_academy/widgets/buttons.dart';
 import 'package:provider/provider.dart';
 
@@ -156,7 +158,7 @@ class _LiveQuizState extends State<LiveQuiz> {
                     children: [
                       Center(
                           child: Text(
-                        "${data.quizname!}sadlk asljd lasj dkjasdkljsakdljaskd",
+                        data.quizname!,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontWeight: FontWeight.w800, fontSize: 20),
@@ -176,7 +178,12 @@ class _LiveQuizState extends State<LiveQuiz> {
                       const Divider(),
                       MiniElevatedButton(
                         fullWidth: true,
-                        onPressed: () {},
+                        onPressed: () {
+                          context
+                              .read<LiveQuizProvider>()
+                              .updateQuizCode(data.quizCode!);
+                          OneContext().pushNamed(AppRoutes.ENTERPIN);
+                        },
                         text: "Launch Quiz",
                       ),
                     ],
