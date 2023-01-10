@@ -20,4 +20,16 @@ class LiveQuizRepo {
       throw Exception(errorMessage);
     }
   }
+
+  Future<Response> getLiveQuizQuestions(String quizId) async {
+    try {
+      final Response response = await client
+          .get("${AppConstants.GET_LIVE_QUIZ_QUESTION_URI}/$quizId");
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
 }

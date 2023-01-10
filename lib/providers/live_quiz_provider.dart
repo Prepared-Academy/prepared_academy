@@ -74,7 +74,7 @@ class LiveQuizProvider extends ChangeNotifier {
     socket.stream.listen(
       (data) {
         debugPrint(data);
-        debugPrint(json.decode(data));
+        // debugPrint(json.decode(data));
 
         String jsonsDataString = data.toString();
         final jsonData = jsonDecode(jsonsDataString); //  Get Socket Id
@@ -98,6 +98,8 @@ class LiveQuizProvider extends ChangeNotifier {
       onError: (error) => debugPrint("Error $error"),
     );
   }
+
+  void closeSocket() => socket.sink.close();
 
   Future getAuth({bool isPresence = true}) async {
     var response = await Dio().post(

@@ -49,6 +49,11 @@ class AppConstants {
 
   // Live QUiz
   static const String GET_LIVE_QUIZ_URI = '/api/muser/getLiveQuizes';
+  static const String GET_LIVE_QUIZ_QUESTION_URI =
+      '/api/muser/getStudentLiveQuizQuestions';
+
+  // Notifications
+  static const String GET_NOTIFICATIONS = '/api/muser/getnotifications';
 
   // sharePreference
   static const String ONBOARDING = 'onboarding';
@@ -114,6 +119,7 @@ class AppConstants {
   static const String TROPHY_ICON = "assets/icons/trophy.png";
   static const String NOTIFICATIONS_ICON = "assets/icons/notifications.png";
   static const String LIVE_QUIZ_ICON = "assets/icons/livequiz.png";
+  static const String REMOVE_NOTI_ICON = "assets/icons/removenoti.png";
 
   // Logo
 

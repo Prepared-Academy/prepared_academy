@@ -26,6 +26,7 @@ class _LiveQuizStartState extends State<LiveQuizStart> {
             title: 'Oops..!',
             text: 'Are you sure you want to leave?',
             onCancelBtnTap: () {
+              context.read<LiveQuizProvider>().closeSocket();
               Navigator.of(context, rootNavigator: true).pop(true);
             },
             onConfirmBtnTap: () {

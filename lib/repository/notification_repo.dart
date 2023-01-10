@@ -20,4 +20,16 @@ class NotificationRepo {
       throw Exception(errorMessage);
     }
   }
+
+  Future<Response> getNotifications() async {
+    try {
+      final Response response =
+          await client.get(AppConstants.GET_NOTIFICATIONS);
+      return response;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      NotificationsService.showSnackbar(errorMessage);
+      throw Exception(errorMessage);
+    }
+  }
 }

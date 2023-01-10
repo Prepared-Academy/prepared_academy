@@ -7,7 +7,6 @@ import 'package:prepared_academy/widgets/buttons.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:slide_countdown/slide_countdown.dart';
-import 'package:stream_duration/stream_duration.dart';
 
 import '../../themes/color_theme.dart';
 
